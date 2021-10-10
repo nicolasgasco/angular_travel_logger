@@ -1,3 +1,16 @@
+html {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
 html,
 body,
 div,
@@ -15,7 +28,7 @@ blockquote,
 pre,
 abbr,
 address,
-cite,
+us cite,
 code,
 del,
 dfn,
@@ -162,4 +175,13 @@ hr {
 input,
 select {
   vertical-align: middle;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
