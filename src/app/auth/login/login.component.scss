@@ -17,7 +17,7 @@
     }
 
     form {
-      :not(:last-child) {
+      > :not(:last-child) {
         margin-bottom: 10px;
       }
       button[type="submit"] {
