@@ -10,6 +10,13 @@
       padding: 40px 30px;
     }
     mat-card-header {
+      align-items: center;
+      > :first-child {
+        margin-right: 15px;
+      }
+      mat-card-title {
+        margin-bottom: 0;
+      }
       > div {
         margin: 0;
       }
