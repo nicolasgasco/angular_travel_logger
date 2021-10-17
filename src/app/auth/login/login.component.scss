@@ -1,16 +1,27 @@
-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.login-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .login-card {
-    max-width: 350px;
+    width: 100%;
+    max-width: 600px;
+    padding: 25px 15px;
+    @include mq-xs {
+      padding: 40px 30px;
+    }
+    mat-card-header {
+      > div {
+        margin: 0;
+      }
+      @include header-bottom-margin;
+    }
 
     form {
       :not(:last-child) {
         margin-bottom: 10px;
       }
       button[type="submit"] {
-        margin-top: 10px;
+        margin-top: 20px;
       }
     }
   }

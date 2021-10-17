@@ -1,6 +1,26 @@
 @mixin gutters {
-  padding-left: $gutter;
-  padding-right: $gutter;
+  padding-left: 15px;
+  padding-right: 15px;
+  @include mq-xs {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+@mixin vertical-padding {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  @include mq-xs {
+    padding-top: 50px;
+    padding-bottom: 70px;
+  }
+}
+
+@mixin header-bottom-margin {
+  margin-bottom: 20px;
+  @include mq-xs {
+    margin-bottom: 30px;
+  }
 }
 
 @mixin hover-animation($color) {

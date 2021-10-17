@@ -7,9 +7,9 @@ $custom-typography: mat-typography-config(
 
 // Font sizes
 @mixin text-xs {
-  font-size: 14px;
-  @include mq-md {
-    font-size: 15px;
+  font-size: 12px;
+  @include mq-xs {
+    font-size: 13px;
   }
 }
 

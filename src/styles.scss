@@ -1,8 +1,10 @@
-@import "../src/assets/styles/mixins", "../src/assets/styles/media",
-  "../src/assets/styles/typography", "../src/assets/styles/colors", "../src/assets/styles/utils";
+@import "../src/assets/styles/media", "../src/assets/styles/typography",
+  "../src/assets/styles/colors", "../src/assets/styles/utils",
+  "../src/assets/styles/mixins";
 
 // Component import
-@import "../src/app/footer/footer.component.scss";
+@import "../src/app/footer/footer.component.scss",
+  "../src/app/auth/login/login.component.scss";
 
 // Global styles
 app-root {
@@ -16,10 +18,10 @@ router-outlet {
   position: absolute;
 }
 
-// label {
-//   visibility: hidden;
-//   position: absolute;
-// }
+section {
+  @include vertical-padding;
+  @include gutters;
+}
 
 // Resets
 html,
