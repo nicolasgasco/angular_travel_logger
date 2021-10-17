@@ -1,7 +1,9 @@
 footer {
   @include hover-animation(black);
   @include text-xs;
-  outline: 2px #ff0000 solid;
+
+  background-color: $primary;
+
   padding: 10px 15px;
   @include mq-md {
     padding: 20px 60px;

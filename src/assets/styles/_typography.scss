@@ -1,6 +1,27 @@
+// Overriding Angular standard typography
+@import "~@angular/material/theming";
+$custom-typography: mat-typography-config(
+  $font-family: "Montserrat",
+);
+@include angular-material-typography($custom-typography);
+
+// Font sizes
 @mixin text-xs {
-    font-size: 13px;
-    @include mq-md {
-        font-size: 15px;
-    }
+  font-size: 14px;
+  @include mq-md {
+    font-size: 15px;
+  }
+}
+
+// Importing fonts
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
 }

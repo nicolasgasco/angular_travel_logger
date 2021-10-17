@@ -1,5 +1,5 @@
 @import "../src/assets/styles/mixins", "../src/assets/styles/media",
-  "../src/assets/styles/typography";
+  "../src/assets/styles/typography", "../src/assets/styles/colors";
 
 // Component import
 @import "../src/app/footer/footer.component.scss";
@@ -26,10 +26,11 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  // font-family: "Montserrat", sans-serif;
 }
 html {
   box-sizing: border-box;
+  color: $black;
 }
 
 // Partials
