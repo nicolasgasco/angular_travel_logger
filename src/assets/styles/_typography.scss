@@ -1,0 +1,6 @@
+@mixin text-xs {
+    font-size: 13px;
+    @include mq-md {
+        font-size: 15px;
+    }
+}

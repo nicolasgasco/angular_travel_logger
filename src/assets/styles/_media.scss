@@ -1,0 +1,52 @@
+//=============================================
+//=            Media queries breakpoints      =
+//=============================================
+
+$breakpoint-sm: 768px !default;
+$wrapper-centered-sm: 720px !default;
+$breakpoint-md: 992px !default;
+$wrapper-centered-md: 960px !default;
+$breakpoint-lg: 1200px !default;
+$wrapper-centered-lg: 1140px !default;
+$breakpoint-xl: 1600px !default;
+$wrapper-centered-xl: 1540px !default;
+$breakpoint-xxl: 2400px !default;
+$wrapper-centered-xxl: 2340px !default;
+
+@mixin mq-sm {
+  @media screen and (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin mq-md {
+  @media screen and (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin mq-lg {
+  @media screen and (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+@mixin mq-xl {
+  @media screen and (min-width: $breakpoint-xl) {
+    @content;
+  }
+}
+
+@mixin mq-xxl {
+  @media screen and (min-width: $breakpoint-xxl) {
+    @content;
+  }
+}
+
+@mixin mq($breakpoint) {
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+//=====  End of Media queries breakpoints  ======
