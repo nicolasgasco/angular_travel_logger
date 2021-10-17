@@ -2,43 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  .login-card {
-    width: 100%;
-    max-width: 600px;
-    padding: 25px 15px;
-    @include mq-xs {
-      padding: 40px 30px;
+  form {
+    > :not(:last-child) {
+      margin-bottom: 10px;
     }
-    mat-card-header {
-      align-items: center;
-      > :first-child {
-        margin-right: 15px;
-      }
-      mat-card-title {
-        margin-bottom: 0;
-      }
-      > div {
-        margin: 0;
-      }
-      @include header-bottom-margin;
-    }
-
-    form {
-      > :not(:last-child) {
-        margin-bottom: 10px;
-      }
-      button[type="submit"] {
-        margin-top: 20px;
-      }
-    }
-
-    // Showing progress bar at the bottom
-    position: relative;
-    overflow: hidden;
-    mat-progress-bar {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+    button[type="submit"] {
+      margin-top: 20px;
     }
   }
 }

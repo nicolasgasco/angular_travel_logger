@@ -1,11 +1,12 @@
 <section class="login-section">
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-icon mat-card-avatar aria-hidden="false" aria-label="Login icon"
-        >login</mat-icon
-      >
-      <mat-card-title>Log into your account</mat-card-title>
-    </mat-card-header>
+  <travel-log-card
+    [progressBarCondition]="
+      loginForm.submitted && loginForm.form.status === 'VALID'
+    "
+    title="Log into your account"
+    icon="login"
+    class="login-card"
+  >
     <form
       fxLayout="column"
       #loginForm="ngForm"
@@ -59,6 +60,5 @@
         Login
       </button>
     </form>
-    <mat-progress-bar *ngIf="loginForm.submitted && loginForm.form.status === 'VALID'" mode="indeterminate"></mat-progress-bar>
-  </mat-card>
+  </travel-log-card>
 </section>

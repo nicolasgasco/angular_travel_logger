@@ -15,6 +15,8 @@ import { AllTripsComponent } from './trips/all-trips/all-trips.component';
 import { NewTripComponent } from './trips/new-trip/new-trip.component';
 import { LandingComponent } from './landing/landing.component';
 import { FooterComponent } from './footer/footer.component';
+import { AddTripComponent } from './trips/add-trip/add-trip.component';
+import { CardComponent } from './layout/card/card.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { FooterComponent } from './footer/footer.component';
     NewTripComponent,
     LandingComponent,
     FooterComponent,
+    AddTripComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
