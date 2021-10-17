@@ -31,5 +31,14 @@
         margin-top: 20px;
       }
     }
+
+    // Showing progress bar at the bottom
+    position: relative;
+    overflow: hidden;
+    mat-progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
   }
 }

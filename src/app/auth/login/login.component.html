@@ -1,7 +1,9 @@
 <section class="login-section">
   <mat-card class="login-card">
     <mat-card-header>
-      <mat-icon mat-card-avatar aria-hidden="false" aria-label="Login icon">login</mat-icon>
+      <mat-icon mat-card-avatar aria-hidden="false" aria-label="Login icon"
+        >login</mat-icon
+      >
       <mat-card-title>Log into your account</mat-card-title>
     </mat-card-header>
     <form
@@ -52,10 +54,11 @@
         mat-raised-button
         type="submit"
         color="primary"
-        [disabled]="!loginForm.form.touched"
+        [disabled]="loginForm.form.status !== 'VALID'"
       >
         Login
       </button>
     </form>
+    <mat-progress-bar *ngIf="loginForm.submitted && loginForm.form.status === 'VALID'" mode="indeterminate"></mat-progress-bar>
   </mat-card>
 </section>
