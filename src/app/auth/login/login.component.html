@@ -1,1 +1,60 @@
-<p>login works!</p>
+<section>
+  <mat-card class="login-card">
+    <mat-card-header>
+      <mat-card-title>Log in to your account</mat-card-title>
+    </mat-card-header>
+    <form
+      fxLayout="column"
+      #loginForm="ngForm"
+      (ngSubmit)="onSubmit(loginForm)"
+    >
+      <mat-form-field>
+        <mat-placeholder class="placeholder">Your email</mat-placeholder>
+        <input
+          matInput
+          ngModel
+          type="email"
+          name="email"
+          id="email"
+          email
+          #emailInput="ngModel"
+          required
+        />
+        <mat-error *ngIf="emailInput.hasError('required')"
+          >Cannot be empty</mat-error
+        >
+        <mat-error *ngIf="!emailInput.hasError('required')"
+          >Email is invalid</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          matInput
+          ngModel
+          type="password"
+          name="password"
+          id="password"
+          required
+          minlength="8"
+          #pwdInput="ngModel"
+        />
+        <mat-placeholder class="placeholder">Your password</mat-placeholder>
+        <mat-hint align="end">{{ pwdInput.value?.length || 0 }}/8</mat-hint>
+        <mat-error *ngIf="pwdInput.hasError('required')"
+          >Cannot be empty</mat-error
+        >
+        <mat-error *ngIf="!pwdInput.hasError('required')"
+          >Should be at least 8 characters long</mat-error
+        >
+      </mat-form-field>
+      <button
+        mat-raised-button
+        type="submit"
+        color="primary"
+        [disabled]="!loginForm.form.touched"
+      >
+        Login
+      </button>
+    </form>
+  </mat-card>
+</section>

@@ -2,16 +2,17 @@
 //=            Media queries breakpoints      =
 //=============================================
 
-$breakpoint-sm: 768px !default;
-$wrapper-centered-sm: 720px !default;
-$breakpoint-md: 992px !default;
-$wrapper-centered-md: 960px !default;
-$breakpoint-lg: 1200px !default;
-$wrapper-centered-lg: 1140px !default;
-$breakpoint-xl: 1600px !default;
-$wrapper-centered-xl: 1540px !default;
-$breakpoint-xxl: 2400px !default;
-$wrapper-centered-xxl: 2340px !default;
+$breakpoint-xs: 599px !default;
+$breakpoint-sm: 959px !default;
+$breakpoint-md: 1279px !default;
+$breakpoint-lg: 1919px !default;
+$breakpoint-xl: 5000px !default;
+
+@mixin mq-xs {
+  @media screen and (min-width: $breakpoint-xs) {
+    @content;
+  }
+}
 
 @mixin mq-sm {
   @media screen and (min-width: $breakpoint-sm) {
@@ -33,12 +34,6 @@ $wrapper-centered-xxl: 2340px !default;
 
 @mixin mq-xl {
   @media screen and (min-width: $breakpoint-xl) {
-    @content;
-  }
-}
-
-@mixin mq-xxl {
-  @media screen and (min-width: $breakpoint-xxl) {
     @content;
   }
 }

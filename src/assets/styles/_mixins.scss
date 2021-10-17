@@ -1,7 +1,12 @@
+@mixin gutters {
+  padding-left: $gutter;
+  padding-right: $gutter;
+}
+
 @mixin hover-animation($color) {
   a {
     background-image: linear-gradient(270deg, $color, $color);
-    background-size: 0 4px; /* Change to modify heigth */
+    background-size: 0 1px; /* Change to modify heigth */
     transition: background-size 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     padding-top: 2px;
     padding-bottom: 2px;
@@ -10,7 +15,7 @@
   }
 
   a:hover {
-    background-size: 100% 4px; /* Change to modify heigth */
+    background-size: 100% 1px; /* Change to modify heigth */
     background-position: 0 100%;
   }
 }

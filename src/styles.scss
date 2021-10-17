@@ -1,5 +1,5 @@
 @import "../src/assets/styles/mixins", "../src/assets/styles/media",
-  "../src/assets/styles/typography", "../src/assets/styles/colors";
+  "../src/assets/styles/typography", "../src/assets/styles/colors", "../src/assets/styles/utils";
 
 // Component import
 @import "../src/app/footer/footer.component.scss";
@@ -16,8 +16,10 @@ router-outlet {
   position: absolute;
 }
 
-a {
-}
+// label {
+//   visibility: hidden;
+//   position: absolute;
+// }
 
 // Resets
 html,
@@ -31,6 +33,10 @@ body {
 html {
   box-sizing: border-box;
   color: $black;
+}
+
+app-root {
+  background-color: $dark;
 }
 
 // Partials

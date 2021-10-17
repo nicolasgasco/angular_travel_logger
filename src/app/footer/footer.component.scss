@@ -1,13 +1,14 @@
 footer {
-  @include hover-animation(black);
+  @include hover-animation($black);
   @include text-xs;
 
-  background-color: $primary;
+  background-color: $primary-lighter;
 
   padding: 10px 15px;
   @include mq-md {
     padding: 20px 60px;
   }
+  @include gutters;
 
   small {
     display: block;
