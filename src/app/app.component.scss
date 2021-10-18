@@ -8,8 +8,10 @@ mat-sidenav {
   width: min(250px, 70%);
 }
 
-mat-toolbar {
-  .login-button {
-    margin-left: auto;
-  }
+mat-toolbar > div {
+  width: 100%;
+}
+
+.login-button {
+  margin-left: auto;
 }
