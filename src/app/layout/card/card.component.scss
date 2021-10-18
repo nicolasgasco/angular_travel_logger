@@ -1,4 +1,7 @@
-travel-log-card {
+@import "../../../assets/styles/mixins";
+@import "../../../assets/styles/media";
+
+:host {
   width: 100%;
   .card {
     width: 100%;

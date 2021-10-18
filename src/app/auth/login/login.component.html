@@ -9,6 +9,7 @@
   >
     <form
       fxLayout="column"
+      fxLayoutGap="25px"
       #loginForm="ngForm"
       (ngSubmit)="onSubmit(loginForm)"
     >
@@ -43,7 +44,7 @@
           #pwdInput="ngModel"
         />
         <mat-placeholder class="placeholder">Your password</mat-placeholder>
-        <mat-hint align="end">{{ pwdInput.value?.length || 0 }}/8</mat-hint>
+        <mat-hint align="end">{{ pwdInput.value?.length || 0 }}</mat-hint>
         <mat-error *ngIf="pwdInput.hasError('required')"
           >Cannot be empty</mat-error
         >
@@ -55,7 +56,7 @@
         mat-raised-button
         type="submit"
         color="primary"
-        [disabled]="loginForm.form.status !== 'VALID'"
+        [disabled]="loginForm.invalid"
       >
         Login
       </button>

@@ -2,6 +2,87 @@
   <travel-log-card
     title="Add a new trip"
     icon="flight_takeoff"
-    [progressBarCondition]="true"
-  ></travel-log-card>
+    [progressBarCondition]="
+      newTripForm.submitted && newTripForm.form.status === 'VALID'
+    "
+  >
+    <form fxLayout="column" fxLayoutGap="25px" #newTripForm="ngForm">
+      <mat-form-field appearance="outline">
+        <!-- Name -->
+        <mat-label>Trip name</mat-label>
+        <input
+          matInput
+          ngModel
+          type="text"
+          name="name"
+          id="name"
+          #nameInput="ngModel"
+          maxlength="50"
+          required
+        />
+        <mat-hint align="end">{{ nameInput.value?.length || 0 }}/50</mat-hint>
+        <mat-error *ngIf="nameInput.hasError('required')"
+          >Cannot be empty</mat-error
+        >
+      </mat-form-field>
+      <!-- Date range picker -->
+      <mat-form-field appearance="fill">
+        <mat-label>Trip period</mat-label>
+        <mat-date-range-input
+          [rangePicker]="tripRange"
+          [max]="maxDate"
+          [min]="minDate"
+        >
+          <input matStartDate placeholder="Start date" />
+          <input matEndDate placeholder="End date" />
+        </mat-date-range-input>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="tripRange"
+        ></mat-datepicker-toggle>
+        <mat-date-range-picker #tripRange></mat-date-range-picker>
+      </mat-form-field>
+      <!-- Cities visited -->
+      <mat-form-field appearance="outline">
+        <mat-label>Cities visited</mat-label>
+        <input
+          matInput
+          type="text"
+          name="cities"
+          id="cities"
+          #citiesVisited="ngModel"
+          maxlength="500"
+          [(ngModel)]="citiesList"
+          autocomplete="off"
+        />
+        <!-- <mat-hint align="end">{{ nameInput.value?.length || 0 }}/50</mat-hint> -->
+        <mat-hint>Comma-separated values</mat-hint>
+      </mat-form-field>
+      <mat-list
+        role="list"
+        class="cities-list"
+        *ngIf="citiesList.indexOf(',') !== -1"
+      >
+        <mat-list-item
+          role="listitem"
+          class="city-item"
+          *ngFor="
+            let city of citiesList
+              .slice(0, citiesList.lastIndexOf(','))
+              .split(',')
+          "
+          >{{ city.trim() | titlecase }}</mat-list-item
+        >
+      </mat-list>
+      <!-- Submit button -->
+      <button
+        mat-raised-button
+        type="submit"
+        color="primary"
+        [disabled]="newTripForm.invalid"
+      >
+        Add
+      </button>
+    </form>
+  </travel-log-card>
 </section>

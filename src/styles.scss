@@ -1,11 +1,6 @@
 @import "../src/assets/styles/media", "../src/assets/styles/typography",
-  "../src/assets/styles/colors", "../src/assets/styles/utils",
-  "../src/assets/styles/mixins";
-
-// Component import
-@import "../src/app/footer/footer.component.scss",
-  "../src/app/auth/login/login.component.scss",
-  "../src/app/layout/card/card.component.scss";
+  "../src/assets/styles/utils", "../src/assets/styles/mixins",
+  "../src/assets/styles/colors";
 
 // Global styles
 app-root {

@@ -6,8 +6,10 @@
     <mat-card-title class="card-title">{{ title }}</mat-card-title>
   </mat-card-header>
   <ng-content></ng-content>
-  <mat-progress-bar
-    *ngIf="progressBarCondition"
-    mode="indeterminate"
-  ></mat-progress-bar>
+  <mat-card-footer>
+    <mat-progress-bar
+      *ngIf="progressBarCondition"
+      mode="indeterminate"
+    ></mat-progress-bar
+  ></mat-card-footer>
 </mat-card>

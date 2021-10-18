@@ -17,6 +17,7 @@ import { LandingComponent } from './landing/landing.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddTripComponent } from './trips/add-trip/add-trip.component';
 import { CardComponent } from './layout/card/card.component';
+import { CitiesListComponent } from './trips/add-trip/cities-list/cities-list.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CardComponent } from './layout/card/card.component';
     FooterComponent,
     AddTripComponent,
     CardComponent,
+    CitiesListComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,6 @@
+@import "../../assets/styles/colors", "../../assets/styles/mixins",
+  "../../assets/styles/typography";
+
 footer {
   @include hover-animation($black);
   @include text-xs;

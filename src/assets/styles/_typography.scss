@@ -1,5 +1,6 @@
 // Overriding Angular standard typography
-@import "~@angular/material/theming";
+@import "~@angular/material/theming", "./media";
+
 $custom-typography: mat-typography-config(
   $font-family: "Montserrat",
 );
