@@ -4,6 +4,7 @@
   fxLayoutAlign="space-between center"
   fxLayoutJustify="center"
 >
+  <!-- Main nav mobile -->
   <button
     fxHide.gt-xs
     mat-icon-button
@@ -12,16 +13,19 @@
   >
     <mat-icon>menu</mat-icon>
   </button>
-  <span fxHide.gt-xs>My App</span>
-  <a [routerLink]="'/'" fxHide.lt-sm>My App</a>
+  <span fxHide.gt-xs>TravelHero</span>
+  <a [routerLink]="'/'" fxHide.lt-sm>TravelHero</a>
   <button
     fxHide.gt-xs
     mat-icon-button
     aria-label="Icon-button with login icon"
     class="login-button"
+    routerLink="login"
+    (click)="sidenav.close()"
   >
     <mat-icon>login</mat-icon>
   </button>
+  <!-- Main nav desktop -->
   <nav fxHide.lt-sm fxLayoutGap="20px">
     <a>All trips</a>
     <a routerLink="add-trip">New trip</a>
@@ -37,12 +41,14 @@
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-layout">
   <mat-sidenav opened="false" #sidenav role="navigation">
+    <!-- Mobile navigation -->
     <button
       fxHide.gt-xs
       mat-flat-button
       aria-label="Icon-button with login icon"
       class="home-button"
       routerLink="/"
+      (click)="sidenav.close()"
     >
       <mat-icon>home</mat-icon> Home
     </button>
@@ -61,7 +67,8 @@
       mat-flat-button
       aria-label="Icon-button with takeoff icon"
       class="new-trip-button"
-      routerLink="/"
+      routerLink="/add-trip"
+      (click)="sidenav.close()"
     >
       <mat-icon>flight_takeoff</mat-icon> Add new trip
     </button>
