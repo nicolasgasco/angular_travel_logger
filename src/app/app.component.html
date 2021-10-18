@@ -1,2 +1,26 @@
-<router-outlet></router-outlet>
-<travel-log-footer></travel-log-footer>
+<mat-sidenav-container class="sidenav-layout">
+  <mat-sidenav opened="true" #sidenav role="navigation">
+    Sidenav content
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        mat-icon-button
+        (click)="sidenav.toggle()"
+        aria-label="Icon-button with menu icon"
+      >
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <button
+        mat-icon-button
+        aria-label="Icon-button with login icon"
+        class="login-button"
+      >
+        <mat-icon>login</mat-icon>
+      </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <travel-log-footer></travel-log-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

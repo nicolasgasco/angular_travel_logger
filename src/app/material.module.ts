@@ -8,7 +8,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
-import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
@@ -22,6 +24,8 @@ import { MatDivider, MatDividerModule } from '@angular/material/divider';
     MatNativeDateModule,
     MatListModule,
     MatDividerModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
   exports: [
     MatButtonModule,
@@ -34,6 +38,8 @@ import { MatDivider, MatDividerModule } from '@angular/material/divider';
     MatNativeDateModule,
     MatListModule,
     MatDividerModule,
+    MatSidenavModule,
+    MatToolbarModule,
   ],
 })
 export class MaterialModule {}

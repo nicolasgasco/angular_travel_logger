@@ -1,0 +1,15 @@
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: min(250px, 70%);
+}
+
+mat-toolbar {
+  .login-button {
+    margin-left: auto;
+  }
+}
