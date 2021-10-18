@@ -1,26 +1,75 @@
+<mat-toolbar
+  color="primary"
+  fxLayout
+  fxLayoutAlign="space-between center"
+  fxLayoutJustify="center"
+>
+  <button
+    fxHide.gt-xs
+    mat-icon-button
+    (click)="sidenav.toggle()"
+    aria-label="Icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span fxHide.gt-xs>My App</span>
+  <a [routerLink]="'/'" fxHide.lt-sm>My App</a>
+  <button
+    fxHide.gt-xs
+    mat-icon-button
+    aria-label="Icon-button with login icon"
+    class="login-button"
+  >
+    <mat-icon>login</mat-icon>
+  </button>
+  <nav fxHide.lt-sm fxLayoutGap="20px">
+    <a>All trips</a>
+    <a routerLink="add-trip">New trip</a>
+    <button
+      mat-raised-button
+      routerLink="login"
+      class="login-button"
+      color="accent"
+    >
+      Login
+    </button>
+  </nav>
+</mat-toolbar>
 <mat-sidenav-container class="sidenav-layout">
-  <mat-sidenav opened="true" #sidenav role="navigation">
-    Sidenav content
+  <mat-sidenav opened="false" #sidenav role="navigation">
+    <button
+      fxHide.gt-xs
+      mat-flat-button
+      aria-label="Icon-button with login icon"
+      class="home-button"
+      routerLink="/"
+    >
+      <mat-icon>home</mat-icon> Home
+    </button>
+    <mat-divider></mat-divider>
+    <button
+      fxHide.gt-xs
+      mat-flat-button
+      aria-label="Icon-button with plus icon"
+      class="all-trips-button"
+      routerLink="/"
+    >
+      <mat-icon>home</mat-icon> All trips
+    </button>
+    <button
+      fxHide.gt-xs
+      mat-flat-button
+      aria-label="Icon-button with takeoff icon"
+      class="new-trip-button"
+      routerLink="/"
+    >
+      <mat-icon>flight_takeoff</mat-icon> Add new trip
+    </button>
+    <mat-divider></mat-divider>
+    <travel-log-footer></travel-log-footer>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button
-        mat-icon-button
-        (click)="sidenav.toggle()"
-        aria-label="Icon-button with menu icon"
-      >
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My App</span>
-      <button
-        mat-icon-button
-        aria-label="Icon-button with login icon"
-        class="login-button"
-      >
-        <mat-icon>login</mat-icon>
-      </button>
-    </mat-toolbar>
     <router-outlet></router-outlet>
-    <travel-log-footer></travel-log-footer>
+    <travel-log-footer fxHide.lt-sm></travel-log-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
