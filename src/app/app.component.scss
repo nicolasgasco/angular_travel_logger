@@ -4,14 +4,11 @@ mat-sidenav {
   height: 100%;
 }
 
-mat-sidenav {
+::ng-deep mat-sidenav {
   width: min(250px, 70%);
-}
-
-mat-toolbar > div {
-  width: 100%;
-}
-
-.login-button {
-  margin-left: auto;
+  > .mat-drawer-inner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }

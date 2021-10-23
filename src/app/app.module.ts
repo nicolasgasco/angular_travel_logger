@@ -18,6 +18,8 @@ import { FooterComponent } from './footer/footer.component';
 import { AddTripComponent } from './trips/add-trip/add-trip.component';
 import { CardComponent } from './layout/card/card.component';
 import { CitiesListComponent } from './trips/add-trip/cities-list/cities-list.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { CitiesListComponent } from './trips/add-trip/cities-list/cities-list.co
     AddTripComponent,
     CardComponent,
     CitiesListComponent,
+    HeaderComponent,
+    SidenavListComponent,
   ],
   imports: [
     BrowserModule,

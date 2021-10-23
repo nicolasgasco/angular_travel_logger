@@ -1,82 +1,23 @@
 <mat-toolbar color="primary">
-  <!-- Main nav mobile -->
-  <div fxHide.gt-xs fxLayout fxLayoutAlign="flex-start center">
-    <button
-      mat-icon-button
-      (click)="sidenav.toggle()"
-      aria-label="Icon-button with menu icon"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>TravelHero</span>
-    <button
-      mat-icon-button
-      aria-label="Icon-button with login icon"
-      class="login-button"
-      routerLink="login"
-      (click)="sidenav.close()"
-    >
-      <mat-icon>login</mat-icon>
-    </button>
-  </div>
-  <!-- Main nav desktop -->
-  <div fxHide.lt-sm fxLayout fxLayoutAlign="space-between baseline">
-    <div fxLayout>
-      <a [routerLink]="'/'">TravelHero</a>
-      <h1>Keep track of your globetrotting...</h1>
-    </div>
-    <nav fxLayoutGap="20px">
-      <a>All trips</a>
-      <a routerLink="add-trip">New trip</a>
-      <button
-        mat-raised-button
-        routerLink="login"
-        class="login-button"
-        color="accent"
-      >
-        Login
-      </button>
-    </nav>
-  </div>
+  <!-- Mobile tootbar -->
+  <travel-log-header
+    [isMobile]="true"
+    fxHide.gt-xs
+    (sidenavToggle)="sidenav.toggle()"
+  ></travel-log-header>
+  <!-- Desktop toolbar -->
+  <travel-log-header [isMobile]="false" fxHide.lt-sm></travel-log-header>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-layout">
-  <mat-sidenav opened="false" #sidenav role="navigation">
-    <!-- Mobile navigation -->
-    <button
-      fxHide.gt-xs
-      mat-flat-button
-      aria-label="Icon-button with login icon"
-      class="home-button"
-      routerLink="/"
-      (click)="sidenav.close()"
-    >
-      <mat-icon>home</mat-icon> Home
-    </button>
-    <mat-divider></mat-divider>
-    <button
-      fxHide.gt-xs
-      mat-flat-button
-      aria-label="Icon-button with plus icon"
-      class="all-trips-button"
-      routerLink="/"
-    >
-      <mat-icon>home</mat-icon> All trips
-    </button>
-    <button
-      fxHide.gt-xs
-      mat-flat-button
-      aria-label="Icon-button with takeoff icon"
-      class="new-trip-button"
-      routerLink="/add-trip"
-      (click)="sidenav.close()"
-    >
-      <mat-icon>flight_takeoff</mat-icon> Add new trip
-    </button>
+  <mat-sidenav opened="false" #sidenav role="navigation" fxHide.gt-xs>
+    <travel-log-sidenav-list
+      (closeSideNav)="sidenav.close()"
+    ></travel-log-sidenav-list>
     <mat-divider></mat-divider>
     <travel-log-footer></travel-log-footer>
   </mat-sidenav>
   <mat-sidenav-content>
-    <router-outlet></router-outlet>
+    <main><router-outlet></router-outlet></main>
     <travel-log-footer fxHide.lt-sm></travel-log-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
