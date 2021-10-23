@@ -7,7 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
       <a
         *ngFor="let sideNavItem of sideNavItems"
         mat-list-item
-        aria-label="sideNavItem.aria_label"
+        [attr.aria-label]="sideNavItem.aria_label"
         [routerLink]="sideNavItem.route"
         (click)="onCloseSideNav()"
       >
@@ -43,7 +43,7 @@ export class SidenavListComponent {
       },
       {
         aria_label: 'Icon-button with plane taking off icon',
-        route: '/new-trip',
+        route: '/add-trip',
         material_icon: 'flight_takeoff',
         text: 'Add new trip',
       },
