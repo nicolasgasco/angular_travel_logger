@@ -5,7 +5,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
   template: `
     <ng-container *ngIf="isMobile; else desktop">
       <!-- Toolbar mobile -->
-      <div fxLayout fxLayoutAlign="flex-start center">
+      <div fxLayout fxLayoutAlign="flex-start center" id="mobile-header">
         <button
           mat-icon-button
           aria-label="Icon-button with menu icon"
@@ -26,8 +26,8 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
     >
     <ng-template #desktop>
       <!-- Toolbar desktop -->
-      <div fxLayout fxLayoutAlign="space-between baseline">
-        <div fxLayout>
+      <div fxLayout fxLayoutAlign="space-between baseline" id="desktop-header">
+        <div fxLayout class="header-texts">
           <a [routerLink]="'/'">TravelHero</a>
           <h1>Keep track of your globetrotting...</h1>
         </div>

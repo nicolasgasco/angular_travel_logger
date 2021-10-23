@@ -4,4 +4,20 @@
   .login-button {
     margin-left: auto;
   }
+
+  #desktop-header {
+    .header-texts {
+      display: flex;
+      align-items: baseline;
+      a {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      h1 {
+        margin-left: 10px;
+        font-size: 14px;
+        opacity: 0.8;
+      }
+    }
+  }
 }
