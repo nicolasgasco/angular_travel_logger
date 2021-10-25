@@ -28,14 +28,10 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
       <!-- Toolbar desktop -->
       <div fxLayout fxLayoutAlign="space-between baseline" id="desktop-header">
         <!-- Desktop version -->
-        <div fxLayout class="header-texts" fxHide.lt-md>
+        <div fxLayout class="header-texts">
           <a [routerLink]="'/'">TravelHero</a>
-          <h1>Keep track of your globetrotting...</h1>
-        </div>
-
-        <!-- Tablet version -->
-        <div fxLayout class="header-texts"  fxHide.gt-sm>
-          <a [routerLink]="'/'"><h1>TravelHero</h1></a>
+          <!-- Disappears on tablets -->
+          <span fxHide.lt-md>Keep track of your globetrotting...</span>
         </div>
 
         <mat-nav-list fxLayoutGap="20px" fxLayoutAlign="center baseline">
