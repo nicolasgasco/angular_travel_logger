@@ -27,22 +27,26 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
     <ng-template #desktop>
       <!-- Toolbar desktop -->
       <div fxLayout fxLayoutAlign="space-between baseline" id="desktop-header">
-        <div fxLayout class="header-texts">
+        <!-- Desktop version -->
+        <div fxLayout class="header-texts" fxHide.lt-md>
           <a [routerLink]="'/'">TravelHero</a>
           <h1>Keep track of your globetrotting...</h1>
         </div>
-        <nav fxLayoutGap="20px">
-          <a>All trips</a>
-          <a routerLink="add-trip">New trip</a>
-          <button
-            mat-raised-button
-            routerLink="login"
-            class="login-button"
-            color="accent"
-          >
-            Login
-          </button>
-        </nav>
+
+        <!-- Tablet version -->
+        <div fxLayout class="header-texts"  fxHide.gt-sm>
+          <a [routerLink]="'/'"><h1>TravelHero</h1></a>
+        </div>
+
+        <mat-nav-list fxLayoutGap="20px" fxLayoutAlign="center baseline">
+          <a mat-list-item>All trips</a>
+          <a mat-list-item routerLink="add-trip">New trip</a>
+          <mat-list-item>
+            <a routerLink="login" class="login-button" color="accent">
+              Login
+            </a>
+          </mat-list-item>
+        </mat-nav-list>
       </div>
     </ng-template>
   `,
