@@ -13,6 +13,11 @@ section {
         display: block;
         margin: 20px auto;
       }
+      &.right {
+        @include mq-md {
+          text-align: right;
+        }
+      }
     }
 
     img {

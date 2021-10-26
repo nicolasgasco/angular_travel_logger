@@ -35,7 +35,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
         </div>
 
         <mat-nav-list fxLayoutGap="20px" fxLayoutAlign="center baseline">
-          <a mat-list-item>All trips</a>
+          <a mat-list-item routerLink="all-trips">All trips</a>
           <a mat-list-item routerLink="add-trip">New trip</a>
           <mat-list-item>
             <a routerLink="login" class="login-button" color="accent">

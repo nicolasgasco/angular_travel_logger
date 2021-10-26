@@ -13,7 +13,11 @@ import { Component, OnInit } from '@angular/core';
         fxLayoutGap.gt-md="60px"
         *ngFor="let literal of landingLiterals; index as i"
       >
-        <div class="text-container">
+        <div
+          class="text-container"
+          [class.left]="(i + 1) % 2 !== 0"
+          [class.right]="(i + 1) % 2 === 0"
+        >
           <h1>{{ literal.title }}</h1>
           <p>
             {{ literal.text }}
