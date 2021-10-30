@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { TripsComponent } from './trips/trips.component';
 import { AllTripsComponent } from './trips/all-trips/all-trips.component';
-import { NewTripComponent } from './trips/new-trip/new-trip.component';
 import { LandingComponent } from './landing/landing.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddTripComponent } from './trips/add-trip/add-trip.component';
@@ -21,6 +20,7 @@ import { CitiesListComponent } from './trips/add-trip/cities-list/cities-list.co
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { TripCardComponent } from './layout/trip-card/trip-card.component';
+import { CitiesChipsComponent } from './trips/add-trip/cities-chips/cities-chips.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { TripCardComponent } from './layout/trip-card/trip-card.component';
     LoginComponent,
     TripsComponent,
     AllTripsComponent,
-    NewTripComponent,
     LandingComponent,
     FooterComponent,
     AddTripComponent,
@@ -37,6 +36,7 @@ import { TripCardComponent } from './layout/trip-card/trip-card.component';
     HeaderComponent,
     SidenavListComponent,
     TripCardComponent,
+    CitiesChipsComponent,
   ],
   imports: [
     BrowserModule,

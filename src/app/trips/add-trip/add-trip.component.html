@@ -43,37 +43,8 @@
         <mat-date-range-picker #tripRange></mat-date-range-picker>
       </mat-form-field>
       <!-- Cities visited -->
-      <mat-form-field appearance="outline">
-        <mat-label>Cities visited</mat-label>
-        <input
-          matInput
-          type="text"
-          name="cities"
-          id="cities"
-          #citiesVisited="ngModel"
-          maxlength="500"
-          [(ngModel)]="citiesList"
-          autocomplete="off"
-        />
-        <!-- <mat-hint align="end">{{ nameInput.value?.length || 0 }}/50</mat-hint> -->
-        <mat-hint>Comma-separated values</mat-hint>
-      </mat-form-field>
-      <mat-list
-        role="list"
-        class="cities-list"
-        *ngIf="citiesList.indexOf(',') !== -1"
-      >
-        <mat-list-item
-          role="listitem"
-          class="city-item"
-          *ngFor="
-            let city of citiesList
-              .slice(0, citiesList.lastIndexOf(','))
-              .split(',')
-          "
-          >{{ city.trim() | titlecase }}</mat-list-item
-        >
-      </mat-list>
+      <travel-log-cities-chips></travel-log-cities-chips>
+
       <!-- Submit button -->
       <button
         mat-raised-button

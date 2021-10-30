@@ -16,6 +16,6 @@ export class AddTripComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.citiesList);
+    // console.log(this.citiesList);
   }
 }
