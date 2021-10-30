@@ -10,20 +10,18 @@ import {
 @Component({
   selector: 'travel-log-trip-card',
   template: ` <mat-card>
-    <mat-tab-group>
-      <mat-tab label="First">
-        <mat-card-title>Title</mat-card-title>
-        <mat-card-subtitle>Subtitle</mat-card-subtitle>
-        <mat-card-content>
-          <p>Content</p>
-        </mat-card-content></mat-tab
-      >
-      <mat-tab label="Second">
-        <mat-card-content>
-          <p>Content 2</p>
-        </mat-card-content>
-      </mat-tab>
-    </mat-tab-group>
+    <mat-card-title>{{ tripData.country }}</mat-card-title>
+    <mat-card-subtitle>Subtitle</mat-card-subtitle>
+    <mat-card-content>
+      <mat-tab-group>
+        <mat-tab label="First">
+          <p>Trip data</p>
+        </mat-tab>
+        <mat-tab label="Second">
+          <p>Map</p>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card-content>
     <mat-card-actions
       id="edit-buttons"
       fxLayout="row"
@@ -38,7 +36,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class TripCardComponent {
-  @Input() tripData: { id: number };
+  @Input() tripData: { id: number; country: string };
   @Output() onDeleteTrip = new EventEmitter();
 
   deleteTrip = () => {

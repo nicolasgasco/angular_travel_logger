@@ -17,14 +17,18 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class AllTripsComponent implements OnInit {
-  trips: { id: number }[];
+  trips: { id: number; country: string }[];
 
   constructor() {
-    this.trips = [{ id: 1 }, { id: 2 }, { id: 3 }];
+    this.trips = [
+      { id: 1, country: 'USA' },
+      { id: 2, country: 'Italy' },
+      { id: 3, country: 'Germany' },
+    ];
   }
 
   deleteTripById = (e: any) => {
-    this.trips = this.trips.filter(trip => trip.id !== e)
+    this.trips = this.trips.filter((trip) => trip.id !== e);
   };
 
   ngOnInit(): void {}
