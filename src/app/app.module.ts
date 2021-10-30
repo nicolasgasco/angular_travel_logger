@@ -20,6 +20,7 @@ import { CardComponent } from './layout/card/card.component';
 import { CitiesListComponent } from './trips/add-trip/cities-list/cities-list.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { TripCardComponent } from './layout/trip-card/trip-card.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     CitiesListComponent,
     HeaderComponent,
     SidenavListComponent,
+    TripCardComponent,
   ],
   imports: [
     BrowserModule,

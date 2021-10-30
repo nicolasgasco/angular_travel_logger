@@ -5,22 +5,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   template: `
     <section>
       <div class="cards-container">
-        <mat-card *ngFor="let trip of trips">
-          <mat-tab-group>
-            <mat-tab label="First">
-              <mat-card-title>Title</mat-card-title>
-              <mat-card-subtitle>Subtitle</mat-card-subtitle>
-              <mat-card-content>
-                <p>Content</p>
-              </mat-card-content></mat-tab
-            >
-            <mat-tab label="Second">
-              <mat-card-content>
-                <p>Content 2</p>
-              </mat-card-content>
-            </mat-tab>
-          </mat-tab-group>
-        </mat-card>
+        <travel-log-trip-card *ngFor="let trip of trips"></travel-log-trip-card>
       </div>
     </section>
   `,

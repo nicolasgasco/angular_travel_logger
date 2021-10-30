@@ -27,7 +27,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
     <ng-template #desktop>
       <!-- Toolbar desktop -->
       <div fxLayout fxLayoutAlign="space-between baseline" id="desktop-header">
-        <!-- Desktop version -->
+        <!-- Bigger screens -->
         <div fxLayout class="header-texts">
           <a [routerLink]="'/'">TravelHero</a>
           <!-- Disappears on tablets -->
@@ -35,8 +35,13 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
         </div>
 
         <mat-nav-list fxLayoutGap="20px" fxLayoutAlign="center baseline">
-          <a mat-list-item routerLink="all-trips">All trips</a>
-          <a mat-list-item routerLink="add-trip">New trip</a>
+          <a mat-list-item [matMenuTriggerFor]="menu">
+            Trips <mat-icon>arrow_drop_down</mat-icon>
+          </a>
+          <mat-menu #menu="matMenu" xPosition="before">
+            <button mat-menu-item routerLink="all-trips">All trips</button>
+            <button mat-menu-item routerLink="add-trip">New trip</button>
+          </mat-menu>
           <mat-list-item>
             <a routerLink="login" class="login-button" color="accent">
               Login
