@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 
 @Component({
   selector: 'travel-log-trip-card',
@@ -17,12 +24,24 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
         </mat-card-content>
       </mat-tab>
     </mat-tab-group>
+    <mat-card-actions
+      id="edit-buttons"
+      fxLayout="row"
+      fxLayoutAlign="end center"
+    >
+      <travel-log-card-actions
+        (deleteTrip)="deleteTrip()"
+      ></travel-log-card-actions>
+    </mat-card-actions>
   </mat-card>`,
   styleUrls: ['./trip-card.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class TripCardComponent implements OnInit {
-  constructor() {}
+export class TripCardComponent {
+  @Input() tripData: { id: number };
+  @Output() onDeleteTrip = new EventEmitter();
 
-  ngOnInit(): void {}
+  deleteTrip = () => {
+    this.onDeleteTrip.emit(this.tripData.id);
+  };
 }

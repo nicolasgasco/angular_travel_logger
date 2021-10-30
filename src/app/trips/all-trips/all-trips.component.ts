@@ -5,7 +5,11 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   template: `
     <section>
       <div class="cards-container">
-        <travel-log-trip-card *ngFor="let trip of trips"></travel-log-trip-card>
+        <travel-log-trip-card
+          *ngFor="let trip of trips"
+          [tripData]="trip"
+          (onDeleteTrip)="deleteTripById($event)"
+        ></travel-log-trip-card>
       </div>
     </section>
   `,
@@ -13,9 +17,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class AllTripsComponent implements OnInit {
-  constructor() {}
+  trips: { id: number }[];
 
-  trips = [{}, {}, {}];
+  constructor() {
+    this.trips = [{ id: 1 }, { id: 2 }, { id: 3 }];
+  }
+
+  deleteTripById = (e: any) => {
+    this.trips = this.trips.filter(trip => trip.id !== e)
+  };
 
   ngOnInit(): void {}
 }

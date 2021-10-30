@@ -21,6 +21,10 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { TripCardComponent } from './layout/trip-card/trip-card.component';
 import { CitiesChipsComponent } from './trips/add-trip/cities-chips/cities-chips.component';
+import {
+  CardActionsComponent,
+  DeleteCardModalComponent,
+} from './layout/trip-card/card-actions/card-actions.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import { CitiesChipsComponent } from './trips/add-trip/cities-chips/cities-chips
     SidenavListComponent,
     TripCardComponent,
     CitiesChipsComponent,
+    CardActionsComponent,
+    DeleteCardModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,5 +55,6 @@ import { CitiesChipsComponent } from './trips/add-trip/cities-chips/cities-chips
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [],
 })
 export class AppModule {}
