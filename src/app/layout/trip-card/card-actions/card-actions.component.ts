@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewEncapsulation,
+} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -34,10 +40,12 @@ export class CardActionsComponent {
 
 @Component({
   selector: 'travel-log-delete-dialog',
-  template: `<h1 mat-dialog-title fxLayout="row" fxLayoutAlign="start center">
-      <mat-icon>warning</mat-icon>Do you really want to delete this trip?
-    </h1>
-    <div mat-dialog-content>This action cannot be undone.</div>
+  template: `<h1>Do you really want to delete this trip?</h1>
+    <div id="delete-card-modal-content" mat-dialog-content mat-dialog-title>
+      <p fxLayout="row" fxLayoutAlign="start center">
+        <mat-icon>warning</mat-icon>This action cannot be undone.
+      </p>
+    </div>
     <div mat-dialog-actions>
       <button mat-button [mat-dialog-close]="false">Cancel</button>
       <button mat-raised-button color="primary" [mat-dialog-close]="true">
@@ -45,5 +53,6 @@ export class CardActionsComponent {
       </button>
     </div>`,
   styleUrls: ['./card-actions.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DeleteCardModalComponent {}
