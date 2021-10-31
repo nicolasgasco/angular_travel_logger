@@ -41,8 +41,8 @@ export class CitiesChipsComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   cityCtrl = new FormControl();
   filteredCities: Observable<string[]>;
-  cities: string[] = ['Lemon'];
-  allCities: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
+  cities: string[] = [''];
+  allCities: string[] = [];
 
   @ViewChild('cityInput') cityInput: ElementRef<HTMLInputElement>;
 

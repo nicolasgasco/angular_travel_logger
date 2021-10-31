@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { TripData } from '../trip-data.interface';
 
 @Component({
   selector: 'travel-log-all-trips',
@@ -17,7 +18,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class AllTripsComponent implements OnInit {
-  trips: { id: number; country: string }[];
+  trips: TripData[];
 
   constructor() {
     this.trips = [
