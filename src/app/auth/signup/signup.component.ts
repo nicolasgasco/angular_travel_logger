@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'travel-log-signup',
@@ -16,7 +17,7 @@ import { NgForm } from '@angular/forms';
         fxLayout="column"
         fxLayoutGap="25px"
         #signupForm="ngForm"
-        (ngSubmit)="onSubmit(signupForm)"
+        (submit)="onSubmit()"
       >
         <mat-form-field>
           <mat-placeholder class="placeholder">Your email</mat-placeholder>
@@ -30,11 +31,43 @@ import { NgForm } from '@angular/forms';
             #emailInput="ngModel"
             required
           />
-          <mat-error *ngIf="emailInput.hasError('required')"
+          <mat-error
+            *ngIf="emailInput.touched && emailInput.hasError('required')"
             >Cannot be empty</mat-error
           >
-          <mat-error *ngIf="!emailInput.hasError('required')"
+          <mat-error
+            *ngIf="
+              emailInput.touched &&
+              !emailInput.hasError('required') &&
+              emailInput.status == 'INVALID'
+            "
             >Email is invalid</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            ngModel
+            type="email"
+            name="email_repeat"
+            id="email_repeat"
+            email
+            required
+            #emailInputRepeat="ngModel"
+          />
+          <mat-placeholder class="placeholder">Repeat email</mat-placeholder>
+          <mat-error
+            *ngIf="emailInput.touched && emailInput.hasError('required')"
+            >Cannot be empty</mat-error
+          >
+          <ng-template #otherError>
+            <mat-error
+              *ngIf="
+                emailInputRepeat.touched &&
+                emailInputRepeat.value !== emailInput.value
+              "
+              >Emails don't match!</mat-error
+            ></ng-template
           >
         </mat-form-field>
         <mat-form-field>
@@ -61,34 +94,41 @@ import { NgForm } from '@angular/forms';
               }}</mat-icon>
             </button>
           </ng-container>
-
           <mat-placeholder class="placeholder">Your password</mat-placeholder>
           <mat-hint align="end">{{ pwdInput.value?.length || 0 }}</mat-hint>
-          <mat-error *ngIf="pwdInput.hasError('required')"
+          <mat-error *ngIf="emailInput.dirty && pwdInput.hasError('required')"
             >Cannot be empty</mat-error
           >
           <mat-error *ngIf="pwdInput.value <= 7"
             >Should be at least 8 characters long</mat-error
           >
         </mat-form-field>
-        <span>{{ pwdInput.value }}</span>
         <mat-form-field>
           <input
             matInput
             ngModel
             type="password"
-            name="password-repeat"
-            id="password-repeat"
+            name="password_repeat"
+            id="password_repeat"
             required
             minlength="8"
             #pwdInputRepeat="ngModel"
           />
           <mat-placeholder class="placeholder">Repeat password</mat-placeholder>
-          <mat-error *ngIf="pwdInputRepeat.hasError('required')"
+          <mat-error
+            *ngIf="
+              pwdInputRepeat.dirty && pwdInputRepeat.hasError('required');
+              else otherError
+            "
             >Cannot be empty</mat-error
           >
-          <mat-error *ngIf="pwdInputRepeat.value !== pwdInput.value"
-            >Passwords don't match!</mat-error
+          <ng-template #otherError>
+            <mat-error
+              *ngIf="
+                pwdInputRepeat.dirty && pwdInputRepeat.value !== pwdInput.value
+              "
+              >Passwords don't match!</mat-error
+            ></ng-template
           >
         </mat-form-field>
         <button
@@ -96,6 +136,7 @@ import { NgForm } from '@angular/forms';
           type="submit"
           color="primary"
           [disabled]="signupForm.invalid"
+          (click)="onSubmit()"
         >
           Login
         </button>
@@ -107,17 +148,21 @@ import { NgForm } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   showPassword: boolean;
-  constructor() {
-    this.showPassword = false;
-  }
+  @ViewChild('loginForm', { read: NgForm }) signupForm: NgForm;
 
-  onSubmit(signupForm: NgForm) {
-    console.log(signupForm);
+  constructor(private authService: AuthService) {
+    this.showPassword = false;
   }
 
   togglePassword() {
     this.showPassword = !this.showPassword;
-    console.log('mierda');
+  }
+
+  onSubmit() {
+    this.authService.registerUser({
+      email: this.signupForm.value.email_repeat,
+      password: this.signupForm.value.password_repeat,
+    });
   }
 
   ngOnInit(): void {}

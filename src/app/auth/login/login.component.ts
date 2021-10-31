@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, NgForm } from '@angular/forms';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'travel-log-login',
@@ -17,7 +18,7 @@ import { NgForm } from '@angular/forms';
           fxLayout="column"
           fxLayoutGap="25px"
           #loginForm="ngForm"
-          (ngSubmit)="onSubmit(loginForm)"
+          (submit)="onSubmit()"
         >
           <mat-form-field>
             <mat-placeholder class="placeholder">Your email</mat-placeholder>
@@ -79,19 +80,26 @@ import { NgForm } from '@angular/forms';
         <a mat-raised-button routerLink="/signup" color="accent">Sign up</a>
       </div>
       <div fxHide.lt-md class="signup-text">
-        <p>Are you new here? <a routerLink="/signup" color="accent">Sign up</a> instead.</p>
-        
+        <p>
+          Are you new here?
+          <a routerLink="/signup" color="accent">Sign up</a> instead.
+        </p>
       </div>
     </section>
   `,
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  @ViewChild("loginForm", {read: NgForm}) loginForm: NgForm;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
-  onSubmit = (loginForm: NgForm) => {
-    console.log(loginForm);
+  onSubmit = () => {
+    this.authService.login( {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    })
   };
 }

@@ -1,4 +1,13 @@
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Output,
+  Input,
+  OnDestroy,
+} from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'travel-log-header',
@@ -43,9 +52,28 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
             <button mat-menu-item routerLink="add-trip">New trip</button>
           </mat-menu>
           <mat-list-item>
-            <a routerLink="login" class="login-button" color="accent">
-              Login
-            </a>
+            <ng-container *ngIf="!isAuth; else logged">
+              <a
+                mat-flat-button
+                routerLink="login"
+                class="auth-button"
+                color="accent"
+              >
+                Login
+              </a>
+            </ng-container>
+
+            <ng-template #logged>
+              <a
+                mat-flat-button
+                class="auth-button"
+                color="accent"
+                routerLink="/"
+                (click)="onLogout()"
+              >
+                Logout
+              </a>
+            </ng-template>
           </mat-list-item>
         </mat-nav-list>
       </div>
@@ -53,14 +81,31 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
   `,
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   @Input() isMobile?: boolean;
   @Output() sidenavToggle = new EventEmitter<void>();
-  constructor() {}
+  isAuth = false;
+  authSubscription: Subscription;
 
-  ngOnInit(): void {}
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authSubscription = this.authService.authChange.subscribe(
+      (authStatus) => {
+        this.isAuth = authStatus;
+      }
+    );
+  }
 
   onToggleSideNav() {
     this.sidenavToggle.emit();
+  }
+
+  onLogout() {
+    this.authService.logOut();
+  }
+
+  ngOnDestroy() {
+    this.authSubscription.unsubscribe();
   }
 }

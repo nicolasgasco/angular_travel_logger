@@ -24,6 +24,7 @@ import {
   DeleteCardModalComponent,
 } from './layout/trip-card/card-actions/card-actions.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,7 @@ import { SignupComponent } from './auth/signup/signup.component';
     FlexLayoutModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [],
 })
