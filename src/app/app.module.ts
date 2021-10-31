@@ -23,6 +23,7 @@ import {
   CardActionsComponent,
   DeleteCardModalComponent,
 } from './layout/trip-card/card-actions/card-actions.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {
     CitiesChipsComponent,
     CardActionsComponent,
     DeleteCardModalComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
