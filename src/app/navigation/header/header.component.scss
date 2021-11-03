@@ -5,6 +5,12 @@
     margin-left: auto;
   }
 
+  #mobile-header {
+    .login-button,
+    .logout-button {
+      margin-left: auto;
+    }
+  }
   #desktop-header {
     .header-texts {
       display: flex;

@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/auth/auth.service';
       <!-- Toolbar mobile -->
       <div fxLayout fxLayoutAlign="flex-start center" id="mobile-header">
         <button
+          *ngIf="authService.isAuth()"
           mat-icon-button
           aria-label="Icon-button with menu icon"
           (click)="onToggleSideNav()"
@@ -23,14 +24,26 @@ import { AuthService } from 'src/app/auth/auth.service';
           <mat-icon>menu</mat-icon>
         </button>
         <span>TravelHero</span>
-        <button
-          mat-icon-button
-          aria-label="Icon-button with login icon"
-          class="login-button"
-          routerLink="login"
-        >
-          <mat-icon>login</mat-icon>
-        </button>
+        <ng-container *ngIf="!isAuth; else loggedMobile">
+          <button
+            mat-icon-button
+            aria-label="Icon-button with login icon"
+            class="login-button"
+            routerLink="login"
+          >
+            <mat-icon>login</mat-icon>
+          </button>
+        </ng-container>
+        <ng-template #loggedMobile>
+          <button
+            mat-icon-button
+            aria-label="Icon-button with logout icon"
+            class="logout-button"
+            (click)="onLogout()"
+          >
+            <mat-icon>logout</mat-icon>
+          </button>
+        </ng-template>
       </div></ng-container
     >
     <ng-template #desktop>
@@ -44,7 +57,11 @@ import { AuthService } from 'src/app/auth/auth.service';
         </div>
 
         <mat-nav-list fxLayoutGap="20px" fxLayoutAlign="center baseline">
-          <a mat-list-item [matMenuTriggerFor]="menu">
+          <a
+            mat-list-item
+            [matMenuTriggerFor]="menu"
+            *ngIf="authService.isAuth()"
+          >
             Trips <mat-icon>arrow_drop_down</mat-icon>
           </a>
           <mat-menu #menu="matMenu" xPosition="before">
@@ -87,7 +104,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuth = false;
   authSubscription: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {
     this.authSubscription = this.authService.authChange.subscribe(
