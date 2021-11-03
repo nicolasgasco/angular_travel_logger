@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { LoginComponent } from './auth/login/login.component';
 import { AllTripsComponent } from './trips/all-trips/all-trips.component';
@@ -17,14 +17,15 @@ import { AddTripComponent } from './trips/add-trip/add-trip.component';
 import { CardComponent } from './layout/card/card.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
-import { TripCardComponent } from './layout/trip-card/trip-card.component';
-import { CitiesChipsComponent } from './trips/add-trip/cities-chips/cities-chips.component';
+import { SignupComponent } from './auth/signup/signup.component';
+import { AuthService } from './auth/auth.service';
+import { ChipsInputComponent } from './trips/add-trip/chips-input/chips-input.component';
+import { TripDatePickerComponent } from './trips/add-trip/trip-date-picker/trip-date-picker.component';
+import { TripCardComponent } from './trips/trip-card/trip-card.component';
 import {
   CardActionsComponent,
   DeleteCardModalComponent,
-} from './layout/trip-card/card-actions/card-actions.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { AuthService } from './auth/auth.service';
+} from './trips/trip-card/card-actions/card-actions.component';
 
 @NgModule({
   declarations: [
@@ -38,10 +39,11 @@ import { AuthService } from './auth/auth.service';
     HeaderComponent,
     SidenavListComponent,
     TripCardComponent,
-    CitiesChipsComponent,
     CardActionsComponent,
     DeleteCardModalComponent,
     SignupComponent,
+    ChipsInputComponent,
+    TripDatePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ import { AuthService } from './auth/auth.service';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

@@ -22,9 +22,27 @@ export class AllTripsComponent implements OnInit {
 
   constructor() {
     this.trips = [
-      { id: 1, country: 'USA' },
-      { id: 2, country: 'Italy' },
-      { id: 3, country: 'Germany' },
+      {
+        id: 2,
+        countries: ['Italy, France'],
+        start: new Date(1995, 11),
+        end: new Date(1996, 0),
+        cities: ['City1', 'City2', 'City3'],
+      },
+      {
+        id: 1,
+        countries: ['USA'],
+        start: new Date('2009'),
+        end: new Date('2009'),
+        cities: ['City1'],
+      },
+      {
+        id: 3,
+        countries: ['Germany, Austria, Switzerland'],
+        start: new Date(),
+        end: new Date(),
+        cities: ['City1', 'City2', 'City3'],
+      },
     ];
   }
 

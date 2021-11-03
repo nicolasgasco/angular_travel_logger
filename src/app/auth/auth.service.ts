@@ -40,7 +40,8 @@ export class AuthService {
   }
 
   isAuth() {
-    return this.user != null;
+    return true;
+    // return this.user != null;
   }
 
   private authSuccessfull() {

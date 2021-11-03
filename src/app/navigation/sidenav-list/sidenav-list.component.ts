@@ -37,7 +37,7 @@ export class SidenavListComponent {
       },
       {
         aria_label: 'Icon-button with plane landing icon',
-        route: '/trips',
+        route: '/all-trips',
         material_icon: 'flight_land',
         text: 'All trips',
       },

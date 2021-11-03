@@ -6,18 +6,26 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { TripData } from 'src/app/trips/trip-data.interface';
 
 @Component({
   selector: 'travel-log-trip-card',
   template: ` <mat-card>
-    <mat-card-title>{{ tripData.country }}</mat-card-title>
-    <mat-card-subtitle>Subtitle</mat-card-subtitle>
+    <mat-card-title>{{ tripData.countries.join(', ') }}</mat-card-title>
+    <mat-card-subtitle
+      >{{ tripData.start.getFullYear()
+      }}<span
+        *ngIf="tripData.start.getFullYear() !== tripData.end.getFullYear()"
+      >
+        - {{ tripData.start.getFullYear() }}</span
+      ></mat-card-subtitle
+    >
     <mat-card-content>
       <mat-tab-group>
-        <mat-tab label="First">
-          <p>Trip data</p>
+        <mat-tab label="Cities">
+          <p>{{ tripData.cities.join(', ') }}</p>
         </mat-tab>
-        <mat-tab label="Second">
+        <mat-tab label="Map">
           <p>Map</p>
         </mat-tab>
       </mat-tab-group>
@@ -36,7 +44,7 @@ import {
   encapsulation: ViewEncapsulation.None,
 })
 export class TripCardComponent {
-  @Input() tripData: { id: number; country: string };
+  @Input() tripData: TripData;
   @Output() onDeleteTrip = new EventEmitter();
 
   deleteTrip = () => {
