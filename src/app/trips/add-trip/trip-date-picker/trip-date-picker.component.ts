@@ -18,7 +18,12 @@ import { FormControl, FormGroup } from '@angular/forms';
           placeholder="Start date"
           required
         />
-        <input matEndDate formControlName="end" placeholder="End date" />
+        <input
+          matEndDate
+          formControlName="end"
+          placeholder="End date"
+          (ngModelChange)="onChange($event)"
+        />
       </mat-date-range-input>
       <mat-datepicker-toggle
         matSuffix
@@ -38,14 +43,12 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./trip-date-picker.component.scss'],
 })
 export class TripDatePickerComponent implements OnInit {
-  tripDates = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
-  });
+  @Input() startDate: Date;
+  @Input() endDate: Date;
+  tripDates: FormGroup;
 
   maxDate: Date;
   minDate: Date;
-  citiesList = '';
 
   constructor() {
     const currentYear: number = new Date().getFullYear();
@@ -53,5 +56,15 @@ export class TripDatePickerComponent implements OnInit {
     this.minDate = new Date(currentYear - 80, 0, 1);
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tripDates = new FormGroup({
+      start: new FormControl(this.startDate),
+      end: new FormControl(this.endDate),
+    });
+  }
+
+  onChange(e) {
+    console.log('ciao');
+    this.endDate = e.target.value;
+  }
 }

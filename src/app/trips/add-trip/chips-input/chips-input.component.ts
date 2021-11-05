@@ -49,7 +49,7 @@ export class ChipsInputComponent {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   elCtrl = new FormControl();
   filteredCities: Observable<string[]>;
-  els: string[] = [];
+  @Input() els: string[] = [];
   allEls: string[] = [];
 
   @ViewChild('elInput') elInput: ElementRef<HTMLInputElement>;
