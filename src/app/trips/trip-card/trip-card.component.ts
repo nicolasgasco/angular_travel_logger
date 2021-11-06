@@ -17,14 +17,14 @@ import { TripData } from 'src/app/trips/trip-data.interface';
       }}</mat-card-title>
       <mat-card-subtitle>
         {{ tripData.dates.start.getFullYear() }}
-        <!-- <span
+        <span
           *ngIf="
             tripData.dates.start.getFullYear() !==
             tripData.dates.end.getFullYear()
           "
         >
           - {{ tripData.dates.start.getFullYear() }}</span
-        > -->
+        >
       </mat-card-subtitle>
       <mat-card-content>
         <mat-tab-group>
