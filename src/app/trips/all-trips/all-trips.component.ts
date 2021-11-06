@@ -22,12 +22,12 @@ export class AllTripsComponent implements OnInit {
   trips: TripData[];
 
   constructor(private tripsService: TripsService) {
-    console.log(this.tripsService.trips);
     this.trips = this.tripsService.trips;
   }
 
-  deleteTripById = (e: any) => {
-    this.deleteTripById(e.target.value.id);
+  deleteTripById = (id: number) => {
+    this.tripsService.deleteTrip(id);
+    this.trips = this.tripsService.trips;
   };
 
   ngOnInit(): void {}

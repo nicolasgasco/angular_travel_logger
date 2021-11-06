@@ -63,7 +63,6 @@ export class TripDatePickerComponent implements OnInit {
   }
 
   onChange(e) {
-    console.log('ciao');
     // this.endDate = e.target.value;
   }
 }

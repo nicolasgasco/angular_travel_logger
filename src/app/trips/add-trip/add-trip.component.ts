@@ -84,6 +84,7 @@ export class AddTripComponent implements OnInit {
 
   onSubmit() {
     let newTrip = { ...this.newTripForm.value, id: this.tripsService.id };
+    console.log(this.newTripForm.value.dates.start.getFullYear());
     this.tripsService.addTrip(newTrip);
   }
 }

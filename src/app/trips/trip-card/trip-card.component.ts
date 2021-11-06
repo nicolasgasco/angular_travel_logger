@@ -10,36 +10,43 @@ import { TripData } from 'src/app/trips/trip-data.interface';
 
 @Component({
   selector: 'travel-log-trip-card',
-  template: ` <mat-card>
-    <mat-card-title>{{ tripData.countries.join(', ') }}</mat-card-title>
-    <mat-card-subtitle
-      >{{ tripData.dates.start.getFullYear()
-      }}<span
-        *ngIf="tripData.dates.start.getFullYear() !== tripData.dates.end.getFullYear()"
+  template: `
+    <mat-card>
+      <mat-card-title>{{
+        tripData.name ? tripData.name : tripData.countries.join(', ')
+      }}</mat-card-title>
+      <mat-card-subtitle>
+        {{ tripData.dates.start.getFullYear() }}
+        <!-- <span
+          *ngIf="
+            tripData.dates.start.getFullYear() !==
+            tripData.dates.end.getFullYear()
+          "
+        >
+          - {{ tripData.dates.start.getFullYear() }}</span
+        > -->
+      </mat-card-subtitle>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab label="Cities">
+            <p>{{ tripData.cities.join(', ') }}</p>
+          </mat-tab>
+          <mat-tab label="Map">
+            <p>Map</p>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card-content>
+      <mat-card-actions
+        id="edit-buttons"
+        fxLayout="row"
+        fxLayoutAlign="end center"
       >
-        - {{ tripData.start.getFullYear() }}</span
-      ></mat-card-subtitle
-    >
-    <mat-card-content>
-      <mat-tab-group>
-        <mat-tab label="Cities">
-          <p>{{ tripData.cities.join(', ') }}</p>
-        </mat-tab>
-        <mat-tab label="Map">
-          <p>Map</p>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card-content>
-    <mat-card-actions
-      id="edit-buttons"
-      fxLayout="row"
-      fxLayoutAlign="end center"
-    >
-      <travel-log-card-actions
-        (deleteTrip)="deleteTrip()"
-      ></travel-log-card-actions>
-    </mat-card-actions>
-  </mat-card>`,
+        <travel-log-card-actions
+          (deleteTrip)="deleteTrip()"
+        ></travel-log-card-actions>
+      </mat-card-actions>
+    </mat-card>
+  `,
   styleUrls: ['./trip-card.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
