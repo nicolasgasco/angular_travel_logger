@@ -11,7 +11,7 @@ import { TripData } from 'src/app/trips/trip-data.interface';
 @Component({
   selector: 'travel-log-trip-card',
   template: `
-    <mat-card>
+    <mat-card id="trip-card">
       <mat-card-title>{{
         tripData.name ? tripData.name : tripData.countries.join(', ')
       }}</mat-card-title>
@@ -28,9 +28,18 @@ import { TripData } from 'src/app/trips/trip-data.interface';
       </mat-card-subtitle>
       <mat-card-content>
         <mat-tab-group>
+          <!-- Cities tab -->
           <mat-tab label="Cities">
-            <p>{{ tripData.cities.join(', ') }}</p>
+            <mat-list role="list">
+              <mat-list-item
+                role="listitem"
+                *ngFor="let city of tripData.cities"
+              >
+                {{ city.charAt(0).toUpperCase() + city.slice(1) }}
+              </mat-list-item>
+            </mat-list>
           </mat-tab>
+          <!-- Map tab -->
           <mat-tab label="Map">
             <p>Map</p>
           </mat-tab>

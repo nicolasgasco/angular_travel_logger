@@ -11,7 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'travel-log-card-actions',
   template: `
     <button mat-icon-button aria-label="Edit trip">
-      <mat-icon>mode_edit</mat-icon>
+      <mat-icon id="edit-icon">mode_edit</mat-icon>
     </button>
     <button
       color="warn"
