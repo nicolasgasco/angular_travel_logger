@@ -1,7 +1,18 @@
-#delete-card-modal-content {
-    padding: 0;
-    mat-icon {
-      margin-right: 10px;
-    }
+@import "src/assets/styles/colors";
+
+:host {
+  outline: 2px red;
+  border-radius: 50px;
+  padding: 5px 10px;
+  background-color: $dark;
+  #edit-icon {
+    color: $primary;
   }
-  
+}
+
+#delete-card-modal-content {
+  padding: 0;
+  mat-icon {
+    margin-right: 10px;
+  }
+}
