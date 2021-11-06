@@ -13,9 +13,9 @@ import { TripData } from 'src/app/trips/trip-data.interface';
   template: ` <mat-card>
     <mat-card-title>{{ tripData.countries.join(', ') }}</mat-card-title>
     <mat-card-subtitle
-      >{{ tripData.start.getFullYear()
+      >{{ tripData.dates.start.getFullYear()
       }}<span
-        *ngIf="tripData.start.getFullYear() !== tripData.end.getFullYear()"
+        *ngIf="tripData.dates.start.getFullYear() !== tripData.dates.end.getFullYear()"
       >
         - {{ tripData.start.getFullYear() }}</span
       ></mat-card-subtitle

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TripData } from '../trip-data.interface';
+import { TripsService } from '../trips.service';
 
 @Component({
   selector: 'travel-log-all-trips',
@@ -20,34 +21,13 @@ import { TripData } from '../trip-data.interface';
 export class AllTripsComponent implements OnInit {
   trips: TripData[];
 
-  constructor() {
-    this.trips = [
-      {
-        id: 2,
-        countries: ['Italy, France'],
-        start: new Date(1995, 11),
-        end: new Date(1996, 0),
-        cities: ['City1', 'City2', 'City3'],
-      },
-      {
-        id: 1,
-        countries: ['USA'],
-        start: new Date('2009'),
-        end: new Date('2009'),
-        cities: ['City1'],
-      },
-      {
-        id: 3,
-        countries: ['Germany, Austria, Switzerland'],
-        start: new Date(),
-        end: new Date(),
-        cities: ['City1', 'City2', 'City3'],
-      },
-    ];
+  constructor(private tripsService: TripsService) {
+    console.log(this.tripsService.trips);
+    this.trips = this.tripsService.trips;
   }
 
   deleteTripById = (e: any) => {
-    this.trips = this.trips.filter((trip) => trip.id !== e);
+    this.deleteTripById(e.target.value.id);
   };
 
   ngOnInit(): void {}

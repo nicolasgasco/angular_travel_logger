@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { TripsService } from '../trips.service';
 
 @Component({
   selector: 'travel-log-add-trip',
@@ -67,7 +68,7 @@ export class AddTripComponent implements OnInit {
   nameInput: string;
   citiesInput = [];
   countriesInput = [];
-  constructor() {}
+  constructor(private tripsService: TripsService) {}
 
   ngOnInit(): void {
     this.newTripForm = new FormGroup({
@@ -82,11 +83,7 @@ export class AddTripComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('nmerda');
-    console.log(this.newTripForm);
-  }
-
-  onSubmitNewTrip(form: NgForm) {
-    console.log(form);
+    let newTrip = { ...this.newTripForm.value, id: this.tripsService.id };
+    this.tripsService.addTrip(newTrip);
   }
 }
