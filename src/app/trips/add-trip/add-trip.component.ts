@@ -38,8 +38,7 @@ import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
         </mat-form-field>
         <!-- Date range picker -->
         <travel-log-trip-date-picker
-          [startDate]="startDate"
-          [endDate]="endDate"
+          [datesFormGroup]="newTripForm.controls.dates"
         ></travel-log-trip-date-picker>
         <!-- Cities visited -->
         <travel-log-chips-input
@@ -59,6 +58,7 @@ import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
         </button>
       </form>
     </travel-log-card>
+    {{ newTripForm.value | json }}
   </section>`,
   styleUrls: ['./add-trip.component.scss'],
 })
@@ -67,8 +67,6 @@ export class AddTripComponent implements OnInit {
   nameInput: string;
   citiesInput = [];
   countriesInput = [];
-  startDate = null;
-  endDate = null;
   constructor() {}
 
   ngOnInit(): void {
@@ -76,8 +74,10 @@ export class AddTripComponent implements OnInit {
       name: new FormControl(this.nameInput),
       cities: new FormControl(this.citiesInput),
       countries: new FormControl(this.countriesInput),
-      start_date: new FormControl(this.startDate),
-      end_date: new FormControl(this.endDate),
+      dates: new FormGroup({
+        start: new FormControl(null),
+        end: new FormControl(null),
+      }),
     });
   }
 

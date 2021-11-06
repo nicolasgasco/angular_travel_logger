@@ -7,7 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
     <mat-form-field appearance="fill">
       <mat-label>Trip period *</mat-label>
       <mat-date-range-input
-        [formGroup]="tripDates"
+        [formGroup]="datesFormGroup"
         [rangePicker]="tripRange"
         [min]="minDate"
         [max]="maxDate"
@@ -33,8 +33,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 
       <mat-error
         *ngIf="
-          tripDates.controls.start.hasError('required') ||
-          tripDates.controls.end.hasError('required')
+          datesFormGroup.controls.start.hasError('required') ||
+          datesFormGroup.controls.end.hasError('required')
         "
         >Cannot be empty</mat-error
       >
@@ -43,9 +43,8 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./trip-date-picker.component.scss'],
 })
 export class TripDatePickerComponent implements OnInit {
-  @Input() startDate: Date;
-  @Input() endDate: Date;
-  tripDates: FormGroup;
+  @Input() datesFormGroup: FormGroup;
+  // tripDates: FormGroup;
 
   maxDate: Date;
   minDate: Date;
@@ -57,14 +56,14 @@ export class TripDatePickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tripDates = new FormGroup({
-      start: new FormControl(this.startDate),
-      end: new FormControl(this.endDate),
-    });
+    // this.tripDates = new FormGroup({
+    //   start: new FormControl(this.startDate),
+    //   end: new FormControl(this.endDate),
+    // });
   }
 
   onChange(e) {
     console.log('ciao');
-    this.endDate = e.target.value;
+    // this.endDate = e.target.value;
   }
 }
