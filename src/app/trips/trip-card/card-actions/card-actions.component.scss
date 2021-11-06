@@ -1,4 +1,4 @@
-@import "src/assets/styles/colors";
+@import "src/assets/styles/colors", "src/assets/styles/media";
 
 :host {
   outline: 2px red;
@@ -11,7 +11,20 @@
 }
 
 #delete-card-modal-content {
-  padding: 0;
+}
+
+.mat-dialog-container {
+  min-height: 60vh;
+  @include mq-sm {
+    min-height: 35vh;
+  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 15px;
+  @include mq-sm {
+    padding: 40px 60px;
+  }
   mat-icon {
     margin-right: 10px;
   }
