@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   template: `
     <mat-card class="card">
       <mat-card-header>
-        <mat-icon mat-card-avatar aria-hidden="false" aria-label="Login icon">{{
+        <mat-icon mat-card-avatar aria-hidden="false" aria-label="Login icon" class="md-48">{{
           icon
         }}</mat-icon>
         <mat-card-title class="card-title">{{ title }}</mat-card-title>

@@ -12,6 +12,10 @@
       padding: 40px 30px;
     }
     mat-card-header {
+      mat-icon {
+        height: fit-content;
+        width: fit-content;
+      }
       align-items: center;
       > :first-child {
         margin-right: 15px;
