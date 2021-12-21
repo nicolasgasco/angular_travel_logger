@@ -48,7 +48,7 @@ import { AuthService } from 'src/app/auth/auth.service';
     >
     <ng-template #desktop>
       <!-- Toolbar desktop -->
-      <div fxLayout fxLayoutAlign="space-between baseline" id="desktop-header">
+      <div fxLayout fxLayoutAlign="space-between baseline" id="desktop-header" class="max-container">
         <!-- Bigger screens -->
         <div fxLayout class="header-texts">
           <a [routerLink]="'/'">TravelHero</a>
