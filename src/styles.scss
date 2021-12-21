@@ -1,6 +1,5 @@
-@import "../src/assets/styles/media", "../src/assets/styles/typography",
-  "../src/assets/styles/utils", "../src/assets/styles/mixins",
-  "../src/assets/styles/colors";
+@import "assets/styles/media", "assets/styles/typography",
+  "assets/styles/commons", "assets/styles/mixins", "assets/styles/colors";
 
 // Global styles
 app-root {
