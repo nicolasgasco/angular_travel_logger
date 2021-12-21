@@ -7,7 +7,7 @@ mat-sidenav {
 }
 
 ::ng-deep mat-sidenav {
-  width: min(250px, 70%);
+  width: min(300px, 100%);
   > .mat-drawer-inner-container {
     display: flex;
     flex-direction: column;

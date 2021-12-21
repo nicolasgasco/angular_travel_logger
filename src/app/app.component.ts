@@ -13,6 +13,7 @@ import { Component } from '@angular/core';
       <!-- Desktop toolbar -->
       <travel-log-header [isMobile]="false" fxHide.lt-sm></travel-log-header>
     </mat-toolbar>
+    <!-- Sidenav -->
     <mat-sidenav-container class="sidenav-layout">
       <mat-sidenav opened="false" #sidenav role="navigation" fxHide.gt-xs>
         <travel-log-sidenav-list
