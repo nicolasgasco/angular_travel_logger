@@ -9,6 +9,10 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 import { LoginComponent } from './auth/login/login.component';
 import { AllTripsComponent } from './trips/all-trips/all-trips.component';
 import { LandingComponent } from './landing/landing.component';
@@ -54,6 +58,8 @@ import {
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
