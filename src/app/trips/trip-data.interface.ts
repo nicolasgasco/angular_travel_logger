@@ -3,8 +3,8 @@ export interface TripData {
   countries: string[];
   name?: string;
   dates: {
-    start: Date;
-    end: Date;
+    start: any;
+    end: any;
   };
   cities?: string[];
 }

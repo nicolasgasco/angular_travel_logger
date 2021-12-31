@@ -13,14 +13,16 @@ import { TripData } from 'src/app/trips/trip-data.interface';
   template: `
     <mat-card id="trip-card">
       <mat-card-title>{{
-        tripData.name ? tripData.name : tripData.countries.join(', ')
+        tripData.name
+          ? capitalizeFirstLetter(tripData.name)
+          : capitalizeFirstLetter(tripData.countries.join(', '))
       }}</mat-card-title>
       <mat-card-subtitle>
-        {{ tripData.dates.start.getFullYear() }}
+        {{ tripData.dates.start.toDate().getFullYear() }}
         <span
           *ngIf="
-            tripData.dates.start.getFullYear() !==
-            tripData.dates.end.getFullYear()
+            tripData.dates.start.toDate().getFullYear() !==
+            tripData.dates.end.toDate().getFullYear()
           "
         >
           - {{ tripData.dates.start.getFullYear() }}</span
@@ -35,7 +37,7 @@ import { TripData } from 'src/app/trips/trip-data.interface';
                 role="listitem"
                 *ngFor="let city of tripData.cities"
               >
-                {{ city.charAt(0).toUpperCase() + city.slice(1) }}
+                {{ capitalizeFirstLetter(city) }}
               </mat-list-item>
             </mat-list>
           </mat-tab>
@@ -62,6 +64,11 @@ import { TripData } from 'src/app/trips/trip-data.interface';
 export class TripCardComponent {
   @Input() tripData: TripData;
   @Output() onDeleteTrip = new EventEmitter();
+
+  // Capitalize every word of multiword strings
+  capitalizeFirstLetter = (words: string) => {
+    return words.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+  };
 
   deleteTrip = () => {
     this.onDeleteTrip.emit(this.tripData.id);
