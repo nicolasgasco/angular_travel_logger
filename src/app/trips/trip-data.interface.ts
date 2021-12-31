@@ -1,5 +1,5 @@
 export interface TripData {
-  id: number;
+  id: string;
   countries: string[];
   name?: string;
   dates: {

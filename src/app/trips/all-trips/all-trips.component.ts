@@ -3,6 +3,7 @@ import { TripData } from '../trip-data.interface';
 import { TripsService } from '../trips.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'travel-log-all-trips',
@@ -31,11 +32,23 @@ export class AllTripsComponent implements OnInit {
   }
 
   deleteTripById = (id: number) => {
-    this.tripsService.deleteTrip(id);
+    // this.tripsService.deleteTrip(id);
     // this.trips = this.tripsService.trips;
   };
 
   ngOnInit(): void {
-    this.trips = this.db.collection('savedTrips').valueChanges();
+    this.db
+      .collection('savedTrips')
+      .snapshotChanges()
+      .map((docArray) => {
+        return docArray.map((doc) => {
+          const result = doc.payload.doc.data();
+          result['id'] = doc.payload.doc.id;
+          return result;
+        });
+      })
+      .subscribe((result) => {
+        console.log(result);
+      });
   }
 }
