@@ -1,7 +1,10 @@
 @import "../../../assets/styles/media";
 
-.cards-container {
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+section {
+  .cards-container {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 450px));
+    justify-content: center;
+  }
 }

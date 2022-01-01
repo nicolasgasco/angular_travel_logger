@@ -42,8 +42,8 @@ import { TripData } from 'src/app/trips/trip-data.interface';
             </mat-list>
           </mat-tab>
           <!-- Map tab -->
-          <mat-tab label="Map">
-            <p>Map</p>
+          <mat-tab label="Diary">
+            <p>Diary</p>
           </mat-tab>
         </mat-tab-group>
       </mat-card-content>
@@ -59,7 +59,6 @@ import { TripData } from 'src/app/trips/trip-data.interface';
     </mat-card>
   `,
   styleUrls: ['./trip-card.component.scss'],
-  encapsulation: ViewEncapsulation.None,
 })
 export class TripCardComponent {
   @Input() tripData: TripData;
