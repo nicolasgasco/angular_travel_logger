@@ -1,8 +1,5 @@
-@use "sass:map";
-@use "@angular/material" as mat;
-
-@import "../../assets/styles/colors", "../../assets/styles/mixins",
-  "../../assets/styles/typography";
+@import "../../assets/styles/colors", "../../assets/styles/media",
+  "../../assets/styles/mixins";
 
 footer {
   @include hover-animation($black);
