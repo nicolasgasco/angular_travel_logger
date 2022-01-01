@@ -163,10 +163,13 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    this.authService.registerUser({
-      email: form.value.email_repeat,
-      password: form.value.password_repeat,
-    });
+    this.authService.registerUser(
+      {
+        email: form.value.email_repeat,
+        password: form.value.password_repeat,
+      },
+      form
+    );
   }
 
   ngOnInit(): void {}
