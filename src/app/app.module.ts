@@ -30,6 +30,7 @@ import {
   CardActionsComponent,
   DeleteCardModalComponent,
 } from './trips/trip-card/card-actions/card-actions.component';
+import { SpinnerComponent } from './layout/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {
     SignupComponent,
     ChipsInputComponent,
     TripDatePickerComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

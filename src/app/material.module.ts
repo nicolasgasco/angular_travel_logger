@@ -15,6 +15,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 @NgModule({
   imports: [
     MatButtonModule,
@@ -33,6 +34,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatMenuModule,
     MatChipsModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatButtonModule,
@@ -51,6 +53,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatMenuModule,
     MatChipsModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class MaterialModule {}
