@@ -7,7 +7,9 @@ import { Observable, Subscription } from 'rxjs';
   selector: 'travel-log-all-trips',
   template: `
     <section>
-      <div *ngIf="tripsLoading; else finishedLoading">Show loader here...</div>
+      <ng-container *ngIf="tripsLoading; else finishedLoading">
+        <travel-log-spinner></travel-log-spinner>
+      </ng-container>
       <ng-template #finishedLoading>
         <div
           class="cards-container"
@@ -20,7 +22,7 @@ import { Observable, Subscription } from 'rxjs';
           ></travel-log-trip-card>
         </div>
         <ng-template #noTrips>
-          <div>Ciao</div>
+          <div>There are no trips to show...</div>
         </ng-template></ng-template
       >
     </section>
