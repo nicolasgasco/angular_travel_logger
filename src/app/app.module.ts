@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { LoginComponent } from './auth/login/login.component';
 import { AllTripsComponent } from './trips/all-trips/all-trips.component';
@@ -62,6 +63,7 @@ import { SpinnerComponent } from './layout/spinner/spinner.component';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

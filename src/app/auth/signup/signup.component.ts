@@ -141,7 +141,7 @@ import { AuthService } from '../auth.service';
             color="primary"
             [disabled]="signupForm.invalid"
           >
-            Login
+            Create account
           </button>
         </form>
       </travel-log-card>
@@ -163,10 +163,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form)
     this.authService.registerUser({
-      email: this.signupForm.value.email_repeat,
-      password: this.signupForm.value.password_repeat,
+      email: form.value.email_repeat,
+      password: form.value.password_repeat,
     });
   }
 
