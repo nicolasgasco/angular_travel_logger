@@ -59,7 +59,7 @@ import {
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

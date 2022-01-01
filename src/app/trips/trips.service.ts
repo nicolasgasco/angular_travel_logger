@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
 import { TripDatePickerComponent } from './add-trip/trip-date-picker/trip-date-picker.component';
 import { TripData } from './trip-data.interface';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable, Subject } from 'rxjs';
+import 'rxjs/add/operator/map';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TripsService {
-  // trips: TripData[] = this.getTrips();
-  // id = 4;
+  constructor(private db: AngularFirestore) {}
 
-  constructor() {}
+  trips: TripData[] = [];
+  tripsChanged = new Subject<TripData[]>();
 
   addTrip(tripData: TripData) {
     // Parsing dates from string
@@ -19,46 +22,21 @@ export class TripsService {
     // this.saveLocalStorage();
   }
 
-  getTrips() {
-    // const localStorageTrips = JSON.parse(localStorage.getItem('trips'));
-    // if (localStorageTrips) {
-    //   // Repeating new Date otherwise date methods won't work properly
-    //   localStorageTrips.forEach((trip) => {
-    //     Object.keys(trip.dates).forEach((dateKey) => {
-    //       trip.dates[dateKey] = new Date(trip.dates[dateKey]);
-    //     });
-    //   });
-    //   this.trips = localStorageTrips;
-    // }
-    // return [
-    //   {
-    //     id: 2,
-    //     countries: ['Italy, France'],
-    //     dates: {
-    //       start: new Date('1995-02'),
-    //       end: new Date('1996-03'),
-    //     },
-    //     cities: ['City1', 'City2', 'City3'],
-    //   },
-    //   {
-    //     id: 1,
-    //     countries: ['USA'],
-    //     dates: {
-    //       start: new Date('1995-02'),
-    //       end: new Date('1996-03'),
-    //     },
-    //     cities: ['City1'],
-    //   },
-    //   {
-    //     id: 3,
-    //     countries: ['Germany, Austria, Switzerland'],
-    //     dates: {
-    //       start: new Date(),
-    //       end: new Date(),
-    //     },
-    //     cities: ['City1', 'City2', 'City3'],
-    //   },
-    // ];
+  fetchTripsFromFirebase() {
+    return this.db
+      .collection('savedTrips')
+      .snapshotChanges()
+      .map((tripsArray) => {
+        return tripsArray.map((trip) => {
+          const tripWithId = trip.payload.doc.data();
+          tripWithId['id'] = trip.payload.doc.id;
+          return tripWithId;
+        });
+      })
+      .subscribe((fetchedTrips: TripData[]) => {
+        this.trips = fetchedTrips;
+        this.tripsChanged.next([...this.trips]);
+      });
   }
 
   saveLocalStorage() {

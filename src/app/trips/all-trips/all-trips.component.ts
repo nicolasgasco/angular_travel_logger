@@ -1,54 +1,51 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { TripData } from '../trip-data.interface';
 import { TripsService } from '../trips.service';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'travel-log-all-trips',
   template: `
     <section>
-      <div class="cards-container">
-        <travel-log-trip-card
-          *ngFor="let trip of trips | async"
-          [tripData]="trip"
-          (onDeleteTrip)="deleteTripById($event)"
-        ></travel-log-trip-card>
-      </div>
+      <div *ngIf="tripsLoading; else finishedLoading">Show loader here...</div>
+      <ng-template #finishedLoading>
+        <div
+          class="cards-container"
+          *ngIf="trips.length && trips.length > 0; else noTrips"
+        >
+          <travel-log-trip-card
+            *ngFor="let trip of trips"
+            [tripData]="trip"
+            (onDeleteTrip)="deleteTripById($event)"
+          ></travel-log-trip-card>
+        </div>
+        <ng-template #noTrips>
+          <div>Ciao</div>
+        </ng-template></ng-template
+      >
     </section>
   `,
   styleUrls: ['./all-trips.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AllTripsComponent implements OnInit {
-  trips: Observable<any>;
+export class AllTripsComponent implements OnInit, OnDestroy {
+  trips: TripData[];
+  tripsSubscription: Subscription;
+  tripsLoading: Boolean = true;
 
-  constructor(
-    private tripsService: TripsService,
-    private db: AngularFirestore
-  ) {
-    // this.trips = this.tripsService.trips;
-  }
-
-  deleteTripById = (id: number) => {
-    // this.tripsService.deleteTrip(id);
-    // this.trips = this.tripsService.trips;
-  };
+  constructor(private tripsService: TripsService) {}
 
   ngOnInit(): void {
-    this.db
-      .collection('savedTrips')
-      .snapshotChanges()
-      .map((docArray) => {
-        return docArray.map((doc) => {
-          const result = doc.payload.doc.data();
-          result['id'] = doc.payload.doc.id;
-          return result;
-        });
-      })
-      .subscribe((result) => {
-        console.log(result);
-      });
+    this.tripsSubscription = this.tripsService.tripsChanged.subscribe(
+      (savedTrips) => {
+        this.trips = savedTrips;
+        this.tripsLoading = false;
+      }
+    );
+    this.tripsService.fetchTripsFromFirebase();
+  }
+
+  ngOnDestroy(): void {
+    this.tripsSubscription.unsubscribe();
   }
 }
