@@ -24,7 +24,8 @@ import { Component, OnInit } from '@angular/core';
           </p>
           <button
             mat-raised-button
-            color="primary"
+            color="accent"
+            fill="outline"
             [routerLink]="literal.button ? literal.button.link : ''"
             *ngIf="!!literal.button"
           >

@@ -9,6 +9,14 @@ section {
     .text-container {
       max-width: 400px;
       width: fit-content;
+      margin: 0 auto;
+      text-align: center;
+      @include mq-md {
+        text-align: left;
+        &:last-of-type {
+          text-align: center;
+        }
+      }
       button {
         display: block;
         margin: 20px auto;
