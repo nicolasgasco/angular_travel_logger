@@ -62,7 +62,7 @@ import { AuthService } from '../auth.service';
           <button
             mat-raised-button
             type="submit"
-            color="primary"
+            color="accent"
             [disabled]="loginForm.invalid"
           >
             Login
