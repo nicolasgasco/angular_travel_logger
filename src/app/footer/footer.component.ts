@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `<footer>
     <div class="max-container">
       <small
-        >Made with 🖤 by
+        >Made with 🤍 by
         <a
           href="https://github.com/nicolasgasco"
           target="_blank"
