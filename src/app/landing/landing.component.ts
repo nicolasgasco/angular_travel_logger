@@ -18,7 +18,7 @@ import { Component, OnInit } from '@angular/core';
           [class.left]="(i + 1) % 2 !== 0"
           [class.right]="(i + 1) % 2 === 0"
         >
-          <h1>{{ literal.title }}</h1>
+          <h1 class="h1">{{ literal.title }}</h1>
           <p>
             {{ literal.text }}
           </p>
