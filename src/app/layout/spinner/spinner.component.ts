@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'travel-log-spinner',
-  template: `Spinner works!`,
+  template: `<div>
+    <mat-spinner></mat-spinner>
+  </div>`,
   styleUrls: ['./spinner.component.scss'],
 })
 export class SpinnerComponent implements OnInit {
