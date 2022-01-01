@@ -39,6 +39,11 @@ export class TripsService {
       });
   }
 
+  addDataToFirebase(trip: TripData) {
+    console.log(trip);
+    this.db.collection('savedTrips').add(trip);
+  }
+
   saveLocalStorage() {
     // localStorage.setItem('trips', JSON.stringify(this.trips));
   }
