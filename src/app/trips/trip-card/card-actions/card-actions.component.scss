@@ -1,12 +1,11 @@
 @import "src/assets/styles/colors", "src/assets/styles/media";
 
 :host {
-  outline: 2px red;
   border-radius: 50px;
   padding: 5px 10px;
   background-color: $dark;
   #edit-icon {
-    color: $primary;
+    color: $color-accent;
   }
 }
 

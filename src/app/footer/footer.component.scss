@@ -1,3 +1,6 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
 @import "../../assets/styles/colors", "../../assets/styles/mixins",
   "../../assets/styles/typography";
 
@@ -5,9 +8,11 @@ footer {
   @include hover-animation($black);
   @include text-xs;
 
-  background-color: $primary-lighter;
+  background-color: $color-accent;
 
   padding: 10px 15px;
+
+  color: $black;
   @include mq-md {
     padding: 20px 60px;
   }

@@ -1,7 +1,36 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+// Theming
+@include mat.core();
+$travel-log-primary: mat.define-palette(mat.$blue-grey-palette, 500);
+$travel-log-accent: mat.define-palette(mat.$yellow-palette, A200, A100, A400);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$travel-log-warn: mat.define-palette(mat.$red-palette);
+
+$travel-log-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $travel-log-primary,
+      accent: $travel-log-accent,
+      warn: $travel-log-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($travel-log-theme);
+
+// Color variables
 $dark: #303030;
 $dark-lighter: #383838;
 $black: #333;
 
-$primary: #00B38F;
-$primary-darker: #007D5C;
-$primary-lighter: #54ECC4;
+$color-primary: mat.get-color-from-palette($travel-log-primary, 500);
+$color-primary-dark: mat.get-color-from-palette($travel-log-primary, 700);
+$color-primary-light: mat.get-color-from-palette($travel-log-primary, 200);
+
+$color-accent: mat.get-color-from-palette($travel-log-accent, 500);
+$color-accent-dark: mat.get-color-from-palette($travel-log-accent, 700);
+$color-accent-light: mat.get-color-from-palette($travel-log-accent, 200);
+

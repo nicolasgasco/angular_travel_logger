@@ -1,9 +1,15 @@
+@import "src/assets/styles/media";
+
 :host {
   width: 100%;
   display: block;
   #trip-card {
     width: 100%;
     height: 100%;
+
+    @include mq-xs {
+      min-width: 350px;
+    }
 
     padding: 30px 20px;
     padding-bottom: 20px;
