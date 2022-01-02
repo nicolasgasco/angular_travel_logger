@@ -16,14 +16,15 @@ import { AuthService } from 'src/app/services/auth.service';
       <!-- Toolbar mobile -->
       <div fxLayout fxLayoutAlign="flex-start center" id="mobile-header">
         <button
-          *ngIf="authService.isAuth()"
+          *ngIf="authService.isAuthenticated"
           mat-icon-button
+          class="burger-menu"
           aria-label="Icon-button with menu icon"
           (click)="onToggleSideNav()"
         >
           <mat-icon>menu</mat-icon>
         </button>
-        <span>TravelHero</span>
+        <span class="logo">TravelHero</span>
         <ng-container *ngIf="!isAuth; else loggedMobile">
           <button
             mat-icon-button
@@ -51,7 +52,7 @@ import { AuthService } from 'src/app/services/auth.service';
       <div fxLayout fxLayoutAlign="space-between baseline" id="desktop-header" class="max-container">
         <!-- Bigger screens -->
         <div fxLayout class="header-texts">
-          <a [routerLink]="'/'">TravelHero</a>
+          <a [routerLink]="'/'" class="logo">TravelHero</a>
           <!-- Disappears on tablets -->
           <span fxHide.lt-md>Keep track of your globetrotting...</span>
         </div>
@@ -60,7 +61,7 @@ import { AuthService } from 'src/app/services/auth.service';
           <a
             mat-list-item
             [matMenuTriggerFor]="menu"
-            *ngIf="authService.isAuth()"
+            *ngIf="authService.isAuthenticated"
           >
             Trips <mat-icon>arrow_drop_down</mat-icon>
           </a>

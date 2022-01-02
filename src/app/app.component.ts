@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +31,10 @@ import { Component } from '@angular/core';
   `,
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'travel-logger';
+  constructor(private authService: AuthService) {}
+  ngOnInit() {
+    this.authService.initAuthListener();
+  }
 }

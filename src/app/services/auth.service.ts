@@ -5,6 +5,7 @@ import { User } from '../interfaces/user.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NgForm } from '@angular/forms';
 import { AuthData } from '../auth/auth-data.interface';
+import { TripsService } from './trips.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,17 +17,28 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private AngularFireAuth: AngularFireAuth
+    private angularFireAuth: AngularFireAuth,
+    private tripsService: TripsService
   ) {}
 
+  initAuthListener() {
+    this.angularFireAuth.authState.subscribe((user) => {
+      if (user) {
+        this.authSuccessful();
+      } else {
+        this.isAuthenticated = false;
+        console.log('Goodbye');
+        this.tripsService.cancelSubscriptions();
+      }
+    });
+  }
+
   registerUser(authData: AuthData, form: NgForm) {
-    this.AngularFireAuth.createUserWithEmailAndPassword(
-      authData.email,
-      authData.password
-    )
+    this.angularFireAuth
+      .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
         console.log(result);
-        this.signupSuccessful();
+        // this.signupSuccessful();
       })
       .catch((error) => {
         this.signupFailure(error.message, form);
@@ -34,13 +46,11 @@ export class AuthService {
   }
 
   login(authData: AuthData) {
-    this.AngularFireAuth.signInWithEmailAndPassword(
-      authData.email,
-      authData.password
-    )
+    this.angularFireAuth
+      .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
         // console.log(result);
-        this.authSuccessful();
+        // this.authSuccessful();
       })
       .catch((error) => {
         console.log(error);
@@ -49,12 +59,10 @@ export class AuthService {
 
   logOut() {
     this.isAuthenticated = false;
-    this.authChange.next(false);
-    this.router.navigate(['/login']);
-  }
-
-  isAuth() {
-    return this.isAuthenticated;
+    console.log('Goodbye');
+    this.tripsService.cancelSubscriptions();
+    this.angularFireAuth.signOut();
+    // this.router.navigate(['/login']);
   }
 
   private signupSuccessful() {
@@ -73,7 +81,6 @@ export class AuthService {
 
   private authSuccessful() {
     this.isAuthenticated = true;
-    this.authChange.next(true);
     this.router.navigate(['/all-trips']);
   }
 }
