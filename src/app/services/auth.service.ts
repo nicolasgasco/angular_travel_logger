@@ -6,6 +6,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { NgForm } from '@angular/forms';
 import { AuthData } from '../auth/auth-data.interface';
 import { TripsService } from './trips.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponentDialog } from '../layout/modal/modal.component';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +20,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private angularFireAuth: AngularFireAuth,
-    private tripsService: TripsService
+    private tripsService: TripsService,
+    private dialog: MatDialog
   ) {}
 
   initAuthListener() {
@@ -45,7 +48,7 @@ export class AuthService {
       });
   }
 
-  login(authData: AuthData) {
+  login(authData: AuthData, form: NgForm) {
     this.angularFireAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
@@ -53,7 +56,7 @@ export class AuthService {
         // this.authSuccessful();
       })
       .catch((error) => {
-        console.log(error);
+        this.loginFailure(error, form);
       });
   }
 
@@ -87,6 +90,17 @@ export class AuthService {
     this.isAuthenticated = false;
     form.resetForm();
     alert(message);
+  }
+
+  private loginFailure(error: any, form: NgForm) {
+    console.log(`Login error: ${error.message}`);
+    const dialogRef = this.dialog.open(ModalComponentDialog, {
+      data: { modalTitle: 'Login unsuccessful', modalText: error.message },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+    form.resetForm();
   }
 
   private authSuccessful() {
