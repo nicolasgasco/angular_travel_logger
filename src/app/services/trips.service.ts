@@ -19,14 +19,6 @@ export class TripsService {
   tripsChanged = new Subject<TripData[]>();
   private fbSubs: Subscription[];
 
-  addTrip(tripData: TripData) {
-    // Parsing dates from string
-    // console.log(typeof tripData.dates.start);
-    // this.trips.push(tripData);
-    // this.id++;
-    // this.saveLocalStorage();
-  }
-
   fetchTripsFromFirebase() {
     this.angularFireAuth.authState.subscribe((userData) => {
       if (userData) {
@@ -57,7 +49,7 @@ export class TripsService {
     });
   }
 
-  addDataToFirebase(trip: TripData) {
+  addTripToFirebase(trip: TripData) {
     this.angularFireAuth.authState.subscribe((userData) => {
       if (userData) {
         this.db
@@ -71,14 +63,35 @@ export class TripsService {
     });
   }
 
-  saveLocalStorage() {
-    // localStorage.setItem('trips', JSON.stringify(this.trips));
-  }
+  removeTripFromFirebase(tripId: string) {
+    this.angularFireAuth.authState.subscribe((userData) => {
+      if (userData) {
+        this.db
+          .collection('users')
+          .doc(userData.uid)
+          .collection('savedTrips')
+          .doc(tripId)
+          .valueChanges()
+          .subscribe((tripToBeDeleted) => {
+            console.log(tripToBeDeleted);
 
-  deleteTrip(id: string) {
-    // console.log(`id is ${id}`);
-    // this.trips = this.trips.filter((trip) => trip.id !== id);
-    // this.saveLocalStorage();
+            this.db
+              .collection('users')
+              .doc(userData.uid)
+              .collection('deletedTrips')
+              .add(tripToBeDeleted);
+
+            this.db
+              .collection('users')
+              .doc(userData.uid)
+              .collection('savedTrips')
+              .doc(tripId)
+              .delete();
+          });
+      } else {
+        console.log('User is not logged');
+      }
+    });
   }
 
   cancelSubscriptions() {

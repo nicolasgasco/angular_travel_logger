@@ -19,7 +19,6 @@ import { TripsService } from 'src/app/services/trips.service';
           <travel-log-trip-card
             *ngFor="let trip of trips"
             [tripData]="trip"
-            (onDeleteTrip)="deleteTripById($event)"
           ></travel-log-trip-card>
         </div>
         <ng-template #noTrips>

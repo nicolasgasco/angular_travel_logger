@@ -87,7 +87,7 @@ export class AddTripComponent implements OnInit {
   }
 
   onSubmit() {
-    this.tripsService.addDataToFirebase({
+    this.tripsService.addTripToFirebase({
       ...this.newTripForm.value,
     });
   }
