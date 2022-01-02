@@ -71,7 +71,7 @@ export class TripsService {
       data: {
         modalTitle: 'Do you really want to deleted this trip?',
         modalText:
-          'You will find all your deleted trips in the corresponding section.',
+          'This action cannot be undone.',
         mainButtonText: 'Confirm',
         secondaryButtonText: 'Cancel',
       },
