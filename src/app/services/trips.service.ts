@@ -23,27 +23,25 @@ export class TripsService {
   }
 
   fetchTripsFromFirebase() {
-    this.fbSubs.push(
-      this.db
-        .collection('savedTrips')
-        .snapshotChanges()
-        .map((tripsArray) => {
-          return tripsArray.map((trip) => {
-            const tripWithId = trip.payload.doc.data();
-            tripWithId['id'] = trip.payload.doc.id;
-            return tripWithId;
-          });
-        })
-        .subscribe(
-          (fetchedTrips: TripData[]) => {
-            this.trips = fetchedTrips;
-            this.tripsChanged.next([...this.trips]);
-          },
-          (error) => {
-            console.log(error);
-          }
-        )
-    );
+    this.db
+      .collection('savedTrips')
+      .snapshotChanges()
+      .map((tripsArray) => {
+        return tripsArray.map((trip) => {
+          const tripWithId = trip.payload.doc.data();
+          tripWithId['id'] = trip.payload.doc.id;
+          return tripWithId;
+        });
+      })
+      .subscribe(
+        (fetchedTrips: TripData[]) => {
+          this.trips = fetchedTrips;
+          this.tripsChanged.next([...this.trips]);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   addDataToFirebase(trip: TripData) {

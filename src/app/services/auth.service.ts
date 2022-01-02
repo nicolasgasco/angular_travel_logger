@@ -41,11 +41,23 @@ export class AuthService {
       .createUserWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
         console.log(result);
-        // this.signupSuccessful();
+        this.signupSuccessful();
       })
       .catch((error) => {
         this.signupFailure(error.message, form);
       });
+  }
+
+  private signupSuccessful() {
+    console.log('Signup was successful');
+    this.isAuthenticated = true;
+    this.router.navigate(['/add-trip']);
+    const dialogRef = this.dialog.open(ModalComponentDialog, {
+      data: { modalTitle: 'Signup successful', modalText: "Your account was created. Add your first trip now!" },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   login(authData: AuthData, form: NgForm) {
@@ -77,14 +89,6 @@ export class AuthService {
     console.log('Goodbye');
     this.tripsService.cancelSubscriptions();
     // this.router.navigate(['/login']);
-  }
-
-  private signupSuccessful() {
-    this.isAuthenticated = true;
-    this.router.navigate(['/add-trip']);
-    setTimeout(() => {
-      alert('Your account was successfully created!');
-    }, 500);
   }
 
   private signupFailure(message: string, form: NgForm) {
