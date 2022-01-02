@@ -54,9 +54,9 @@ import { TripsService } from 'src/app/services/trips.service';
         fxLayoutAlign="end center"
       >
         <div class="actions-container">
-          <button mat-icon-button aria-label="Edit trip">
+          <!-- <button mat-icon-button aria-label="Edit trip">
             <mat-icon id="edit-icon">mode_edit</mat-icon>
-          </button>
+          </button> -->
           <button
             color="warn"
             mat-icon-button
