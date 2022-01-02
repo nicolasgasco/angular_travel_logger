@@ -8,6 +8,7 @@ import { AuthData } from '../auth/auth-data.interface';
 import { TripsService } from './trips.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalComponentDialog } from '../layout/modal/modal.component';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,8 @@ export class AuthService {
     private router: Router,
     private angularFireAuth: AngularFireAuth,
     private tripsService: TripsService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private db: AngularFirestore
   ) {}
 
   initAuthListener() {
@@ -36,25 +38,37 @@ export class AuthService {
     });
   }
 
+  getLoggedUserId() {
+
+  }
+
   // SIGNUP
   registerUser(authData: AuthData, form: NgForm) {
     this.angularFireAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
-      .then((result) => {
-        console.log(result);
-        this.signupSuccessful();
+      .then((signupData) => {
+        this.signupSuccessful(signupData);
       })
       .catch((error) => {
         this.signupFailure(error.message, form);
       });
   }
 
-  private signupSuccessful() {
+  private signupSuccessful(signupData: any) {
     console.log('Signup successful');
+    console.log(signupData);
+    this.db.collection('users').doc(signupData.user.uid).set({
+      uid: signupData.user.uid,
+      email: signupData.user.email,
+      userSince: Date.now(),
+    });
     this.isAuthenticated = true;
     this.router.navigate(['/add-trip']);
     const dialogRef = this.dialog.open(ModalComponentDialog, {
-      data: { modalTitle: 'Signup successful', modalText: "Your account was created. Add your first trip now!" },
+      data: {
+        modalTitle: 'Signup successful',
+        modalText: 'Your account was created. Add your first trip now!',
+      },
     });
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -104,7 +118,6 @@ export class AuthService {
     this.tripsService.cancelSubscriptions();
     // this.router.navigate(['/login']);
   }
-
 
   private loginFailure(error: any, form: NgForm) {
     console.log(`Login error: ${error.message}`);

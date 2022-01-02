@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { TripData } from 'src/app/interfaces/trip-data.interface';
+import { AuthService } from 'src/app/services/auth.service';
 import { TripsService } from 'src/app/services/trips.service';
 
 @Component({

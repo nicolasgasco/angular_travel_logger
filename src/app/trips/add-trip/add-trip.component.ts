@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 import { TripsService } from 'src/app/services/trips.service';
-
 
 @Component({
   selector: 'travel-log-add-trip',
@@ -69,7 +69,10 @@ export class AddTripComponent implements OnInit {
   nameInput: string;
   citiesInput = [];
   countriesInput = [];
-  constructor(private tripsService: TripsService) {}
+  constructor(
+    private tripsService: TripsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.newTripForm = new FormGroup({
@@ -87,8 +90,5 @@ export class AddTripComponent implements OnInit {
     this.tripsService.addDataToFirebase({
       ...this.newTripForm.value,
     });
-    // let newTrip = { ...this.newTripForm.value, id: this.tripsService.id };
-    // console.log(this.newTripForm.value.dates.start.getFullYear());
-    // this.tripsService.addTrip(newTrip);
   }
 }
