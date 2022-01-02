@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Subscription, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { TripData } from '../interfaces/trip-data.interface';
@@ -13,6 +14,7 @@ import { AuthService } from './auth.service';
 })
 export class TripsService {
   constructor(
+    private router: Router,
     private db: AngularFirestore,
     private angularFireAuth: AngularFireAuth,
     private dialog: MatDialog
@@ -47,6 +49,7 @@ export class TripsService {
             }
           );
       } else {
+        this.router.navigate(['/']);
         console.log('User is not logged');
       }
     });
@@ -60,7 +63,15 @@ export class TripsService {
           .doc(userData.uid)
           .collection('savedTrips')
           .add(trip);
+
+        const dialogRef = this.dialog.open(ModalComponentDialog, {
+          data: {
+            modalTitle: 'Your trip was successfully added!',
+          },
+        });
+        this.router.navigate(['/all-trips']);
       } else {
+        this.router.navigate(['/']);
         console.log('User is not logged');
       }
     });
@@ -70,8 +81,7 @@ export class TripsService {
     const dialogRef = this.dialog.open(ModalComponentDialog, {
       data: {
         modalTitle: 'Do you really want to deleted this trip?',
-        modalText:
-          'This action cannot be undone.',
+        modalText: 'This action cannot be undone.',
         mainButtonText: 'Confirm',
         secondaryButtonText: 'Cancel',
       },

@@ -60,7 +60,6 @@ import { TripsService } from 'src/app/services/trips.service';
         </button>
       </form>
     </travel-log-card>
-    {{ newTripForm.value | json }}
   </section>`,
   styleUrls: ['./add-trip.component.scss'],
 })
