@@ -17,8 +17,8 @@ export class ModalComponent {}
       <p *ngIf="data.modalText">{{ data.modalText }}</p>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-      <button mat-button mat-dialog-close *ngIf="data.secondaryButtonText">
-        {{ secondaryButtonText }}
+      <button mat-stroked-button mat-dialog-close *ngIf="data.secondaryButtonText" color="accent" fill="outline">
+        {{ data.secondaryButtonText }}
       </button>
       <button
         mat-flat-button

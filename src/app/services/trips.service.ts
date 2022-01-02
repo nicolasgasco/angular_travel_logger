@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import { TripData } from '../interfaces/trip-data.interface';
+import { ModalComponentDialog } from '../layout/modal/modal.component';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -12,7 +14,8 @@ import { AuthService } from './auth.service';
 export class TripsService {
   constructor(
     private db: AngularFirestore,
-    private angularFireAuth: AngularFireAuth
+    private angularFireAuth: AngularFireAuth,
+    private dialog: MatDialog
   ) {}
 
   trips: TripData[] = [];
@@ -64,32 +67,46 @@ export class TripsService {
   }
 
   removeTripFromFirebase(tripId: string) {
-    this.angularFireAuth.authState.subscribe((userData) => {
-      if (userData) {
-        this.db
-          .collection('users')
-          .doc(userData.uid)
-          .collection('savedTrips')
-          .doc(tripId)
-          .valueChanges()
-          .subscribe((tripToBeDeleted) => {
-            console.log(tripToBeDeleted);
-
-            this.db
-              .collection('users')
-              .doc(userData.uid)
-              .collection('deletedTrips')
-              .add(tripToBeDeleted);
-
+    const dialogRef = this.dialog.open(ModalComponentDialog, {
+      data: {
+        modalTitle: 'Do you really want to deleted this trip?',
+        modalText:
+          'You will find all your deleted trips in the corresponding section.',
+        mainButtonText: 'Confirm',
+        secondaryButtonText: 'Cancel',
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      // If you press on confirm
+      if (result) {
+        this.angularFireAuth.authState.subscribe((userData) => {
+          if (userData) {
             this.db
               .collection('users')
               .doc(userData.uid)
               .collection('savedTrips')
               .doc(tripId)
-              .delete();
-          });
-      } else {
-        console.log('User is not logged');
+              .valueChanges()
+              .subscribe((tripToBeDeleted) => {
+                console.log(tripToBeDeleted);
+
+                this.db
+                  .collection('users')
+                  .doc(userData.uid)
+                  .collection('deletedTrips')
+                  .add(tripToBeDeleted);
+
+                this.db
+                  .collection('users')
+                  .doc(userData.uid)
+                  .collection('savedTrips')
+                  .doc(tripId)
+                  .delete();
+              });
+          } else {
+            console.log('User is not logged');
+          }
+        });
       }
     });
   }
