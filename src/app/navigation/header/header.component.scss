@@ -6,6 +6,14 @@
   }
 
   #mobile-header {
+    .burger-menu {
+      margin-right: 1rem;
+    }
+    .logo {
+      font-family: "SonsieOne", sans-serif;
+      font-size: 16px;
+      letter-spacing: 1px;
+    }
     .login-button,
     .logout-button {
       margin-left: auto;
@@ -15,9 +23,12 @@
     .header-texts {
       display: flex;
       align-items: baseline;
-      a {
-        font-size: 24px;
-        font-weight: bold;
+      .logo {
+        font-family: "SonsieOne", sans-serif;
+        font-size: 28px;
+        letter-spacing: 1px;
+
+        margin-right: 1rem;
       }
       span {
         margin-left: 10px;
