@@ -52,8 +52,9 @@ export class AuthService {
     this.angularFireAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
-        // console.log(result);
-        // this.authSuccessful();
+        console.log('Login successful');
+        console.log(result);
+        this.authSuccessful();
       })
       .catch((error) => {
         this.loginFailure(error, form);

@@ -65,9 +65,17 @@ import { AuthService } from 'src/app/services/auth.service';
             color="accent"
             [disabled]="loginForm.invalid"
           >
-            Login
+            Log in
           </button>
         </form>
+        <button
+          mat-raised-button
+          color="primary"
+          class="login-test"
+          (click)="loginWithTestAccount()"
+        >
+          Log in with preview account
+        </button>
       </travel-log-card>
       <div
         class="signup-text"
@@ -95,6 +103,17 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  loginWithTestAccount = () => {
+    console.log('Loggin in with test account');
+    this.authService.login(
+      {
+        email: 'test@test.com',
+        password: 'TestTest2021',
+      },
+      this.loginForm
+    );
+  };
 
   onSubmit = () => {
     this.authService.login(
