@@ -36,6 +36,7 @@ export class AuthService {
     });
   }
 
+  // SIGNUP
   registerUser(authData: AuthData, form: NgForm) {
     this.angularFireAuth
       .createUserWithEmailAndPassword(authData.email, authData.password)
@@ -49,7 +50,7 @@ export class AuthService {
   }
 
   private signupSuccessful() {
-    console.log('Signup was successful');
+    console.log('Signup successful');
     this.isAuthenticated = true;
     this.router.navigate(['/add-trip']);
     const dialogRef = this.dialog.open(ModalComponentDialog, {
@@ -60,6 +61,19 @@ export class AuthService {
     });
   }
 
+  private signupFailure(error: string, form: NgForm) {
+    console.log('Signup unsuccessful');
+    this.isAuthenticated = false;
+    form.resetForm();
+    const dialogRef = this.dialog.open(ModalComponentDialog, {
+      data: { modalTitle: 'Signup unsuccessful', modalText: error },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  // LOGIN
   login(authData: AuthData, form: NgForm) {
     this.angularFireAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
@@ -91,11 +105,6 @@ export class AuthService {
     // this.router.navigate(['/login']);
   }
 
-  private signupFailure(message: string, form: NgForm) {
-    this.isAuthenticated = false;
-    form.resetForm();
-    alert(message);
-  }
 
   private loginFailure(error: any, form: NgForm) {
     console.log(`Login error: ${error.message}`);
