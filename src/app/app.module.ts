@@ -32,6 +32,10 @@ import {
 } from './trips/trip-card/card-actions/card-actions.component';
 import { SpinnerComponent } from './layout/spinner/spinner.component';
 import { AuthService } from './services/auth.service';
+import {
+  ModalComponent,
+  ModalComponentDialog,
+} from './layout/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +55,8 @@ import { AuthService } from './services/auth.service';
     ChipsInputComponent,
     TripDatePickerComponent,
     SpinnerComponent,
+    ModalComponent,
+    ModalComponentDialog,
   ],
   imports: [
     BrowserModule,
