@@ -53,17 +53,19 @@ import { TripsService } from 'src/app/services/trips.service';
         fxLayout="row"
         fxLayoutAlign="end center"
       >
-        <button mat-icon-button aria-label="Edit trip">
-          <mat-icon id="edit-icon">mode_edit</mat-icon>
-        </button>
-        <button
-          color="warn"
-          mat-icon-button
-          aria-label="Delete trip"
-          (click)="tripsService.removeTripFromFirebase(tripData.id)"
-        >
-          <mat-icon>delete</mat-icon>
-        </button>
+        <div class="actions-container">
+          <button mat-icon-button aria-label="Edit trip">
+            <mat-icon id="edit-icon">mode_edit</mat-icon>
+          </button>
+          <button
+            color="warn"
+            mat-icon-button
+            aria-label="Delete trip"
+            (click)="tripsService.removeTripFromFirebase(tripData.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
       </mat-card-actions>
     </mat-card>
   `,
