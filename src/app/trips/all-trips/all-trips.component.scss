@@ -7,4 +7,14 @@ section {
     grid-template-columns: repeat(auto-fill, minmax(350px, 450px));
     justify-content: center;
   }
+  .no-trips-img {
+    display: block;
+    margin: 0 auto;
+
+    margin-top: 75px;
+
+    width: 100%;
+    height: auto;
+    max-width: 400px;
+  }
 }

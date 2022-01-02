@@ -23,9 +23,15 @@ import { TripsService } from 'src/app/services/trips.service';
           ></travel-log-trip-card>
         </div>
         <ng-template #noTrips>
-          <div>There are no trips to show...</div>
-        </ng-template></ng-template
-      >
+          <h1 class="no-trips-title" class="h1">
+            There are no trips to show...
+          </h1>
+          <img
+            class="no-trips-img"
+            src="/assets/img/no_trips.svg"
+            alt=""
+          /> </ng-template
+      ></ng-template>
     </section>
   `,
   styleUrls: ['./all-trips.component.scss'],
