@@ -7,6 +7,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { TripData } from 'src/app/interfaces/trip-data.interface';
+import { TripsService } from 'src/app/services/trips.service';
 
 @Component({
   selector: 'travel-log-trip-card',
@@ -52,9 +53,17 @@ import { TripData } from 'src/app/interfaces/trip-data.interface';
         fxLayout="row"
         fxLayoutAlign="end center"
       >
-        <travel-log-card-actions
-          (deleteTrip)="deleteTrip()"
-        ></travel-log-card-actions>
+        <button mat-icon-button aria-label="Edit trip">
+          <mat-icon id="edit-icon">mode_edit</mat-icon>
+        </button>
+        <button
+          color="warn"
+          mat-icon-button
+          aria-label="Delete trip"
+          (click)="tripsService.removeTripFromFirebase(tripData.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   `,
@@ -64,12 +73,17 @@ export class TripCardComponent {
   @Input() tripData: TripData;
   @Output() onDeleteTrip = new EventEmitter();
 
+  constructor(public tripsService: TripsService) {}
+
   // Capitalize every word of multiword strings
   capitalizeFirstLetter = (words: string) => {
-    return words.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+    return words
+      .split(' ')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
   };
 
-  deleteTrip = () => {
-    this.onDeleteTrip.emit(this.tripData.id);
-  };
+  // deleteTrip = () => {
+  //   this.onDeleteTrip.emit(this.tripData.id);
+  // };
 }

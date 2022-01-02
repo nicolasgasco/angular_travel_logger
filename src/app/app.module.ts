@@ -26,10 +26,6 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { ChipsInputComponent } from './trips/add-trip/chips-input/chips-input.component';
 import { TripDatePickerComponent } from './trips/add-trip/trip-date-picker/trip-date-picker.component';
 import { TripCardComponent } from './trips/trip-card/trip-card.component';
-import {
-  CardActionsComponent,
-  DeleteCardModalComponent,
-} from './trips/trip-card/card-actions/card-actions.component';
 import { SpinnerComponent } from './layout/spinner/spinner.component';
 import { AuthService } from './services/auth.service';
 import {
@@ -49,8 +45,6 @@ import {
     HeaderComponent,
     SidenavListComponent,
     TripCardComponent,
-    CardActionsComponent,
-    DeleteCardModalComponent,
     SignupComponent,
     ChipsInputComponent,
     TripDatePickerComponent,
