@@ -70,7 +70,7 @@ import { AuthService } from 'src/app/services/auth.service';
             <button mat-menu-item routerLink="add-trip">New trip</button>
           </mat-menu>
           <mat-list-item>
-            <ng-container *ngIf="!isAuth; else logged">
+            <ng-container *ngIf="!authService.isAuthenticated; else logged">
               <a
                 mat-flat-button
                 routerLink="login"
@@ -102,17 +102,11 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   @Input() isMobile?: boolean;
   @Output() sidenavToggle = new EventEmitter<void>();
-  isAuth = false;
   authSubscription: Subscription;
 
   constructor(public authService: AuthService) {}
 
   ngOnInit() {
-    this.authSubscription = this.authService.authChange.subscribe(
-      (authStatus) => {
-        this.isAuth = authStatus;
-      }
-    );
   }
 
   onToggleSideNav() {

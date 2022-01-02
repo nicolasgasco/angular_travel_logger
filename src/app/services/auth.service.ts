@@ -57,11 +57,21 @@ export class AuthService {
       });
   }
 
+  isAuth() {
+    this.angularFireAuth.authState.subscribe((user) => {
+      if (user) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
+
   logOut() {
+    this.angularFireAuth.signOut();
     this.isAuthenticated = false;
     console.log('Goodbye');
     this.tripsService.cancelSubscriptions();
-    this.angularFireAuth.signOut();
     // this.router.navigate(['/login']);
   }
 
