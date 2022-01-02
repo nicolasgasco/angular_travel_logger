@@ -17,6 +17,7 @@ export class AuthService {
   authChange = new Subject<boolean>();
   isAuthenticated = false;
   private user: User;
+  welcomeModalShown = false;
 
   constructor(
     private router: Router,
@@ -133,5 +134,9 @@ export class AuthService {
   private authSuccessful() {
     this.isAuthenticated = true;
     this.router.navigate(['/all-trips']);
+  }
+
+  setWelcomeModalAsShown () {
+    this.welcomeModalShown = true;
   }
 }

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalComponentDialog } from '../layout/modal/modal.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'travel-log-landing',
@@ -44,7 +47,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingComponent implements OnInit {
-  constructor() {}
+  welcomeModalShown = false;
+  constructor(private dialog: MatDialog, private authService: AuthService) {}
 
   landingLiterals = [
     {
@@ -66,5 +70,16 @@ export class LandingComponent implements OnInit {
       },
     },
   ];
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (!this.authService.welcomeModalShown) {
+      const dialogRef = this.dialog.open(ModalComponentDialog, {
+        data: {
+          modalTitle: 'Welcome to TravelHero!',
+          modalText:
+            'Create an account to start adding your trips or log in with the provided preview account to explore all the features of TravelHero.',
+        },
+      });
+    }
+    this.authService.setWelcomeModalAsShown();
+  }
 }
