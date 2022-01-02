@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'travel-log-login',

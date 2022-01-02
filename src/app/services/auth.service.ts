@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AuthData } from './auth-data.interface';
-import { User } from './user.interface';
+import { User } from '../interfaces/user.interface';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { NgForm } from '@angular/forms';
+import { AuthData } from '../auth/auth-data.interface';
 
 @Injectable({
   providedIn: 'root',

@@ -23,7 +23,6 @@ import { CardComponent } from './layout/card/card.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { AuthService } from './auth/auth.service';
 import { ChipsInputComponent } from './trips/add-trip/chips-input/chips-input.component';
 import { TripDatePickerComponent } from './trips/add-trip/trip-date-picker/trip-date-picker.component';
 import { TripCardComponent } from './trips/trip-card/trip-card.component';
@@ -32,6 +31,7 @@ import {
   DeleteCardModalComponent,
 } from './trips/trip-card/card-actions/card-actions.component';
 import { SpinnerComponent } from './layout/spinner/spinner.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [

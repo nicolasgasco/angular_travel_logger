@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { TripDatePickerComponent } from './add-trip/trip-date-picker/trip-date-picker.component';
-import { TripData } from './trip-data.interface';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
+import { TripData } from '../interfaces/trip-data.interface';
 
 @Injectable({
   providedIn: 'root',

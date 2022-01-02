@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { TripData } from '../trip-data.interface';
-import { TripsService } from '../trips.service';
 import { Observable, Subscription } from 'rxjs';
+import { TripData } from 'src/app/interfaces/trip-data.interface';
+import { TripsService } from 'src/app/services/trips.service';
 
 @Component({
   selector: 'travel-log-all-trips',

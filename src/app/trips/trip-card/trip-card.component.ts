@@ -6,7 +6,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { TripData } from 'src/app/trips/trip-data.interface';
+import { TripData } from 'src/app/interfaces/trip-data.interface';
 
 @Component({
   selector: 'travel-log-trip-card',

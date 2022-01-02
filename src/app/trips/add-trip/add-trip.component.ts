@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
-import { TripsService } from '../trips.service';
+import { TripsService } from 'src/app/services/trips.service';
+
 
 @Component({
   selector: 'travel-log-add-trip',
