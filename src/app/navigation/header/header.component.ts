@@ -25,7 +25,7 @@ import { AuthService } from 'src/app/services/auth.service';
           <mat-icon>menu</mat-icon>
         </button>
         <span class="logo">TravelHero</span>
-        <ng-container *ngIf="!isAuth; else loggedMobile">
+        <ng-container *ngIf="!authService.isAuthenticated; else loggedMobile">
           <button
             mat-icon-button
             aria-label="Icon-button with login icon"
@@ -49,10 +49,19 @@ import { AuthService } from 'src/app/services/auth.service';
     >
     <ng-template #desktop>
       <!-- Toolbar desktop -->
-      <div fxLayout fxLayoutAlign="space-between baseline" id="desktop-header" class="max-container">
+      <div
+        fxLayout
+        fxLayoutAlign="space-between baseline"
+        id="desktop-header"
+        class="max-container"
+      >
         <!-- Bigger screens -->
         <div fxLayout class="header-texts">
-          <a [routerLink]="'/'" class="logo">TravelHero</a>
+          <a
+            [routerLink]="authService.isAuthenticated ? 'all-trips' : '/'"
+            class="logo"
+            >TravelHero</a
+          >
           <!-- Disappears on tablets -->
           <span fxHide.lt-md>Keep track of your globetrotting...</span>
         </div>
@@ -106,8 +115,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(public authService: AuthService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onToggleSideNav() {
     this.sidenavToggle.emit();
