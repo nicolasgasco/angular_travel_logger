@@ -1,3 +1,8 @@
+span,
+p {
+  font-size: $std-fs;
+}
+
 section {
   width: 100%;
   max-width: 1279px;
@@ -18,6 +23,46 @@ mat-card-subtitle {
 }
 
 .max-container {
-  max-width: 1920px;
+  max-width: 1600px;
   margin: 0 auto;
+}
+
+button.mat-raised-button,
+button.mat-flat-button,
+button.mat-stroked-button {
+  font-size: 16px;
+  font-weight: 700 !important;
+  min-height: 44px;
+  min-width: 120px;
+}
+
+mat-list-item {
+  ::ng-deep .mat-list-item-content {
+    padding: 0 !important;
+  }
+}
+
+mat-dialog-container.mat-dialog-container {
+  min-width: 400px;
+  max-width: min(600px, 80vw);
+  padding: 35px 25px;
+
+  mat-dialog-actions {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+p,
+span,
+label {
+  font-size: $std-fs;
+}
+
+// Typography
+.h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
 }
