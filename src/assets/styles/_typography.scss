@@ -17,10 +17,7 @@
   font-weight: 400;
 }
 
-// Typography
-.h1 {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
-}
+$btn-fs: 19px;
+$btn-fw: 700;
+
+$std-fs: 16px;
