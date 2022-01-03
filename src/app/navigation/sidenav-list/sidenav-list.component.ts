@@ -16,6 +16,15 @@ import { AuthService } from 'src/app/services/auth.service';
           <span>{{ sideNavItem.text }}</span>
         </a>
       </ng-container>
+      <mat-divider></mat-divider>
+      <a
+        mat-list-item
+        aria-label="Icon-button with logout icon"
+        class="logout-button"
+        (click)="onLogout()"
+      >
+        <mat-icon>logout</mat-icon><span>Logout</span>
+      </a>
     </mat-nav-list>
   `,
   styleUrls: ['./sidenav-list.component.scss'],
@@ -46,5 +55,9 @@ export class SidenavListComponent {
 
   onCloseSideNav() {
     this.closeSideNav.emit();
+  }
+
+  onLogout() {
+    this.authService.logOut();
   }
 }

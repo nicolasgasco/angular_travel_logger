@@ -5,14 +5,9 @@ import { AuthService } from './services/auth.service';
   selector: 'app-root',
   template: `
     <mat-toolbar color="primary">
-      <!-- Mobile tootbar -->
       <travel-log-header
-        [isMobile]="true"
-        fxHide.gt-xs
         (sidenavToggle)="sidenav.toggle()"
       ></travel-log-header>
-      <!-- Desktop toolbar -->
-      <travel-log-header [isMobile]="false" fxHide.lt-sm></travel-log-header>
     </mat-toolbar>
     <!-- Sidenav -->
     <mat-sidenav-container class="sidenav-layout">
