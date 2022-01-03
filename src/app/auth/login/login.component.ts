@@ -85,7 +85,9 @@ import { AuthService } from 'src/app/services/auth.service';
         fxLayoutGap="25px"
       >
         <p>Are you new here?</p>
-        <a mat-raised-button routerLink="/signup" color="accent">Sign up</a>
+        <button mat-raised-button routerLink="/signup" color="accent">
+          Sign up
+        </button>
       </div>
       <div fxHide.lt-md class="signup-text">
         <p>
