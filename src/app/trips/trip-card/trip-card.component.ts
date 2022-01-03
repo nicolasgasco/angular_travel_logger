@@ -44,7 +44,13 @@ import { TripsService } from 'src/app/services/trips.service';
           </mat-tab>
           <!-- Map tab -->
           <mat-tab label="Diary">
-            <p>Diary</p>
+            <div class="diary-container" *ngIf="true; else showDiary">
+              <p>Your diary has no entries yet!</p>
+              <button mat-flat-button color="accent">Start writing</button>
+            </div>
+            <ng-template #showDiary>
+              <p>Diary</p>
+            </ng-template>
           </mat-tab>
         </mat-tab-group>
       </mat-card-content>
