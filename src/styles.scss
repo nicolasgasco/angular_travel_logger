@@ -29,7 +29,9 @@ body {
 }
 body {
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+}
+* {
+  font-family: "Montserrat", "Roboto", sans-serif;
 }
 html {
   box-sizing: border-box;
@@ -39,9 +41,6 @@ html {
 app-root {
   background-color: $dark;
 }
-
-// Partials
-@import "./assets/styles/mixins";
 
 *,
 *:before,
@@ -74,7 +73,6 @@ h6,
 p,
 blockquote,
 pre {
-  font-size: 100%;
   font-weight: normal;
 
   margin: 0;
