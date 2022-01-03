@@ -9,6 +9,14 @@ section {
       grid-template-columns: repeat(auto-fill, minmax(350px, 450px));
     }
     justify-content: center;
+    &.single-trip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      travel-log-trip-card {
+        width: min(500px, 90vw);
+      }
+    }
   }
   .no-trips-img {
     display: block;

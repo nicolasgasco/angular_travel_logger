@@ -14,6 +14,7 @@ import { TripsService } from 'src/app/services/trips.service';
       <ng-template #finishedLoading>
         <div
           class="cards-container"
+          [class.single-trip]="trips.length === 1"
           *ngIf="trips.length && trips.length > 0; else noTrips"
         >
           <travel-log-trip-card
