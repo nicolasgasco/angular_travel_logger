@@ -1,3 +1,5 @@
+@import "src/assets/styles/colors";
+
 .login-section {
   display: flex;
   flex-direction: column;
@@ -10,5 +12,11 @@
   }
   .signup-text {
     margin-top: 30px;
+    a {
+      text-decoration: underline;
+      &:hover {
+        color: $color-accent;
+      }
+    }
   }
 }
