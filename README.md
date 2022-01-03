@@ -16,9 +16,5 @@ Created mostly for learning purposes.
 - Add and delete trips
 - Form validation
 
-## Run the app
-```
-ng serve
-```
 ## Live app hosted on Firebase
 Open [TravelHero](https://ng-travel-logger.web.app/all-trips)
