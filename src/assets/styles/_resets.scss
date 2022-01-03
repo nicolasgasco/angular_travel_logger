@@ -1,0 +1,82 @@
+
+// Resets
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+* {
+  font-family: "Montserrat", "Roboto", sans-serif;
+}
+html {
+  box-sizing: border-box;
+  color: $black;
+}
+
+app-root {
+  background-color: $dark;
+}
+
+// Partials
+@import "./assets/styles/mixins";
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+html,
+body,
+div,
+form,
+fieldset,
+legend,
+caption,
+label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre {
+  font-size: 100%;
+  font-weight: normal;
+
+  margin: 0;
+  padding: 0;
+
+  vertical-align: baseline;
+
+  border: 0;
+  outline: 0;
+  background: transparent;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+}
+
+img {
+  border: 0;
+}
