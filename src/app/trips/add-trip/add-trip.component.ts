@@ -19,7 +19,7 @@ import { TripsService } from 'src/app/services/trips.service';
         <!-- Countries visited -->
         <travel-log-chips-input
           label="Countries visited"
-          placeholder="Add country…"
+          placeholder="Use comma to separate values…"
           [els]="countriesInput"
         ></travel-log-chips-input>
         <mat-form-field appearance="outline">
@@ -32,6 +32,7 @@ import { TripsService } from 'src/app/services/trips.service';
             id="name"
             maxlength="30"
             formControlName="name"
+            placeholder="Leave blank for default..."
             #nameInput
           />
           <mat-hint align="end"
@@ -45,7 +46,7 @@ import { TripsService } from 'src/app/services/trips.service';
         <!-- Cities visited -->
         <travel-log-chips-input
           label="Cities visited"
-          placeholder="Add city…"
+          placeholder="Use comma to separate values…"
           [els]="citiesInput"
         ></travel-log-chips-input>
 

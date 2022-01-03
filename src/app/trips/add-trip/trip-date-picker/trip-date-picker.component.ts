@@ -5,8 +5,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   selector: 'travel-log-trip-date-picker',
   template: `
     <mat-form-field appearance="fill">
-      <mat-label>Trip period *</mat-label>
+      <mat-label>Trip period</mat-label>
       <mat-date-range-input
+        required
         [formGroup]="datesFormGroup"
         [rangePicker]="tripRange"
         [min]="minDate"

@@ -11,7 +11,7 @@ import { map, startWith } from 'rxjs/operators';
   template: `
     <mat-form-field class="els-chip-list" appearance="outline">
       <mat-label>{{ label }}</mat-label>
-      <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip-list #chipList required>
         <mat-chip
           *ngFor="let el of els"
           [selectable]="selectable"
@@ -27,15 +27,15 @@ import { map, startWith } from 'rxjs/operators';
           [placeholder]="placeholder"
           #elInput
           matInput
+          required
           [matChipInputFor]="chipList"
           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
           (matChipInputTokenEnd)="add($event)"
-          required
         />
-        <mat-error *ngIf="elCtrl.hasError('required')"
-          >Cannot be empty</mat-error
-        >
       </mat-chip-list>
+      <!-- <mat-error *ngIf="elInput.hasError('required')"
+        >Cannot be empty</mat-error
+      > -->
     </mat-form-field>
   `,
   styleUrls: ['./chips-input.component.scss'],
