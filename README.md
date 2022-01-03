@@ -10,4 +10,4 @@ Created mostly for learning purposes.
 ng serve
 ```
 ## Live app hosted on Firebase
-[TravelHero](https://ng-travel-logger.web.app/all-trips).
+Open [TravelHero](https://ng-travel-logger.web.app/all-trips)
