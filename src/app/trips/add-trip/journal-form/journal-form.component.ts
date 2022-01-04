@@ -2,7 +2,6 @@ import { UniqueSelectionDispatcher } from '@angular/cdk/collections';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TripData } from 'src/app/interfaces/trip-data.interface';
-import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'travel-log-journal-form',
@@ -76,7 +75,6 @@ export class JournalFormComponent implements OnInit {
   onSubmit() {
     this.addNewEntry.emit({
       ...this.newJournalEntry.value,
-      id: uuid(),
     });
   }
 

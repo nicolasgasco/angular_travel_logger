@@ -130,7 +130,6 @@ export class AddTripComponent implements OnInit {
   addNewJournalEntry(journalEntryData: {
     day: Date;
     entry: string;
-    id: number;
   }) {
     this.showJournalForm = !this.showJournalForm;
     this.journal.filter((journalEntry) => {
