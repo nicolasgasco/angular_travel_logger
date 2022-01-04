@@ -23,6 +23,7 @@ export class TripsService {
   trips: TripData[] = [];
   tripsChanged = new Subject<TripData[]>();
   private fbSubs: Subscription[];
+  tripsLoading = false;
 
   fetchTripsFromFirebase() {
     this.angularFireAuth.authState.subscribe((userData) => {

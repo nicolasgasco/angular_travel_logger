@@ -8,7 +8,7 @@ import { TripsService } from 'src/app/services/trips.service';
   selector: 'travel-log-all-trips',
   template: `
     <section>
-      <ng-container *ngIf="tripsLoading; else finishedLoading">
+      <ng-container *ngIf="tripsService.tripsLoading; else finishedLoading">
         <travel-log-spinner></travel-log-spinner>
       </ng-container>
       <ng-template #finishedLoading>
@@ -40,15 +40,14 @@ import { TripsService } from 'src/app/services/trips.service';
 export class AllTripsComponent implements OnInit, OnDestroy {
   trips: TripData[];
   tripsSubscription: Subscription;
-  tripsLoading: Boolean = true;
 
-  constructor(private tripsService: TripsService) {}
+  constructor(public tripsService: TripsService) {}
 
   ngOnInit(): void {
     this.tripsSubscription = this.tripsService.tripsChanged.subscribe(
       (savedTrips) => {
         this.trips = savedTrips;
-        this.tripsLoading = false;
+        this.tripsService.tripsLoading = false;
       }
     );
     this.tripsService.fetchTripsFromFirebase();
