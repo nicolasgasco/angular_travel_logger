@@ -43,13 +43,32 @@ import { TripsService } from 'src/app/services/trips.service';
             </mat-list>
           </mat-tab>
           <!-- Map tab -->
-          <mat-tab label="Diary">
-            <div class="diary-container" *ngIf="true; else showDiary">
-              <p>Your diary has no entries yet!</p>
-              <button mat-flat-button color="accent">Start writing</button>
+          <mat-tab label="Journal">
+            <div
+              class="journal-container"
+              *ngIf="!tripData.journal; else showJournal"
+            >
+              <p>Your journal has no entries!</p>
+              <!-- <button mat-flat-button color="accent">Start writing</button> -->
             </div>
-            <ng-template #showDiary>
-              <p>Diary</p>
+            <ng-template #showJournal>
+              <mat-list role="list">
+                <mat-list-item
+                  role="listitem"
+                  *ngFor="let journalEntry of tripData.journal"
+                >
+                  <p>
+                    <span class="journal-date-label">
+                      {{
+                        journalEntry.day.toDate().toLocaleDateString('en-US', {
+                          day: 'numeric',
+                          month: 'long'
+                        })
+                      }}</span
+                    >: {{ journalEntry.entry }}
+                  </p>
+                </mat-list-item>
+              </mat-list>
             </ng-template>
           </mat-tab>
         </mat-tab-group>

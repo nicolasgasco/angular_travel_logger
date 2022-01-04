@@ -26,10 +26,10 @@ import { TripData } from 'src/app/interfaces/trip-data.interface';
                 month: 'long'
               })
             }}
+            <mat-icon *ngIf="checkIfEntryAlreadyExists(date)">feed</mat-icon>
           </mat-option>
         </mat-select>
       </mat-form-field>
-      {{ journalEntries | json }}
       <ng-container *ngIf="dayInput.value">
         <mat-form-field appearance="fill">
           <mat-label>Write your journal entry</mat-label>
@@ -78,14 +78,17 @@ export class JournalFormComponent implements OnInit {
     });
   }
 
+  checkIfEntryAlreadyExists(dateInfo) {
+    return (
+      this.journalEntries.filter((journalEntry) => {
+        return journalEntry.day === dateInfo;
+      }).length > 0
+    );
+  }
+
   onDaySelection() {
     const savedJournalEntry = this.journalEntries.filter((journalEntry) => {
-      console.log(journalEntry.day);
-      console.log(this.newJournalEntry.controls.day.value);
-      if (journalEntry.day === this.newJournalEntry.controls.day.value) {
-        return true;
-      }
-      return false;
+      return journalEntry.day === this.newJournalEntry.controls.day.value;
     })[0];
     console.log(savedJournalEntry);
     if (savedJournalEntry)

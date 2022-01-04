@@ -110,6 +110,7 @@ export class AddTripComponent implements OnInit {
   onSubmit() {
     this.tripsService.addTripToFirebase({
       ...this.newTripForm.value,
+      journal: this.journal,
     });
   }
 
@@ -127,10 +128,7 @@ export class AddTripComponent implements OnInit {
     }
   }
 
-  addNewJournalEntry(journalEntryData: {
-    day: Date;
-    entry: string;
-  }) {
+  addNewJournalEntry(journalEntryData: { day: Date; entry: string }) {
     this.showJournalForm = !this.showJournalForm;
     this.journal.filter((journalEntry) => {
       return journalEntry.day !== journalEntryData.day;
