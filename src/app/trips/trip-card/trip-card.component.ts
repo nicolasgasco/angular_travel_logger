@@ -33,14 +33,17 @@ import { TripsService } from 'src/app/services/trips.service';
         <mat-tab-group>
           <!-- Cities tab -->
           <mat-tab label="Cities">
-            <mat-list role="list">
-              <mat-list-item
-                role="listitem"
-                *ngFor="let city of tripData.cities"
-              >
-                {{ capitalizeFirstLetter(city) }}
-              </mat-list-item>
-            </mat-list>
+            <div class="city-container">
+              <mat-list role="list">
+                <mat-list-item
+                  role="listitem"
+                  *ngFor="let city of tripData.cities.sort()"
+                >
+                  {{ capitalizeFirstLetter(city) }}
+                  <mat-divider *ngIf="tripData.cities.length > 2"></mat-divider>
+                </mat-list-item>
+              </mat-list>
+            </div>
           </mat-tab>
           <!-- Map tab -->
           <mat-tab label="Journal">
@@ -52,23 +55,29 @@ import { TripsService } from 'src/app/services/trips.service';
               <!-- <button mat-flat-button color="accent">Start writing</button> -->
             </div>
             <ng-template #showJournal>
-              <mat-list role="list">
-                <mat-list-item
-                  role="listitem"
-                  *ngFor="let journalEntry of tripData.journal"
-                >
-                  <p>
-                    <span class="journal-date-label">
-                      {{
-                        journalEntry.day.toDate().toLocaleDateString('en-US', {
-                          day: 'numeric',
-                          month: 'long'
-                        })
-                      }}</span
-                    >: {{ journalEntry.entry }}
-                  </p>
-                </mat-list-item>
-              </mat-list>
+              <div class="journal-container">
+                <mat-list role="list">
+                  <mat-list-item
+                    role="listitem"
+                    *ngFor="let journalEntry of tripData.journal"
+                  >
+                    <mat-icon mat-list-icon>chevron_right</mat-icon>
+                    <p>
+                      <span class="journal-date-label">
+                        {{
+                          journalEntry.day
+                            .toDate()
+                            .toLocaleDateString('en-US', {
+                              day: 'numeric',
+                              month: 'long'
+                            })
+                        }}</span
+                      >: {{ journalEntry.entry }}
+                      <mat-divider *ngIf="tripData.journal.length > 1"></mat-divider>
+                    </p>
+                  </mat-list-item>
+                </mat-list>
+              </div>
             </ng-template>
           </mat-tab>
         </mat-tab-group>
@@ -109,8 +118,4 @@ export class TripCardComponent {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
   };
-
-  // deleteTrip = () => {
-  //   this.onDeleteTrip.emit(this.tripData.id);
-  // };
 }

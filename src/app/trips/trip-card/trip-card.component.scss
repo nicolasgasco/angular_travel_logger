@@ -24,16 +24,19 @@
         .mat-tab-body {
           padding: 25px 0;
         }
-      }
-      .diary-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      mat-list {
-        mat-list-item {
-          .journal-date-label {
-            font-weight: bold;
+        .city-container {
+          mat-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+        .journal-container {
+          mat-list {
+            mat-list-item {
+              .journal-date-label {
+                font-weight: bold;
+              }
+            }
           }
         }
       }
