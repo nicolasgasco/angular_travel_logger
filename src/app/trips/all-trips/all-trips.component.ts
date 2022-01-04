@@ -8,14 +8,14 @@ import { TripsService } from 'src/app/services/trips.service';
   selector: 'travel-log-all-trips',
   template: `
     <section>
-      <ng-container *ngIf="tripsService.tripsLoading; else finishedLoading">
+      <ng-container *ngIf="!trips; else finishedLoading">
         <travel-log-spinner></travel-log-spinner>
       </ng-container>
       <ng-template #finishedLoading>
         <div
           class="cards-container"
           [class.single-trip]="trips.length === 1"
-          *ngIf="trips.length && trips.length > 0; else noTrips"
+          *ngIf="trips.length > 0; else noTrips"
         >
           <travel-log-trip-card
             *ngFor="let trip of trips"
