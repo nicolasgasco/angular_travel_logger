@@ -32,6 +32,7 @@ import {
   ModalComponent,
   ModalComponentDialog,
 } from './layout/modal/modal.component';
+import { JournalFormComponent } from './trips/add-trip/journal-form/journal-form.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import {
     SpinnerComponent,
     ModalComponent,
     ModalComponentDialog,
+    JournalFormComponent,
   ],
   imports: [
     BrowserModule,

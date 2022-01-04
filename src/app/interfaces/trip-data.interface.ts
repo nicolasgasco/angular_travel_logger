@@ -7,4 +7,5 @@ export interface TripData {
     end: any;
   };
   cities?: string[];
+  journal?: { day: Date; entry: string }[];
 }

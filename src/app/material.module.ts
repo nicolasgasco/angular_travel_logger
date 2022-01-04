@@ -16,6 +16,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
+
 @NgModule({
   imports: [
     MatButtonModule,
@@ -36,6 +38,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatSelectModule,
   ],
   exports: [
     MatButtonModule,
@@ -56,6 +59,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDialogModule,
     MatProgressSpinnerModule,
     MatDialogModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule {}

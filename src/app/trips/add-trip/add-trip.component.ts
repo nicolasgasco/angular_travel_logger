@@ -50,14 +50,31 @@ import { TripsService } from 'src/app/services/trips.service';
           [els]="citiesInput"
         ></travel-log-chips-input>
 
+        <!-- Journal button -->
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="newTripForm.invalid"
+          *ngIf="!showJournalForm; else journalForm"
+          (click)="onStartingJournal()"
+        >
+          Write new journal entry
+        </button>
+        <ng-template #journalForm>
+          <travel-log-journal-form
+            [dates]="dates"
+            [journalEntries]="journal"
+            (addNewEntry)="addNewJournalEntry($event)"
+          ></travel-log-journal-form>
+        </ng-template>
         <!-- Submit button -->
         <button
           mat-raised-button
           type="submit"
-          color="primary"
+          color="accent"
           [disabled]="newTripForm.invalid"
         >
-          Add
+          Save and close trip
         </button>
       </form>
     </travel-log-card>
@@ -67,8 +84,12 @@ import { TripsService } from 'src/app/services/trips.service';
 export class AddTripComponent implements OnInit {
   newTripForm: FormGroup;
   nameInput: string;
+  showJournalForm = false;
   citiesInput = [];
   countriesInput = [];
+  dates = [];
+  journal = [];
+
   constructor(
     private tripsService: TripsService,
     private authService: AuthService
@@ -90,5 +111,33 @@ export class AddTripComponent implements OnInit {
     this.tripsService.addTripToFirebase({
       ...this.newTripForm.value,
     });
+  }
+
+  onStartingJournal() {
+    this.showJournalForm = !this.showJournalForm;
+    this._createDatesArray();
+  }
+
+  _createDatesArray() {
+    let loop = new Date(this.newTripForm.value.dates.start);
+    while (loop <= this.newTripForm.value.dates.end) {
+      this.dates.push(loop);
+      let newDate = loop.setDate(loop.getDate() + 1);
+      loop = new Date(newDate);
+    }
+  }
+
+  addNewJournalEntry(journalEntryData: {
+    day: Date;
+    entry: string;
+    id: number;
+  }) {
+    this.showJournalForm = !this.showJournalForm;
+    this.journal.filter((journalEntry) => {
+      return journalEntry.day !== journalEntryData.day;
+    });
+    console.log(this.journal);
+    this.journal.push(journalEntryData);
+    console.log(this.journal);
   }
 }
