@@ -61,9 +61,6 @@ import { TripsService } from 'src/app/services/trips.service';
                     role="listitem"
                     *ngFor="let journalEntry of tripData.journal"
                   >
-                    <mat-icon mat-list-icon fxLayout fxHide.lt-sm
-                      >chevron_right</mat-icon
-                    >
                     <p>
                       <span class="journal-date-label">
                         {{
