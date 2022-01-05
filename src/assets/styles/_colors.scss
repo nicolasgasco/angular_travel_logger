@@ -32,3 +32,5 @@ $color-accent: mat.get-color-from-palette($travel-log-accent, 500);
 $color-accent-dark: mat.get-color-from-palette($travel-log-accent, 700);
 $color-accent-light: mat.get-color-from-palette($travel-log-accent, 200);
 
+$color-danger: mat.get-color-from-palette($travel-log-warn, 400);
+
