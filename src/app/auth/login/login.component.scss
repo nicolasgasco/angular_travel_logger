@@ -1,19 +1,30 @@
-@import "src/assets/styles/colors";
+@import "src/assets/styles/colors", "src/assets/styles/mixins";
 
 .login-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  form {
-  }
-  .login-test {
-    width: 100%;
-    margin-top: 15px;
+  .login-card {
+    form {
+      input.error {
+        color: $color-danger;
+      }
+      ::ng-deep .mat-form-field-infix {
+        display: flex !important;
+        justify-content: space-between !important;
+      }
+      mat-icon {
+        cursor: pointer;
+      }
+    }
+    .login-test {
+      width: 100%;
+      margin-top: 15px;
+    }
   }
   .signup-text {
     margin-top: 30px;
     a {
-      text-decoration: underline;
       &:hover {
         color: $color-accent;
       }

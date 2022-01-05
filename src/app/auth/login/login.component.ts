@@ -43,13 +43,22 @@ import { AuthService } from 'src/app/services/auth.service';
             <input
               matInput
               ngModel
-              type="password"
+              [type]="showPassword ? 'text' : 'password'"
               name="password"
               id="password"
               required
               minlength="8"
               #pwdInput="ngModel"
             />
+            <!-- Toggle password visiblity -->
+            <mat-icon
+              *ngIf="pwdInput.dirty"
+              aria-hidden="false"
+              aria-label="showPassword ? 'Hide password' : 'Show password'"
+              class="visibility-icon"
+              (click)="togglePassword()"
+              >{{ showPassword ? 'visibility_off' : 'visibility' }}</mat-icon
+            >
             <mat-placeholder class="placeholder">Your password</mat-placeholder>
             <mat-hint align="end">{{ pwdInput.value?.length || 0 }}</mat-hint>
             <mat-error *ngIf="pwdInput.hasError('required')"
@@ -101,10 +110,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm', { read: NgForm }) loginForm: NgForm;
+  showPassword = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  togglePassword = () => {
+    this.showPassword = !this.showPassword;
+  };
 
   loginWithTestAccount = () => {
     console.log('Loggin in with test account');
