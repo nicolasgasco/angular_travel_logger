@@ -1,6 +1,6 @@
 # TravelHero
 
-A simple web app that allows you to save your travel adventures.
+A simple web app where you can store all your trips.
 
 ## Stack
 - Front end: Angular
@@ -11,10 +11,12 @@ A simple web app that allows you to save your travel adventures.
 - Responsive layout 
 - User authentication with Firebase
 - Form validation
+- Firebase Firestore database
 - Save trip data like countries and cities visited, trip dates, and travel journal (one entry per day)
 - Add, modify, and delete trips
 
 ## Todo
+- Customized form validation
 - Sorting and filtering tríps
 - Add travel mates if they are users of the app
 - Improve styles
@@ -23,4 +25,6 @@ A simple web app that allows you to save your travel adventures.
 Open [TravelHero](https://ng-travel-logger.web.app/all-trips)
 
 ## Start up app in development
+```
 ng serve
+```
