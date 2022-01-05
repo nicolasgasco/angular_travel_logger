@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {
+  AbstractControl,
+  NgForm,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -32,17 +37,13 @@ import { AuthService } from 'src/app/services/auth.service';
               #emailInput="ngModel"
               required
             />
-            <mat-error
-              *ngIf="emailInput.touched && emailInput.hasError('required')"
+            <mat-error *ngIf="emailInput.hasError('required'); else otherError"
               >Cannot be empty</mat-error
             >
-            <mat-error
-              *ngIf="
-                emailInput.touched &&
-                !emailInput.hasError('required') &&
-                emailInput.status == 'INVALID'
-              "
-              >Email is invalid</mat-error
+            <ng-template #otherError
+              ><mat-error *ngIf="emailInput.invalid"
+                >Email is invalid</mat-error
+              ></ng-template
             >
           </mat-form-field>
           <mat-form-field>
@@ -57,50 +58,45 @@ import { AuthService } from 'src/app/services/auth.service';
               #emailInputRepeat="ngModel"
             />
             <mat-placeholder class="placeholder">Repeat email</mat-placeholder>
+            <!-- Empty error -->
             <mat-error
-              *ngIf="emailInput.touched && emailInput.hasError('required')"
+              *ngIf="
+                emailInputRepeat.hasError('required');
+                else invalidEmailRepeat
+              "
               >Cannot be empty</mat-error
             >
-            <ng-template #otherError>
-              <mat-error
-                *ngIf="
-                  emailInputRepeat.touched &&
-                  emailInputRepeat.value !== emailInput.value
-                "
-                >Emails don't match!</mat-error
-              ></ng-template
-            >
+            <!-- Invalid error -->
+            <ng-template #invalidEmailRepeat>
+              <mat-error *ngIf="emailInputRepeat.invalid"
+                >Email is invalid</mat-error
+              >
+            </ng-template>
+            <!-- Password don't match -->
+            <!-- <mat-error *ngIf="emailInputRepeat.value !== emailInput.value"
+              >Emails don't match!</mat-error
+            > -->
           </mat-form-field>
+
           <mat-form-field>
             <input
               matInput
               ngModel
-              [type]="showPassword ? 'text' : 'password'"
+              [type]="'password'"
               name="password"
               id="password"
               required
               minlength="8"
               #pwdInput="ngModel"
             />
-            <ng-container *ngIf="pwdInput.dirty">
-              <button
-                mat-icon-button
-                aria-hidden="false"
-                aria-label="showPassword ? 'Hide password' : 'Show password'"
-                class="visibility-icon"
-                (click)="togglePassword()"
-              >
-                <mat-icon>{{
-                  showPassword ? 'visibility_off' : 'visibility'
-                }}</mat-icon>
-              </button>
-            </ng-container>
             <mat-placeholder class="placeholder">Your password</mat-placeholder>
             <mat-hint align="end">{{ pwdInput.value?.length || 0 }}</mat-hint>
-            <mat-error *ngIf="emailInput.dirty && pwdInput.hasError('required')"
+            <!-- Empty error -->
+            <mat-error *ngIf="pwdInput.hasError('required')"
               >Cannot be empty</mat-error
             >
-            <mat-error *ngIf="pwdInput.value <= 7"
+            <!-- Length error -->
+            <mat-error *ngIf="pwdInput.errors?.['minlength']"
               >Should be at least 8 characters long</mat-error
             >
           </mat-form-field>
@@ -118,22 +114,23 @@ import { AuthService } from 'src/app/services/auth.service';
             <mat-placeholder class="placeholder"
               >Repeat password</mat-placeholder
             >
-            <mat-error
-              *ngIf="
-                pwdInputRepeat.dirty && pwdInputRepeat.hasError('required');
-                else otherError
-              "
+            <mat-hint align="end">{{
+              pwdInputRepeat.value?.length || 0
+            }}</mat-hint>
+            <!-- Empty error -->
+            <mat-error *ngIf="pwdInputRepeat.hasError('required')"
               >Cannot be empty</mat-error
             >
-            <ng-template #otherError>
-              <mat-error
-                *ngIf="
-                  pwdInputRepeat.dirty &&
-                  pwdInputRepeat.value !== pwdInput.value
-                "
-                >Passwords don't match!</mat-error
-              ></ng-template
+            <!-- Length error -->
+            <mat-error *ngIf="pwdInputRepeat.errors?.['minlength']"
+              >Should be at least 8 characters long</mat-error
             >
+            <!-- <mat-error
+              *ngIf="
+                pwdInputRepeat.valid && pwdInputRepeat.value !== pwdInput.value
+              "
+              >Passwords don't match!</mat-error
+            > -->
           </mat-form-field>
           <button
             mat-raised-button
@@ -151,16 +148,9 @@ import { AuthService } from 'src/app/services/auth.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class SignupComponent implements OnInit {
-  showPassword: boolean;
   @ViewChild('loginForm', { read: NgForm }) signupForm: NgForm;
 
-  constructor(private authService: AuthService) {
-    this.showPassword = false;
-  }
-
-  togglePassword() {
-    this.showPassword = !this.showPassword;
-  }
+  constructor(private authService: AuthService) {}
 
   onSubmit(form: NgForm) {
     this.authService.registerUser(
