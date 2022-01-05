@@ -1,6 +1,6 @@
 # TravelHero
 
-A simple web app that allows you to save your travel adventures, created with Angular + Firebase (AngularFire) + Angular Material.
+A simple web app that allows you to save your travel adventures.
 
 ## Stack
 - Front end: Angular
