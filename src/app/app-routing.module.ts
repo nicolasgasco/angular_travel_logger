@@ -6,6 +6,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { AddTripComponent } from './trips/add-trip/add-trip.component';
 import { AllTripsComponent } from './trips/all-trips/all-trips.component';
+import { EditTripComponent } from './trips/edit-trip/edit-trip/edit-trip.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'all-trips', component: AllTripsComponent, canActivate: [AuthGuard] },
   { path: 'add-trip', component: AddTripComponent, canActivate: [AuthGuard] },
+  { path: 'edit-trip', component: EditTripComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

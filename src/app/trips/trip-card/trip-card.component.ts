@@ -6,6 +6,7 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { TripData } from 'src/app/interfaces/trip-data.interface';
 import { TripsService } from 'src/app/services/trips.service';
 
@@ -19,14 +20,22 @@ import { TripsService } from 'src/app/services/trips.service';
           : capitalizeFirstLetter(tripData.countries.join(', '))
       }}</mat-card-title>
       <mat-card-subtitle>
-        {{ tripData.dates.start.toDate().getFullYear() }}
-        <span
-          *ngIf="
-            tripData.dates.start.toDate().getFullYear() !==
-            tripData.dates.end.toDate().getFullYear()
-          "
-        >
-          - {{ tripData.dates.start.getFullYear() }}</span
+        {{
+          tripData.dates.start.toDate().toLocaleDateString('en-US', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          })
+        }}
+        <span *ngIf="tripData.dates.start !== tripData.dates.end">
+          -
+          {{
+            tripData.dates.end.toDate().toLocaleDateString('en-US', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric'
+            })
+          }}</span
         >
       </mat-card-subtitle>
       <mat-card-content>
@@ -89,9 +98,13 @@ import { TripsService } from 'src/app/services/trips.service';
         fxLayoutAlign="end center"
       >
         <div class="actions-container">
-          <!-- <button mat-icon-button aria-label="Edit trip">
+          <button
+            mat-icon-button
+            aria-label="Edit trip"
+            (click)="onEditingTrip()"
+          >
             <mat-icon id="edit-icon">mode_edit</mat-icon>
-          </button> -->
+          </button>
           <button
             color="warn"
             mat-icon-button
@@ -110,7 +123,12 @@ export class TripCardComponent {
   @Input() tripData: TripData;
   @Output() onDeleteTrip = new EventEmitter();
 
-  constructor(public tripsService: TripsService) {}
+  constructor(public tripsService: TripsService, private router: Router) {}
+
+  onEditingTrip = () => {
+    this.tripsService.saveTripToEdit(this.tripData);
+    this.router.navigate(['/edit-trip']);
+  };
 
   // Capitalize every word of multiword strings
   capitalizeFirstLetter = (words: string) => {

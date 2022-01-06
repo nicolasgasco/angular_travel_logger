@@ -45,7 +45,6 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class TripDatePickerComponent implements OnInit {
   @Input() datesFormGroup: FormGroup;
-  // tripDates: FormGroup;
 
   maxDate: Date;
   minDate: Date;
@@ -56,14 +55,7 @@ export class TripDatePickerComponent implements OnInit {
     this.minDate = new Date(currentYear - 80, 0, 1);
   }
 
-  ngOnInit(): void {
-    // this.tripDates = new FormGroup({
-    //   start: new FormControl(this.startDate),
-    //   end: new FormControl(this.endDate),
-    // });
-  }
+  ngOnInit(): void {}
 
-  onChange(e) {
-    // this.endDate = e.target.value;
-  }
+  onChange(e) {}
 }

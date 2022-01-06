@@ -1,15 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { TripData } from 'src/app/interfaces/trip-data.interface';
 import { AuthService } from 'src/app/services/auth.service';
 import { TripsService } from 'src/app/services/trips.service';
 
 @Component({
   selector: 'travel-log-add-trip',
-  template: `<section>
+  template: `<section
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="25px"
+  >
     <!-- [progressBarCondition]="
         newTripForm.submitted && newTripForm.form.status === 'VALID'
       " -->
-    <travel-log-card title="Add a new trip" icon="flight_takeoff">
+    <travel-log-card
+      [title]="editMode ? 'Edit your trip details' : 'Add a new trip'"
+      [icon]="editMode ? 'edit' : 'flight_takeoff'"
+    >
       <form
         fxLayout="column"
         fxLayoutGap="25px"
@@ -20,7 +28,7 @@ import { TripsService } from 'src/app/services/trips.service';
         <travel-log-chips-input
           label="Countries visited"
           placeholder="Use comma to separate values…"
-          [els]="countriesInput"
+          [els]="editMode ? tripsService.tripToEdit.countries : []"
         ></travel-log-chips-input>
         <mat-form-field appearance="outline">
           <!-- Name -->
@@ -47,7 +55,7 @@ import { TripsService } from 'src/app/services/trips.service';
         <travel-log-chips-input
           label="Cities visited"
           placeholder="Use comma to separate values…"
-          [els]="citiesInput"
+          [els]="editMode ? tripsService.tripToEdit.cities : []"
         ></travel-log-chips-input>
 
         <!-- Journal button -->
@@ -58,7 +66,7 @@ import { TripsService } from 'src/app/services/trips.service';
           *ngIf="!showJournalForm; else journalForm"
           (click)="onStartingJournal()"
         >
-          Write new journal entry
+          {{ editMode ? 'Edit a journal entry' : 'Write new journal entry' }}
         </button>
         <ng-template #journalForm>
           <travel-log-journal-form
@@ -74,44 +82,65 @@ import { TripsService } from 'src/app/services/trips.service';
           color="accent"
           [disabled]="newTripForm.invalid"
         >
-          Save and close trip
+          {{ editMode ? 'Edit and close trip' : 'Save and close trip' }}
         </button>
       </form>
     </travel-log-card>
+    <ng-container>
+      <a fxLayout fxLayoutAlign="center center" routerLink="/all-trips"
+        ><mat-icon>arrow_back</mat-icon> Back to your trips</a
+      >
+    </ng-container>
   </section>`,
   styleUrls: ['./add-trip.component.scss'],
 })
 export class AddTripComponent implements OnInit {
+  @Input() editMode? = false;
   newTripForm: FormGroup;
-  nameInput: string;
   showJournalForm = false;
-  citiesInput = [];
-  countriesInput = [];
   dates = [];
   journal = [];
 
   constructor(
-    private tripsService: TripsService,
+    public tripsService: TripsService,
     private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.newTripForm = new FormGroup({
-      name: new FormControl(this.nameInput),
-      cities: new FormControl(this.citiesInput),
-      countries: new FormControl(this.countriesInput),
+      name: new FormControl(
+        this.editMode ? this.tripsService.tripToEdit.name : ''
+      ),
+      cities: new FormControl(
+        this.editMode ? this.tripsService.tripToEdit.cities : []
+      ),
+      countries: new FormControl(
+        this.editMode ? this.tripsService.tripToEdit.countries : []
+      ),
       dates: new FormGroup({
-        start: new FormControl(null),
-        end: new FormControl(null),
+        start: new FormControl(
+          this.editMode ? this.tripsService.tripToEdit.dates.start : null
+        ),
+        end: new FormControl(
+          this.editMode ? this.tripsService.tripToEdit.dates.end : null
+        ),
       }),
     });
   }
 
   onSubmit() {
-    this.tripsService.addTripToFirebase({
+    const tripData = {
       ...this.newTripForm.value,
       journal: this.journal,
-    });
+    };
+    if (!this.editMode) {
+      this.tripsService.addTripToFirebase(tripData);
+    } else {
+      this.tripsService.editTripOnFirebase({
+        ...tripData,
+        id: this.tripsService.tripToEdit.id,
+      });
+    }
   }
 
   onStartingJournal() {
@@ -133,8 +162,6 @@ export class AddTripComponent implements OnInit {
     this.journal.filter((journalEntry) => {
       return journalEntry.day !== journalEntryData.day;
     });
-    console.log(this.journal);
     this.journal.push(journalEntryData);
-    console.log(this.journal);
   }
 }

@@ -24,10 +24,13 @@ export class TripsService {
   tripsChanged = new Subject<TripData[]>();
   private fbSubs: Subscription[];
   tripsLoading = false;
+  tripToEdit: TripData;
+  userId: string;
 
   fetchTripsFromFirebase() {
     this.angularFireAuth.authState.subscribe((userData) => {
       if (userData) {
+        this.userId = userData.uid;
         this.db
           .collection('users')
           .doc(userData.uid)
@@ -122,7 +125,31 @@ export class TripsService {
     });
   }
 
+  editTripOnFirebase(tripData: TripData) {
+    const tripId = tripData.id;
+    delete tripData.id;
+    console.log(this.userId);
+    console.log(tripId);
+    this.db
+      .collection('users')
+      .doc(this.userId)
+      .collection('savedTrips')
+      .doc(tripId)
+      .update(tripData);
+
+    const dialogRef = this.dialog.open(ModalComponentDialog, {
+      data: {
+        modalTitle: 'Your trip details were updated successfully!',
+      },
+    });
+    this.router.navigate(['/all-trips']);
+  }
+
   cancelSubscriptions() {
     this.fbSubs.forEach((sub) => sub.unsubscribe);
+  }
+
+  saveTripToEdit(tripData: TripData) {
+    this.tripToEdit = tripData;
   }
 }

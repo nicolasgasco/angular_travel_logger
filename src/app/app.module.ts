@@ -33,6 +33,7 @@ import {
   ModalComponentDialog,
 } from './layout/modal/modal.component';
 import { JournalFormComponent } from './trips/add-trip/journal-form/journal-form.component';
+import { EditTripComponent } from './trips/edit-trip/edit-trip/edit-trip.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { JournalFormComponent } from './trips/add-trip/journal-form/journal-form
     ModalComponent,
     ModalComponentDialog,
     JournalFormComponent,
+    EditTripComponent,
   ],
   imports: [
     BrowserModule,
