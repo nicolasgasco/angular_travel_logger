@@ -128,21 +128,30 @@ export class TripsService {
   editTripOnFirebase(tripData: TripData) {
     const tripId = tripData.id;
     delete tripData.id;
-    console.log(this.userId);
-    console.log(tripId);
     this.db
       .collection('users')
       .doc(this.userId)
       .collection('savedTrips')
       .doc(tripId)
-      .update(tripData);
-
-    const dialogRef = this.dialog.open(ModalComponentDialog, {
-      data: {
-        modalTitle: 'Your trip details were updated successfully!',
-      },
-    });
-    this.router.navigate(['/all-trips']);
+      .update(tripData)
+      .then((result) => {
+        console.log(result);
+        const dialogRef = this.dialog.open(ModalComponentDialog, {
+          data: {
+            modalTitle: 'Your trip details were updated successfully!',
+          },
+        });
+        this.router.navigate(['/all-trips']);
+      })
+      .catch((error) => {
+        const dialogRef = this.dialog.open(ModalComponentDialog, {
+          data: {
+            modalTitle: 'An error ocurred!',
+            modalText: "Your trip details weren't updated",
+          },
+        });
+        this.router.navigate(['/all-trips']);
+      });
   }
 
   cancelSubscriptions() {
