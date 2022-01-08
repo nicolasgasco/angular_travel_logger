@@ -102,14 +102,6 @@ export class TripsService {
               .doc(tripId)
               .valueChanges()
               .subscribe((tripToBeDeleted) => {
-                console.log(tripToBeDeleted);
-
-                this.db
-                  .collection('users')
-                  .doc(userData.uid)
-                  .collection('deletedTrips')
-                  .add(tripToBeDeleted);
-
                 this.db
                   .collection('users')
                   .doc(userData.uid)

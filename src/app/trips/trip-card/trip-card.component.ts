@@ -43,22 +43,28 @@ import { TripsService } from 'src/app/services/trips.service';
           <!-- Cities tab -->
           <mat-tab label="Cities">
             <div class="city-container">
-              <mat-list role="list">
-                <mat-list-item
-                  role="listitem"
-                  *ngFor="let city of tripData.cities.sort()"
-                >
-                  {{ capitalizeFirstLetter(city) }}
-                  <mat-divider *ngIf="tripData.cities.length > 2"></mat-divider>
-                </mat-list-item>
-              </mat-list>
+              <ng-container *ngIf="tripData.cities.length > 0; else noCitiesToShow">
+                <mat-list role="list">
+                  <mat-list-item
+                    role="listitem"
+                    *ngFor="let city of tripData.cities.sort()"
+                  >
+                    {{ capitalizeFirstLetter(city) }}
+                    <mat-divider
+                      *ngIf="tripData.cities.length > 2"
+                    ></mat-divider>
+                  </mat-list-item> </mat-list
+              ></ng-container>
+              <ng-template #noCitiesToShow>
+                <p>There are no cities to show!</p>
+              </ng-template>
             </div>
           </mat-tab>
           <!-- Map tab -->
           <mat-tab label="Journal">
             <div
               class="journal-container"
-              *ngIf="!tripData.journal; else showJournal"
+              *ngIf="tripData.journal.length === 0; else showJournal"
             >
               <p>Your journal has no entries!</p>
               <!-- <button mat-flat-button color="accent">Start writing</button> -->

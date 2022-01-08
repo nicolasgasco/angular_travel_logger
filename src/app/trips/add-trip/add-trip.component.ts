@@ -28,7 +28,7 @@ import { TripsService } from 'src/app/services/trips.service';
         <travel-log-chips-input
           label="Countries visited"
           placeholder="Use comma to separate values…"
-          [els]="editMode ? tripsService.tripToEdit.countries : []"
+          [els]="countriesInput"
         ></travel-log-chips-input>
         <mat-form-field appearance="outline">
           <!-- Name -->
@@ -55,7 +55,7 @@ import { TripsService } from 'src/app/services/trips.service';
         <travel-log-chips-input
           label="Cities visited"
           placeholder="Use comma to separate values…"
-          [els]="editMode ? tripsService.tripToEdit.cities : []"
+          [els]="citiesInput"
         ></travel-log-chips-input>
 
         <!-- Journal button -->
@@ -100,6 +100,8 @@ export class AddTripComponent implements OnInit {
   showJournalForm = false;
   dates = [];
   journal = [];
+  citiesInput: string[];
+  countriesInput: string[];
 
   constructor(
     public tripsService: TripsService,
@@ -107,16 +109,17 @@ export class AddTripComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.citiesInput = this.editMode ? this.tripsService.tripToEdit.cities : [];
+    this.countriesInput = this.editMode
+      ? this.tripsService.tripToEdit.countries
+      : [];
+
     this.newTripForm = new FormGroup({
       name: new FormControl(
         this.editMode ? this.tripsService.tripToEdit.name : ''
       ),
-      cities: new FormControl(
-        this.editMode ? this.tripsService.tripToEdit.cities : []
-      ),
-      countries: new FormControl(
-        this.editMode ? this.tripsService.tripToEdit.countries : []
-      ),
+      cities: new FormControl(this.citiesInput),
+      countries: new FormControl(this.countriesInput),
       dates: new FormGroup({
         start: new FormControl(
           this.editMode ? this.tripsService.tripToEdit.dates.start : null
@@ -133,6 +136,7 @@ export class AddTripComponent implements OnInit {
       ...this.newTripForm.value,
       journal: this.journal,
     };
+    console.log(tripData);
     if (!this.editMode) {
       this.tripsService.addTripToFirebase(tripData);
     } else {
