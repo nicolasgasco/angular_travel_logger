@@ -15,28 +15,10 @@
     flex-direction: column;
     .mat-card-content {
       ::ng-deep .mat-tab-group {
-        .mat-tab-header {
-          border-bottom: 0;
-          .mat-tab-labels {
-            justify-content: center;
-          }
-        }
-        .mat-tab-body {
-          padding: 25px 0;
-        }
         .city-container {
           mat-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
-          }
-        }
-        .journal-container {
-          mat-list {
-            mat-list-item {
-              .journal-date-label {
-                font-weight: bold;
-              }
-            }
           }
         }
       }

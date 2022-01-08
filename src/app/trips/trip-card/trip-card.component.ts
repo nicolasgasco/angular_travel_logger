@@ -40,10 +40,34 @@ import { TripsService } from 'src/app/services/trips.service';
       </mat-card-subtitle>
       <mat-card-content>
         <mat-tab-group>
+          <!-- Countries tab  -->
+          <mat-tab label="Countries">
+            <div class="country-container">
+              <ng-container
+                *ngIf="tripData.countries.length > 0; else noCountriesToShow"
+              >
+                <mat-list role="list">
+                  <mat-list-item
+                    role="listitem"
+                    *ngFor="let country of tripData.countries.sort()"
+                  >
+                    {{ capitalizeFirstLetter(country) }}
+                    <mat-divider
+                      *ngIf="tripData.countries.length > 2"
+                    ></mat-divider>
+                  </mat-list-item> </mat-list
+              ></ng-container>
+              <ng-template #noCountriesToShow>
+                <p>There are no countries to show!</p>
+              </ng-template>
+            </div>
+          </mat-tab>
           <!-- Cities tab -->
           <mat-tab label="Cities">
             <div class="city-container">
-              <ng-container *ngIf="tripData.cities.length > 0; else noCitiesToShow">
+              <ng-container
+                *ngIf="tripData.cities.length > 0; else noCitiesToShow"
+              >
                 <mat-list role="list">
                   <mat-list-item
                     role="listitem"
@@ -60,43 +84,12 @@ import { TripsService } from 'src/app/services/trips.service';
               </ng-template>
             </div>
           </mat-tab>
-          <!-- Map tab -->
-          <mat-tab label="Journal">
-            <div
-              class="journal-container"
-              *ngIf="tripData.journal.length === 0; else showJournal"
-            >
-              <p>Your journal has no entries!</p>
-              <!-- <button mat-flat-button color="accent">Start writing</button> -->
-            </div>
-            <ng-template #showJournal>
-              <div class="journal-container">
-                <mat-list role="list">
-                  <mat-list-item
-                    role="listitem"
-                    *ngFor="let journalEntry of tripData.journal"
-                  >
-                    <p>
-                      <span class="journal-date-label">
-                        {{
-                          journalEntry.day
-                            .toDate()
-                            .toLocaleDateString('en-US', {
-                              day: 'numeric',
-                              month: 'long'
-                            })
-                        }}</span
-                      >: {{ journalEntry.entry }}
-                      <mat-divider
-                        *ngIf="tripData.journal.length > 1"
-                      ></mat-divider>
-                    </p>
-                  </mat-list-item>
-                </mat-list>
-              </div>
-            </ng-template>
-          </mat-tab>
         </mat-tab-group>
+        <div *ngIf="tripData.journal.length > 0">
+          <travel-log-journal-expansion
+            [entries]="tripData.journal"
+          ></travel-log-journal-expansion>
+        </div>
       </mat-card-content>
       <mat-card-actions
         id="edit-buttons"
