@@ -13,7 +13,7 @@ import { Component, Input, OnInit } from '@angular/core';
       </mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list role="list">
-      <mat-list-item role="listitem" *ngFor="let journalEntry of entries">
+      <mat-list-item role="listitem" *ngFor="let journalEntry of entries; let i = index">
         <p>
           <span class="journal-date-label">
             {{
@@ -24,7 +24,7 @@ import { Component, Input, OnInit } from '@angular/core';
             }}</span
           >: {{ journalEntry.entry }}
         </p>
-        <mat-divider *ngIf="entries.length > 1"></mat-divider>
+        <mat-divider *ngIf="entries.length > 1 && i !== (entries.length - 1)"></mat-divider>
       </mat-list-item>
     </mat-list>
   </mat-expansion-panel>`,
