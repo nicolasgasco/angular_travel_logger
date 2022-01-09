@@ -24,8 +24,3 @@ A simple web app where you can store the trips you made.
 
 ## Live app hosted on Firebase
 Open [TravelHero](https://ng-travel-logger.web.app/all-trips)
-
-## Start up app in development
-```
-ng serve
-```
