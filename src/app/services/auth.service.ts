@@ -88,12 +88,12 @@ export class AuthService {
 
   // LOGIN
   login(authData: AuthData, form: NgForm) {
+    localStorage.clear();
     this.angularFireAuth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
         console.log('Login successful');
-        console.log(result);
-        this.authSuccessful();
+        this.authSuccessful(result.user.uid);
       })
       .catch((error) => {
         this.loginFailure(error, form);
@@ -130,7 +130,20 @@ export class AuthService {
     form.resetForm();
   }
 
-  private authSuccessful() {
+  private authSuccessful(uid?: string) {
+    console.log(uid);
+    if (uid === 'WAIR22NMwRTekWYaX7HufKe6ajF2') {
+      const dialogRef = this.dialog.open(ModalComponentDialog, {
+        data: {
+          modalTitle: 'Welcome!',
+          modalText:
+            "This is a sandbox account. Feel free to add, delete, and modify as you wish. Your changes won't be stored in the database",
+        },
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
     this.isAuthenticated = true;
     this.router.navigate(['/all-trips']);
   }
