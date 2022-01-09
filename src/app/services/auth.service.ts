@@ -39,9 +39,7 @@ export class AuthService {
     });
   }
 
-  getLoggedUserId() {
-
-  }
+  getLoggedUserId() {}
 
   // SIGNUP
   registerUser(authData: AuthData, form: NgForm) {
@@ -113,6 +111,7 @@ export class AuthService {
   }
 
   logOut() {
+    localStorage.clear();
     this.angularFireAuth.signOut();
     this.isAuthenticated = false;
     console.log('Goodbye');
@@ -136,7 +135,7 @@ export class AuthService {
     this.router.navigate(['/all-trips']);
   }
 
-  setWelcomeModalAsShown () {
+  setWelcomeModalAsShown() {
     this.welcomeModalShown = true;
   }
 }

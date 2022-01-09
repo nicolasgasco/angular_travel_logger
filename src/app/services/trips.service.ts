@@ -160,35 +160,52 @@ export class TripsService {
 
   editTripOnFirebase(tripData: TripData) {
     const tripId = tripData.id;
-    delete tripData.id;
-    this.db
-      .collection('users')
-      .doc(this.userId)
-      .collection('savedTrips')
-      .doc(tripId)
-      .update(tripData)
-      .then((result) => {
-        console.log(result);
-        const dialogRef = this.dialog.open(ModalComponentDialog, {
-          data: {
-            modalTitle: 'Your trip details were updated successfully!',
-          },
-        });
-        this.router.navigate(['/all-trips']);
-      })
-      .catch((error) => {
-        const dialogRef = this.dialog.open(ModalComponentDialog, {
-          data: {
-            modalTitle: 'An error ocurred!',
-            modalText: "Your trip details weren't updated",
-          },
-        });
-        this.router.navigate(['/all-trips']);
+    if (this.userId === 'WAIR22NMwRTekWYaX7HufKe6ajF2') {
+      const filteredTrips = JSON.parse(
+        localStorage.getItem('tripsData')
+      ).filter((trip) => trip.id !== tripId);
+      filteredTrips.push(tripData);
+      localStorage.setItem('tripsData', JSON.stringify(filteredTrips));
+
+      const dialogRef = this.dialog.open(ModalComponentDialog, {
+        data: {
+          modalTitle: 'Your trip details were updated successfully!',
+        },
       });
+      this.router.navigate(['/all-trips']);
+    } else {
+      delete tripData.id;
+      this.db
+        .collection('users')
+        .doc(this.userId)
+        .collection('savedTrips')
+        .doc(tripId)
+        .update(tripData)
+        .then((result) => {
+          console.log(result);
+          const dialogRef = this.dialog.open(ModalComponentDialog, {
+            data: {
+              modalTitle: 'Your trip details were updated successfully!',
+            },
+          });
+          this.router.navigate(['/all-trips']);
+        })
+        .catch((error) => {
+          const dialogRef = this.dialog.open(ModalComponentDialog, {
+            data: {
+              modalTitle: 'An error ocurred!',
+              modalText: "Your trip details weren't updated",
+            },
+          });
+          this.router.navigate(['/all-trips']);
+        });
+    }
   }
 
   cancelSubscriptions() {
-    this.fbSubs.forEach((sub) => sub.unsubscribe);
+    if (this.fbSubs) {
+      this.fbSubs.forEach((sub) => sub.unsubscribe);
+    }
   }
 
   saveTripToEdit(tripData: TripData) {
