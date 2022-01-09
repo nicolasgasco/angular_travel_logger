@@ -1,6 +1,6 @@
 # TravelHero
 
-A simple web app where you can store the trips you made.
+A simple web app where you can store the trips you made, created with Angular and Firebase.
 
 ## Stack
 - Front end: Angular
