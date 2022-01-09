@@ -15,7 +15,8 @@
     flex-direction: column;
     .mat-card-content {
       ::ng-deep .mat-tab-group {
-        .city-container {
+        .city-container,
+        .country-container {
           mat-list {
             display: grid;
             grid-template-columns: 1fr 1fr;

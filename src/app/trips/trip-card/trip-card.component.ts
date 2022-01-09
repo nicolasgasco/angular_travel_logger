@@ -19,9 +19,6 @@ import { TripsService } from 'src/app/services/trips.service';
           ? capitalizeFirstLetter(tripData.name)
           : capitalizeFirstLetter(tripData.countries.join(', '))
       }}</mat-card-title>
-      <mat-card-subtitle *ngIf="tripData.name">
-        {{ tripData.countries.join(', ') | uppercase }}
-      </mat-card-subtitle>
       <mat-card-subtitle>
         {{
           tripData.dates.start.toLocaleDateString('en-US', {
