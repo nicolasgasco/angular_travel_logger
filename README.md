@@ -21,6 +21,7 @@ A simple web app where you can store the trips you made.
 - Sorting and filtering tríps
 - Add travel mates if they are users of the app
 - Improve styles
+- Data visualization
 
 ## Live app hosted on Firebase
 Open [TravelHero](https://ng-travel-logger.web.app/all-trips)
