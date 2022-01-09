@@ -18,7 +18,7 @@ A simple web app where you can store the trips you made, created with Angular an
 
 ## Todo
 - Customized form validation
-- Sorting and filtering tríps
+- Sorting and filtering trips
 - Add travel mates if they are users of the app
 - Improve styles
 - Data visualization
