@@ -54,7 +54,6 @@ export class TripsService {
                 // if trips stored in localStorage
                 if (localStorageTrips && localStorageTrips.length > 0) {
                   this._convertObsToDates(localStorageTrips);
-
                   this.trips = localStorageTrips;
                   this.tripsChanged.next([...this.trips]);
                 } else {
@@ -75,6 +74,7 @@ export class TripsService {
             }
           );
       } else {
+        localStorage.clear();
         this.router.navigate(['/']);
         console.log('User is not logged');
       }
@@ -83,11 +83,19 @@ export class TripsService {
 
   _convertObsToDates(trips: TripData[]) {
     trips.map((trip) => {
-      trip.dates.start = new Date(trip.dates.start.seconds * 1000);
-      trip.dates.end = new Date(trip.dates.end.seconds * 1000);
-      trip.journal.map((entry) => {
-        entry.day = new Date(entry.day['seconds'] * 1000);
-      });
+      if (typeof trip.dates.start === 'string') {
+        trip.dates.start = new Date(trip.dates.start);
+        trip.dates.end = new Date(trip.dates.end);
+        trip.journal.map((entry) => {
+          entry.day = new Date(entry.day);
+        });
+      } else {
+        trip.dates.start = new Date(trip.dates.start.seconds * 1000);
+        trip.dates.end = new Date(trip.dates.end.seconds * 1000);
+        trip.journal.map((entry) => {
+          entry.day = new Date(entry.day['seconds'] * 1000);
+        });
+      }
     });
   }
 
