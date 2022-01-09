@@ -1,6 +1,6 @@
 # TravelHero
 
-A simple web app where you can store all your trips.
+A simple web app where you can store the trips you made.
 
 ## Stack
 - Front end: Angular
@@ -14,6 +14,7 @@ A simple web app where you can store all your trips.
 - Firebase Firestore database
 - Save trip data like countries and cities visited, trip dates, and travel journal (one entry per day)
 - Add, modify, and delete trips
+- Preview account that saves to Local Storage and not to real database
 
 ## Todo
 - Customized form validation
