@@ -134,26 +134,32 @@ export class TripsService {
     dialogRef.afterClosed().subscribe((result) => {
       // If you press on confirm
       if (result) {
-        this.angularFireAuth.authState.subscribe((userData) => {
-          if (userData) {
-            this.db
-              .collection('users')
-              .doc(userData.uid)
-              .collection('savedTrips')
-              .doc(tripId)
-              .valueChanges()
-              .subscribe((tripToBeDeleted) => {
-                this.db
-                  .collection('users')
-                  .doc(userData.uid)
-                  .collection('savedTrips')
-                  .doc(tripId)
-                  .delete();
-              });
-          } else {
-            console.log('User is not logged');
-          }
-        });
+        if (this.userId === 'WAIR22NMwRTekWYaX7HufKe6ajF2') {
+          this.trips = this.trips.filter((trip) => trip.id !== tripId);
+          localStorage.setItem('tripsData', JSON.stringify(this.trips));
+          this.tripsChanged.next([...this.trips]);
+        } else {
+          this.angularFireAuth.authState.subscribe((userData) => {
+            if (userData) {
+              this.db
+                .collection('users')
+                .doc(userData.uid)
+                .collection('savedTrips')
+                .doc(tripId)
+                .valueChanges()
+                .subscribe((tripToBeDeleted) => {
+                  this.db
+                    .collection('users')
+                    .doc(userData.uid)
+                    .collection('savedTrips')
+                    .doc(tripId)
+                    .delete();
+                });
+            } else {
+              console.log('User is not logged');
+            }
+          });
+        }
       }
     });
   }
