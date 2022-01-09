@@ -1,9 +1,10 @@
 :host {
-  mat-list {
-    mat-list-item {
-      .journal-date-label {
-        font-weight: bold;
-      }
+  li {
+    .journal-date-label {
+      font-weight: bold;
+    }
+    &:not(:last-of-type) {
+      margin-bottom: 15px;
     }
   }
 }

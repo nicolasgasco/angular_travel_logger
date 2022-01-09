@@ -12,21 +12,25 @@ import { Component, Input, OnInit } from '@angular/core';
         {{ entries.length }} {{ entries.length === 1 ? 'entry' : 'entries' }}
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <mat-list role="list">
-      <mat-list-item role="listitem" *ngFor="let journalEntry of entries; let i = index">
-        <p>
-          <span class="journal-date-label">
-            {{
-              journalEntry.day.toLocaleDateString('en-US', {
-                day: 'numeric',
-                month: 'long'
-              })
-            }}</span
-          >: {{ journalEntry.entry }}
-        </p>
-        <mat-divider *ngIf="entries.length > 1 && i !== (entries.length - 1)"></mat-divider>
-      </mat-list-item>
-    </mat-list>
+    <ul role="list">
+      <ng-container *ngFor="let journalEntry of entries; let i = index">
+        <li role="listitem">
+          <p>
+            <span class="journal-date-label">
+              {{
+                journalEntry.day.toLocaleDateString('en-US', {
+                  day: 'numeric',
+                  month: 'long'
+                })
+              }}</span
+            >: {{ journalEntry.entry }}
+          </p>
+          <!-- <mat-divider
+            *ngIf="entries.length > 1 && i !== entries.length - 1"
+          ></mat-divider> -->
+        </li>
+      </ng-container>
+    </ul>
   </mat-expansion-panel>`,
   styleUrls: ['./journal-expansion.component.scss'],
 })
