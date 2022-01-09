@@ -2,11 +2,6 @@
 
 A simple web app where you can store the trips you made.
 
----
-
-This project is still WIP
----
-
 ## Stack
 - Front end: Angular
 - Styles: Angular Material, SASS, and Angular Flex-Layout
