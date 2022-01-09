@@ -1,6 +1,8 @@
 # TravelHero
 
-A simple web app where you can store the trips you made.
+A simple web app where you can store the trips you made, created with Angular and Firebase.
+
+![Screenshot of TravelHero](https://res.cloudinary.com/ngasco/image/upload/v1641765981/travelhero_zpgjal.png)
 
 ## Stack
 - Front end: Angular
@@ -18,14 +20,10 @@ A simple web app where you can store the trips you made.
 
 ## Todo
 - Customized form validation
-- Sorting and filtering tríps
+- Sorting and filtering trips
 - Add travel mates if they are users of the app
 - Improve styles
+- Data visualization
 
 ## Live app hosted on Firebase
 Open [TravelHero](https://ng-travel-logger.web.app/all-trips)
-
-## Start up app in development
-```
-ng serve
-```
