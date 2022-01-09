@@ -90,7 +90,6 @@ export class JournalFormComponent implements OnInit {
     const savedJournalEntry = this.journalEntries.filter((journalEntry) => {
       return journalEntry.day === this.newJournalEntry.controls.day.value;
     })[0];
-    console.log(savedJournalEntry);
     if (savedJournalEntry)
       this.newJournalEntry.controls.entry.setValue(savedJournalEntry.entry);
   }

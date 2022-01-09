@@ -45,8 +45,30 @@ export class TripsService {
           })
           .subscribe(
             (fetchedTrips: TripData[]) => {
-              this.trips = fetchedTrips;
-              this.tripsChanged.next([...this.trips]);
+              this._convertObsToDates(fetchedTrips);
+              // Trips for test user are saved on LocalStorage and not db
+              if (this.userId === 'WAIR22NMwRTekWYaX7HufKe6ajF2') {
+                const localStorageTrips = JSON.parse(
+                  localStorage.getItem('tripsData')
+                );
+                // if trips stored in localStorage
+                if (localStorageTrips && localStorageTrips.length > 0) {
+                  this._convertObsToDates(localStorageTrips);
+
+                  this.trips = localStorageTrips;
+                  this.tripsChanged.next([...this.trips]);
+                } else {
+                  localStorage.setItem(
+                    'tripsData',
+                    JSON.stringify(fetchedTrips)
+                  );
+                  this.trips = fetchedTrips;
+                  this.tripsChanged.next([...this.trips]);
+                }
+              } else {
+                this.trips = fetchedTrips;
+                this.tripsChanged.next([...this.trips]);
+              }
             },
             (error) => {
               console.log(error);
@@ -59,15 +81,34 @@ export class TripsService {
     });
   }
 
+  _convertObsToDates(trips: TripData[]) {
+    trips.map((trip) => {
+      trip.dates.start = new Date(trip.dates.start.seconds * 1000);
+      trip.dates.end = new Date(trip.dates.end.seconds * 1000);
+      trip.journal.map((entry) => {
+        entry.day = new Date(entry.day['seconds'] * 1000);
+      });
+    });
+  }
+
   addTripToFirebase(trip: TripData) {
     this.angularFireAuth.authState.subscribe((userData) => {
       if (userData) {
-        this.db
-          .collection('users')
-          .doc(userData.uid)
-          .collection('savedTrips')
-          .add(trip);
-
+        // Save to LocalStorage for test user
+        if (this.userId === 'WAIR22NMwRTekWYaX7HufKe6ajF2') {
+          const localStorageTrips = JSON.parse(
+            localStorage.getItem('tripsdata')
+          );
+          console.log(localStorageTrips);
+          localStorageTrips.push(trip);
+          localStorage.setItem('tripsData', JSON.stringify(localStorageTrips));
+        } else {
+          this.db
+            .collection('users')
+            .doc(userData.uid)
+            .collection('savedTrips')
+            .add(trip);
+        }
         const dialogRef = this.dialog.open(ModalComponentDialog, {
           data: {
             modalTitle: 'Your trip was successfully added!',

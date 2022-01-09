@@ -17,7 +17,7 @@ import { Component, Input, OnInit } from '@angular/core';
         <p>
           <span class="journal-date-label">
             {{
-              journalEntry.day.toDate().toLocaleDateString('en-US', {
+              journalEntry.day.toLocaleDateString('en-US', {
                 day: 'numeric',
                 month: 'long'
               })

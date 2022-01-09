@@ -24,7 +24,7 @@ import { TripsService } from 'src/app/services/trips.service';
       </mat-card-subtitle>
       <mat-card-subtitle>
         {{
-          tripData.dates.start.toDate().toLocaleDateString('en-US', {
+          tripData.dates.start.toLocaleDateString('en-US', {
             day: 'numeric',
             month: 'long',
             year: 'numeric'
@@ -33,7 +33,7 @@ import { TripsService } from 'src/app/services/trips.service';
         <span *ngIf="tripData.dates.start !== tripData.dates.end">
           -
           {{
-            tripData.dates.end.toDate().toLocaleDateString('en-US', {
+            tripData.dates.end.toLocaleDateString('en-US', {
               day: 'numeric',
               month: 'long',
               year: 'numeric'
