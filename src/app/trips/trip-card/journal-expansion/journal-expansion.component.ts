@@ -41,5 +41,9 @@ export class JournalExpansionComponent implements OnInit {
 
   panelOpenState = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.entries.sort((a, b) => {
+      return a['day'] > b['day'] ? 1 : -1;
+    });
+  }
 }

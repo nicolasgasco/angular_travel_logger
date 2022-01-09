@@ -164,9 +164,14 @@ export class AddTripComponent implements OnInit {
 
   addNewJournalEntry(journalEntryData: { day: Date; entry: string }) {
     this.showJournalForm = !this.showJournalForm;
-    this.journal.filter((journalEntry) => {
-      return journalEntry.day !== journalEntryData.day;
+    console.log(this.journal);
+    this.journal = this.journal.filter((journalEntry) => {
+      return (
+        journalEntry.day.getMonth() !== journalEntryData.day.getMonth() ||
+        journalEntry.day.getDay() !== journalEntryData.day.getDay()
+      );
     });
+    console.log(this.journal);
     this.journal.push(journalEntryData);
   }
 }

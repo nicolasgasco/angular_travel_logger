@@ -6,7 +6,6 @@ import { TripData } from 'src/app/interfaces/trip-data.interface';
 @Component({
   selector: 'travel-log-journal-form',
   template: `
-    {{ journalEntries | json }}
     <h2>Journal entries</h2>
     <form [formGroup]="newJournalEntry" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
