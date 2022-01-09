@@ -99,7 +99,7 @@ export class AddTripComponent implements OnInit {
   newTripForm: FormGroup;
   showJournalForm = false;
   dates = [];
-  journal = [];
+  journal: any[];
   citiesInput: string[];
   countriesInput: string[];
 
@@ -109,6 +109,7 @@ export class AddTripComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.journal = this.editMode ? this.tripsService.tripToEdit.journal : [];
     this.citiesInput = this.editMode ? this.tripsService.tripToEdit.cities : [];
     this.countriesInput = this.editMode
       ? this.tripsService.tripToEdit.countries

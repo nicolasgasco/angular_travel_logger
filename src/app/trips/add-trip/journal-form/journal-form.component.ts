@@ -6,6 +6,7 @@ import { TripData } from 'src/app/interfaces/trip-data.interface';
 @Component({
   selector: 'travel-log-journal-form',
   template: `
+    {{ journalEntries | json }}
     <h2>Journal entries</h2>
     <form [formGroup]="newJournalEntry" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill">
@@ -79,16 +80,26 @@ export class JournalFormComponent implements OnInit {
   }
 
   checkIfEntryAlreadyExists(dateInfo) {
-    return (
-      this.journalEntries.filter((journalEntry) => {
-        return journalEntry.day === dateInfo;
-      }).length > 0
-    );
+    let found = false;
+    this.journalEntries.forEach((journalEntry) => {
+      if (
+        journalEntry.day.getMonth() === dateInfo.getMonth() &&
+        journalEntry.day.getDay() === dateInfo.getDay()
+      ) {
+        found = true;
+      }
+    });
+    return found;
   }
 
   onDaySelection() {
     const savedJournalEntry = this.journalEntries.filter((journalEntry) => {
-      return journalEntry.day === this.newJournalEntry.controls.day.value;
+      return (
+        journalEntry.day.getMonth() ===
+          this.newJournalEntry.controls.day.value.getMonth() &&
+        journalEntry.day.getDay() ===
+          this.newJournalEntry.controls.day.value.getDay()
+      );
     })[0];
     if (savedJournalEntry)
       this.newJournalEntry.controls.entry.setValue(savedJournalEntry.entry);
