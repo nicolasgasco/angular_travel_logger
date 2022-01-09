@@ -1,4 +1,12 @@
+@import "src/assets/styles/colors";
 :host {
+  mat-expansion-panel {
+    margin-top: 50px;
+    mat-expansion-panel-header {
+      background-color: $color-primary;
+    }
+  }
+
   li {
     .journal-date-label {
       font-weight: bold;

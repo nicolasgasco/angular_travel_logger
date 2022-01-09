@@ -53,7 +53,7 @@ import { TripsService } from 'src/app/services/trips.service';
                   >
                     {{ capitalizeFirstLetter(country) }}
                     <mat-divider
-                      *ngIf="tripData.countries.length > 2"
+                      *ngIf="tripData.countries.length > 1"
                     ></mat-divider>
                   </mat-list-item> </mat-list
               ></ng-container>
@@ -75,7 +75,7 @@ import { TripsService } from 'src/app/services/trips.service';
                   >
                     {{ capitalizeFirstLetter(city) }}
                     <mat-divider
-                      *ngIf="tripData.cities.length > 2"
+                      *ngIf="tripData.cities.length > 1"
                     ></mat-divider>
                   </mat-list-item> </mat-list
               ></ng-container>

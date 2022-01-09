@@ -37,6 +37,7 @@ import { TripData } from 'src/app/interfaces/trip-data.interface';
             matInput
             name="entry"
             id="entry"
+            rows="5"
             formControlName="entry"
             #entryInput
             [maxLength]="entryCharactersLength"

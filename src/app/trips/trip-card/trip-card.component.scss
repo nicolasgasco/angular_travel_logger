@@ -15,6 +15,10 @@
     flex-direction: column;
     .mat-card-content {
       ::ng-deep .mat-tab-group {
+        .mat-tab-labels {
+          justify-content: center;
+        }
+
         .city-container,
         .country-container {
           mat-list {
@@ -24,7 +28,6 @@
         }
       }
     }
-
     .mat-card-actions {
       margin-top: auto;
       .actions-container {
