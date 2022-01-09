@@ -18,7 +18,7 @@ import { TripsService } from 'src/app/services/trips.service';
           *ngIf="trips.length > 0; else noTrips"
         >
           <travel-log-trip-card
-            *ngFor="let trip of trips"
+            *ngFor="let trip of _sortTrips(trips)"
             [tripData]="trip"
           ></travel-log-trip-card>
         </div>
@@ -55,5 +55,11 @@ export class AllTripsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.tripsSubscription.unsubscribe();
+  }
+
+  _sortTrips(trips: TripData[]) {
+    return trips.sort((a, b) => {
+      return a['dates']['start'] > b['dates']['start'] ? 1 : -1;
+    });
   }
 }
