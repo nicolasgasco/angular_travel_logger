@@ -105,9 +105,8 @@ export class TripsService {
         // Save to LocalStorage for test user
         if (this.userId === 'WAIR22NMwRTekWYaX7HufKe6ajF2') {
           const localStorageTrips = JSON.parse(
-            localStorage.getItem('tripsdata')
+            localStorage.getItem('tripsData')
           );
-          console.log(localStorageTrips);
           localStorageTrips.push(trip);
           localStorage.setItem('tripsData', JSON.stringify(localStorageTrips));
         } else {
