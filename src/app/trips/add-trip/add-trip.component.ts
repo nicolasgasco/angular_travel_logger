@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { TripData } from 'src/app/interfaces/trip-data.interface';
+import { ModalComponentDialog } from 'src/app/layout/modal/modal.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { TripsService } from 'src/app/services/trips.service';
 
@@ -80,7 +82,7 @@ import { TripsService } from 'src/app/services/trips.service';
           mat-raised-button
           type="submit"
           color="accent"
-          [disabled]="newTripForm.invalid"
+          [disabled]="isFormValid()"
         >
           {{ editMode ? 'Edit and close trip' : 'Save and close trip' }}
         </button>
@@ -105,7 +107,7 @@ export class AddTripComponent implements OnInit {
 
   constructor(
     public tripsService: TripsService,
-    private authService: AuthService
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -132,12 +134,21 @@ export class AddTripComponent implements OnInit {
     });
   }
 
+  isFormValid() {
+    return (
+      this.newTripForm.invalid ||
+      this.newTripForm.controls.countries.value.length === 0 ||
+      this.newTripForm.controls.cities.value.length === 0 ||
+      this.showJournalForm
+    );
+  }
+
   onSubmit() {
     const tripData = {
       ...this.newTripForm.value,
       journal: this.journal,
     };
-    console.log(tripData);
+
     if (!this.editMode) {
       this.tripsService.addTripToFirebase(tripData);
     } else {
@@ -164,14 +175,12 @@ export class AddTripComponent implements OnInit {
 
   addNewJournalEntry(journalEntryData: { day: Date; entry: string }) {
     this.showJournalForm = !this.showJournalForm;
-    console.log(this.journal);
     this.journal = this.journal.filter((journalEntry) => {
       return (
         journalEntry.day.getMonth() !== journalEntryData.day.getMonth() ||
         journalEntry.day.getDay() !== journalEntryData.day.getDay()
       );
     });
-    console.log(this.journal);
     this.journal.push(journalEntryData);
   }
 }

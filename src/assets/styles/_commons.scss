@@ -61,20 +61,14 @@ mat-dialog-container.mat-dialog-container {
   }
 }
 
-p,
-span,
-label {
-  font-size: $std-fs;
-}
-
 // Typography
 .h1,
-mat-card-title.mat-card-title.card-title {
-  font-size: $h1-fs;
-  font-weight: $h1-fw;
-  line-height: $h1-lh;
-  margin-bottom: 20px;
-  letter-spacing: 1px;
+mat-card-title.mat-card-title.card-title, mat-card-title.mat-card-title {
+  font-size: $h1-fs !important;
+  font-weight: $h1-fw !important;
+  line-height: $h1-lh !important;
+  margin-bottom: 20px !important;
+  letter-spacing: 1px !important;
 }
 
 .h2,
@@ -84,7 +78,9 @@ h2.mat-dialog-title {
   line-height: $h2-lh;
 }
 
-p {
-  font-size: $std-fs;
-  line-height: $std-lh;
+button {
+  span {
+    font-size: $btn-fs;
+    font-weight: $btn-fw;
+  }
 }

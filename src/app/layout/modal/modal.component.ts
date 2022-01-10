@@ -21,8 +21,8 @@ export class ModalComponent {}
         mat-stroked-button
         mat-dialog-close
         *ngIf="data.secondaryButtonText"
-        color="accent"
-        fill="outline"
+        color="outline"
+        fill="solid"
       >
         {{ data.secondaryButtonText }}
       </button>

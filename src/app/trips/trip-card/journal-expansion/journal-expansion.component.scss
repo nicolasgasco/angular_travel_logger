@@ -5,6 +5,10 @@
     mat-expansion-panel-header {
       background-color: $color-primary;
     }
+    ::ng-deep .mat-expansion-panel-content {
+      background: $color-white;
+      color: $dark;
+    }
   }
 
   li {
