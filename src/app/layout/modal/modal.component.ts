@@ -10,14 +10,20 @@ export class ModalComponent {}
 
 @Component({
   selector: 'travel-log-modal-dialog',
-  template: ` <h2 mat-dialog-title *ngIf="data.modalTitle">
+  template: ` <h2 class="h2" mat-dialog-title *ngIf="data.modalTitle">
       {{ data.modalTitle }}
     </h2>
     <mat-dialog-content class="mat-typography">
       <p *ngIf="data.modalText">{{ data.modalText }}</p>
     </mat-dialog-content>
     <mat-dialog-actions align="end">
-      <button mat-stroked-button mat-dialog-close *ngIf="data.secondaryButtonText" color="accent" fill="outline">
+      <button
+        mat-stroked-button
+        mat-dialog-close
+        *ngIf="data.secondaryButtonText"
+        color="accent"
+        fill="outline"
+      >
         {{ data.secondaryButtonText }}
       </button>
       <button

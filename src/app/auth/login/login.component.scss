@@ -24,9 +24,12 @@
   }
   .signup-text {
     margin-top: 30px;
+    @include hover-animation($color-white);
     a {
+      color: $color-accent;
       &:hover {
-        color: $color-accent;
+        @include defaultTransition();
+        color: inherit;
       }
     }
   }

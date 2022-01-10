@@ -53,6 +53,14 @@ mat-dialog-container.mat-dialog-container {
   }
 }
 
+.mat-menu-content {
+  button {
+    font-size: $btn-fs;
+    min-width: 180px;
+    text-align: center;
+  }
+}
+
 p,
 span,
 label {
@@ -60,9 +68,23 @@ label {
 }
 
 // Typography
-.h1 {
-  font-size: 32px;
-  font-weight: bold;
+.h1,
+mat-card-title.mat-card-title.card-title {
+  font-size: $h1-fs;
+  font-weight: $h1-fw;
+  line-height: $h1-lh;
   margin-bottom: 20px;
   letter-spacing: 1px;
+}
+
+.h2,
+h2.mat-dialog-title {
+  font-size: $h2-fs;
+  font-weight: $h2-fw;
+  line-height: $h2-lh;
+}
+
+p {
+  font-size: $std-fs;
+  line-height: $std-lh;
 }

@@ -1,4 +1,6 @@
-:host {
+@import "src/assets/styles/typography";
+
+:host  {
   width: 100%;
 
   .auth-button {
@@ -38,6 +40,10 @@
     }
     mat-nav-list {
       padding: 0;
+      a {
+        font-size: $btn-fs;
+        font-weight: $btn-fw;
+      }
     }
   }
 }

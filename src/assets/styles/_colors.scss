@@ -5,7 +5,12 @@
 @include mat.core();
 $travel-log-primary: mat.define-palette(mat.$blue-grey-palette, 400);
 $travel-log-accent: mat.define-palette(mat.$yellow-palette, 400);
-$travel-log-warn: mat.define-palette(mat.$deep-orange-palette, A200, A100, A400);
+$travel-log-warn: mat.define-palette(
+  mat.$deep-orange-palette,
+  A200,
+  A100,
+  A400
+);
 
 $travel-log-theme: mat.define-dark-theme(
   (
@@ -34,3 +39,4 @@ $color-accent-light: mat.get-color-from-palette($travel-log-accent, 200);
 
 $color-danger: mat.get-color-from-palette($travel-log-warn, 400);
 
+$color-white: #fff;

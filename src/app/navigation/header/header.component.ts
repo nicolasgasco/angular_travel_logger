@@ -61,7 +61,7 @@ import { AuthService } from 'src/app/services/auth.service';
       <mat-nav-list
         fxLayoutGap="20px"
         fxLayoutAlign="center baseline"
-        disableRipple="true"
+        [disableRipple]="true"
       >
         <a
           mat-list-item
