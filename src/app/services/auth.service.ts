@@ -131,7 +131,6 @@ export class AuthService {
   }
 
   private authSuccessful(uid?: string) {
-    console.log(uid);
     if (uid === 'WAIR22NMwRTekWYaX7HufKe6ajF2') {
       const dialogRef = this.dialog.open(ModalComponentDialog, {
         data: {
