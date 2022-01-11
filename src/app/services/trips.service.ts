@@ -195,7 +195,6 @@ export class TripsService {
         .doc(tripId)
         .update(tripData)
         .then((result) => {
-          console.log(result);
           const dialogRef = this.dialog.open(ModalComponentDialog, {
             data: {
               modalTitle: 'Your trip details were updated successfully!',
