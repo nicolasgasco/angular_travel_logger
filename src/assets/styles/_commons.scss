@@ -1,8 +1,3 @@
-span,
-p {
-  font-size: $std-fs;
-}
-
 section {
   width: 100%;
   max-width: 1279px;
@@ -42,14 +37,22 @@ mat-list-item {
   }
 }
 
-mat-dialog-container.mat-dialog-container {
-  min-width: 400px;
-  max-width: min(600px, 80vw);
-  padding: 35px 25px;
+.cdk-overlay-pane {
+  max-width: 90vw !important;
+  mat-dialog-container.mat-dialog-container {
+    padding: 20px 15px;
+    @include mq-xs {
+      // min-width: 400px;
+      width: auto;
+      max-width: min(450px, 80vw);
 
-  mat-dialog-actions {
-    margin: 0;
-    padding: 0;
+      padding: 35px 25px;
+    }
+
+    mat-dialog-actions {
+      margin: 0;
+      padding: 0;
+    }
   }
 }
 
@@ -61,21 +64,39 @@ mat-dialog-container.mat-dialog-container {
   }
 }
 
+div.mat-card-header-text {
+  margin: 0;
+}
+
 // Typography
 .h1,
-mat-card-title.mat-card-title.card-title, mat-card-title.mat-card-title {
-  font-size: $h1-fs !important;
+mat-card-title.mat-card-title.card-title,
+mat-card-title.mat-card-title {
   font-weight: $h1-fw !important;
-  line-height: $h1-lh !important;
+  font-size: $h1-fs-xs !important;
+  line-height: $h1-lh-xs !important;
+  @include mq-xs {
+    font-size: $h1-fs !important;
+    line-height: $h1-lh !important;
+  }
   margin-bottom: 20px !important;
   letter-spacing: 1px !important;
 }
 
 .h2,
 h2.mat-dialog-title {
-  font-size: $h2-fs;
+  font-size: $h2-fs-xs;
+  line-height: $h2-lh-xs;
   font-weight: $h2-fw;
-  line-height: $h2-lh;
+  @include mq-xs {
+    font-size: $h2-fs;
+    line-height: $h2-lh;
+  }
+}
+
+p {
+  font-size: $std-fs;
+  line-height: $std-lh;
 }
 
 button {

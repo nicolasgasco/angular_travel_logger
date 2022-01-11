@@ -18,16 +18,15 @@
     margin: 0 auto;
 
     mat-card-header {
-      mat-icon {
-        height: fit-content;
-        width: fit-content;
-      }
-      align-items: center;
-      > :first-child {
-        margin-right: 15px;
-      }
       mat-card-title.card-title {
         margin-bottom: 0;
+        display: flex;
+        align-items: center;
+        mat-icon {
+          height: fit-content;
+          width: fit-content;
+          margin-right: 15px;
+        }
       }
       @include header-bottom-margin;
     }

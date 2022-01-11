@@ -3,7 +3,7 @@
 
 // Theming
 @include mat.core();
-$travel-log-primary: mat.define-palette(mat.$blue-grey-palette, 400);
+$travel-log-primary: mat.define-palette(mat.$blue-grey-palette, 600);
 $travel-log-accent: mat.define-palette(mat.$yellow-palette, 400);
 $travel-log-warn: mat.define-palette(
   mat.$deep-orange-palette,
@@ -33,7 +33,7 @@ $color-primary: mat.get-color-from-palette($travel-log-primary, 600);
 $color-primary-dark: mat.get-color-from-palette($travel-log-primary, 700);
 $color-primary-light: mat.get-color-from-palette($travel-log-primary, 200);
 
-$color-accent: mat.get-color-from-palette($travel-log-accent, 500);
+$color-accent: mat.get-color-from-palette($travel-log-accent, 400);
 $color-accent-dark: mat.get-color-from-palette($travel-log-accent, 700);
 $color-accent-light: mat.get-color-from-palette($travel-log-accent, 200);
 
