@@ -12,20 +12,17 @@ import { TripsService } from 'src/app/services/trips.service';
         <travel-log-spinner></travel-log-spinner>
       </ng-container>
       <ng-template #finishedLoading>
-        <div
-          class="cards-container"
-          [class.single-trip]="trips.length === 1"
-          *ngIf="trips.length > 0; else noTrips"
-        >
-          <travel-log-trip-card
-            *ngFor="let trip of _sortTrips(trips)"
-            [tripData]="trip"
-          ></travel-log-trip-card>
-        </div>
+        <ng-container *ngIf="trips.length > 0; else noTrips">
+          <h1 class="h1">Your trips</h1>
+          <div class="cards-container" [class.single-trip]="trips.length === 1">
+            <travel-log-trip-card
+              *ngFor="let trip of _sortTrips(trips)"
+              [tripData]="trip"
+            ></travel-log-trip-card>
+          </div>
+        </ng-container>
         <ng-template #noTrips>
-          <h1 class="no-trips-title" class="h1">
-            There are no trips to show...
-          </h1>
+          <h1 id="no-trips-title" class="h1">There are no trips to show...</h1>
           <img
             class="no-trips-img"
             src="/assets/img/no_trips.svg"

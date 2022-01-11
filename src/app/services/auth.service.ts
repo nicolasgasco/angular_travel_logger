@@ -54,8 +54,8 @@ export class AuthService {
   }
 
   private signupSuccessful(signupData: any) {
+    localStorage.clear();
     console.log('Signup successful');
-    console.log(signupData);
     this.db.collection('users').doc(signupData.user.uid).set({
       uid: signupData.user.uid,
       email: signupData.user.email,
