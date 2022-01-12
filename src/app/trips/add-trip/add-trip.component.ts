@@ -165,7 +165,7 @@ export class AddTripComponent implements OnInit {
   }
 
   _createDatesArray() {
-    let loop = new Date(this.newTripForm.value.dates.start);
+    let loop = new Date(this.newTripForm.value.dates.start - 1);
     while (loop <= this.newTripForm.value.dates.end) {
       this.dates.push(loop);
       let newDate = loop.setDate(loop.getDate() + 1);
